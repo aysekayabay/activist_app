@@ -1,5 +1,5 @@
-import 'package:akademi_bootcamp/model/event_model.dart';
-import 'package:akademi_bootcamp/services/etkinlikIO_service.dart';
+import 'package:akademi_bootcamp/core/model/event_model.dart';
+import 'package:akademi_bootcamp/core/services/etkinlikIO_service.dart';
 import 'package:flutter/material.dart';
 
 class EventsView extends StatefulWidget {

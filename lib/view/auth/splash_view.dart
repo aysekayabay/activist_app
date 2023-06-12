@@ -1,4 +1,4 @@
-import 'package:akademi_bootcamp/view/events_view.dart';
+import 'package:akademi_bootcamp/view/home/events_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:akademi_bootcamp/view/splash_view.dart';
+import 'package:akademi_bootcamp/view/auth/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
