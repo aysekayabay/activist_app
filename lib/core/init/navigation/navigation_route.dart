@@ -1,5 +1,6 @@
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
-import 'package:akademi_bootcamp/test_view.dart';
+import 'package:akademi_bootcamp/view/auth/login_view.dart';
+import 'package:akademi_bootcamp/view/home/events_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/cards/page/not_found_navigation.dart';
@@ -11,7 +12,9 @@ class NavigationRoute {
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
       case NavigationConstants.HOME:
-        return navigate(TestView());
+        return navigate(EventsView());
+      case NavigationConstants.LOGIN:
+        return navigate(LoginView());
       default:
         MaterialPageRoute(builder: (context) => NotFoundNavigatonWidget());
     }

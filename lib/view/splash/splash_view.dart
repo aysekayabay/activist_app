@@ -1,3 +1,5 @@
+import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
+import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/view/home/events_view.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3)).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => EventsView())));
+    Future.delayed(Duration(seconds: 3)).then((value) => NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.LOGIN));
     super.initState();
   }
 

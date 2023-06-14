@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:akademi_bootcamp/core/constants/api/api_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
-import 'package:akademi_bootcamp/core/services/geocoding_service.dart';
+import 'package:akademi_bootcamp/core/services/geocoding/geocoding_service.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:http/http.dart' as http;
 
