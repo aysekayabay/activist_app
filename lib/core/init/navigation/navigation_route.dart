@@ -1,8 +1,8 @@
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
-import 'package:akademi_bootcamp/view/auth/login_view.dart';
-import 'package:akademi_bootcamp/view/home/events_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../product/auth/login_view.dart';
+import '../../../product/home/events_view.dart';
 import '../../components/cards/page/not_found_navigation.dart';
 
 class NavigationRoute {

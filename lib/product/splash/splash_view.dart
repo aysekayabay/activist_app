@@ -1,6 +1,5 @@
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
-import 'package:akademi_bootcamp/view/home/events_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
