@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
@@ -62,17 +63,17 @@ class AuthService {
     }
   }
 
-  // Future<int> signInWithFacebook() async {
-  //   final LoginResult loginResult = await FacebookAuth.instance.login();
-  //   if (loginResult != null) {
-  //     final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-  //     UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  //     if (userCredential != null) {
-  //       return 1;
-  //     }
-  //   }
-  //   return 0;
-  // }
+  Future<int> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    if (loginResult != null) {
+      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+      if (userCredential != null) {
+        return 1;
+      }
+    }
+    return 0;
+  }
 
   Future<int> signInWithGoogle() async {
     try {

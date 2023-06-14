@@ -41,7 +41,7 @@ abstract class _LoginViewModelBase with Store {
         AuthService.instance.signInWithGoogle();
         break;
       case AuthType.FACEBOOK:
-        // AuthService.instance.signInWithFacebook();
+        AuthService.instance.signInWithFacebook();
         break;
       case AuthType.TWITTER:
         // AuthService.instance.signInWithTwitter();
