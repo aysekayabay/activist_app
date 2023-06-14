@@ -12,11 +12,7 @@ class EventsView extends StatefulWidget {
 class _EventsViewState extends State<EventsView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Etkinlikler"),
-        ),
-        body: const Center(child: FutureBody()));
+    return Scaffold(backgroundColor: Color(0xff323232), body: const Center(child: FutureBody()));
   }
 }
 

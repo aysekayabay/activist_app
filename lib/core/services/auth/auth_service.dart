@@ -1,8 +1,9 @@
 // ignore_for_file: unnecessary_null_comparison
 
-import 'package:akademi_bootcamp/core/services/firestore/firestore_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   AuthService._();
@@ -15,7 +16,6 @@ class AuthService {
       UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
       if (user.user != null) {
         uid = user.user!.uid;
-
         return 1;
       } else {
         return 0;
@@ -31,7 +31,6 @@ class AuthService {
       UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       if (user != null) {
         uid = user.user!.uid;
-        userData = await FirestoreManager.instance.firestoreGetDocument(collectionID: "user", documentID: user.user!.uid);
         return 1;
       } else {
         return 0;
@@ -46,5 +45,52 @@ class AuthService {
     await FirebaseAuth.instance.signOut();
     uid = null;
     userData = null;
+  }
+
+  Future<int> signInWithTwitter() async {
+    TwitterAuthProvider twitterProvider = TwitterAuthProvider();
+    if (kIsWeb) {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithPopup(twitterProvider);
+      if (userCredential != null) {
+        uid = userCredential.user!.uid;
+        return 1;
+      }
+      return 0;
+    } else {
+      await FirebaseAuth.instance.signInWithProvider(twitterProvider);
+      return 0;
+    }
+  }
+
+  // Future<int> signInWithFacebook() async {
+  //   final LoginResult loginResult = await FacebookAuth.instance.login();
+  //   if (loginResult != null) {
+  //     final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+  //     UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  //     if (userCredential != null) {
+  //       return 1;
+  //     }
+  //   }
+  //   return 0;
+  // }
+
+  Future<int> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      if (userCredential != null) {
+        uid = userCredential.user!.uid;
+        return 1;
+      }
+    } on GoogleAuthCredential catch (e) {
+      print(e);
+    }
+    return 0;
   }
 }

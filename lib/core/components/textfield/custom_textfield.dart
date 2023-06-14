@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../../constants/theme/theme_constants.dart';
 
 class CustomTextfield extends StatefulWidget {
-  final String labelText;
+  final String hintText;
   final TextEditingController controller;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
+  bool isVisible;
   final bool isPassword;
   final bool isSearch;
-  const CustomTextfield({
+  CustomTextfield({
     super.key,
-    required this.labelText,
+    required this.hintText,
     required this.controller,
     required this.keyboardType,
     required this.textInputAction,
+    this.isVisible = true,
     this.isPassword = false,
     this.isSearch = false,
   });
@@ -28,34 +30,32 @@ class _CustomTextfieldState extends State<CustomTextfield> {
 
   @override
   Widget build(BuildContext context) {
-    print(obsecure);
-    return TextField(
-      controller: widget.controller,
-      obscureText: widget.isPassword ? obsecure : false,
-      style: TextStyle(color: AppColors.vanillaShake),
-      decoration: InputDecoration(
-        labelText: widget.labelText,
-        prefixIcon: widget.isSearch ? Icon(Icons.search) : null,
-        // helperText: "Password must contain special character",
-        helperStyle: TextStyle(color: Colors.green),
-        hintStyle: TextStyle(color: Colors.grey),
-        border: OutlineInputBorder(borderSide: BorderSide(width: 10, color: AppColors.vanillaShake), borderRadius: BorderRadius.all(Radius.circular(15))),
-        suffixIcon: Visibility(
-          visible: widget.isPassword,
-          child: IconButton(
-            icon: Icon(obsecure ? Icons.visibility : Icons.visibility_off),
-            onPressed: () {
-              setState(
-                () {
-                  obsecure = !obsecure;
-                },
-              );
-            },
+    return Visibility(
+      visible: widget.isVisible,
+      child: TextField(
+        controller: widget.controller,
+        obscureText: widget.isPassword ? obsecure : false,
+        style: TextStyle(color: AppColors.vanillaShake),
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+          prefixIcon: widget.isSearch ? Icon(Icons.search) : null,
+          suffixIcon: Visibility(
+            visible: widget.isPassword,
+            child: IconButton(
+              icon: Icon(obsecure ? Icons.visibility : Icons.visibility_off),
+              onPressed: () {
+                setState(
+                  () {
+                    obsecure = !obsecure;
+                  },
+                );
+              },
+            ),
           ),
         ),
+        keyboardType: widget.keyboardType,
+        textInputAction: widget.textInputAction,
       ),
-      keyboardType: widget.keyboardType,
-      textInputAction: widget.textInputAction,
     );
   }
 }

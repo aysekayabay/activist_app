@@ -8,20 +8,25 @@ environment:
   sdk: '>=3.0.3 <4.0.0'
 
 dependencies:
+  # STATE_MANAGEMENT
+  flutter_mobx: ^2.0.6+5
+  mobx_codegen: ^2.3.0
+  mobx: ^2.2.0
   build_runner: ^2.4.5
+  # FIREBASE
   cloud_firestore: ^4.8.1
-  cupertino_icons: ^1.0.2
   firebase_auth: ^4.6.3
   firebase_core: ^2.14.0
+  google_sign_in: ^6.1.4
+  # UTILITY
+  cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
-  flutter_map: ^4.0.0
-  flutter_mobx: ^2.0.6+5
+  # LOCATION
   geocoding: ^2.1.0
-  http: ^0.13.0
   latlong2: ^0.8.2
-  mobx: ^2.2.0
-  mobx_codegen: ^2.3.0
+  # API
+  http: ^0.13.0
 
 dev_dependencies:
   flutter_test:
@@ -30,10 +35,9 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    - assets/icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
