@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:akademi_bootcamp/core/constants/api_constants.dart';
+import 'package:akademi_bootcamp/core/constants/api/api_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/core/services/geocoding_service.dart';
 import 'package:geocoding/geocoding.dart';

@@ -1,3 +1,5 @@
+import 'package:akademi_bootcamp/core/init/navigation/navigation_route.dart';
+import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/view/auth/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
+        navigatorKey: NavigationService.instance.navigatorKey,
+        onGenerateRoute: NavigationRoute.instance.generateRoute,
         home: SplashView());
   }
 }
