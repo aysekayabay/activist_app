@@ -6,7 +6,11 @@ import 'package:geocoding/geocoding.dart';
 import 'package:http/http.dart' as http;
 
 class EtkinlikIOService {
+  EtkinlikIOService._();
+  static late final EtkinlikIOService instance = EtkinlikIOService._();
+
   List<EventModel>? eventList = [];
+  List<Format>? categoryList = [];
   late EventService eventService;
 
   Future<List<EventModel>?> fetchEventList() async {
@@ -15,7 +19,6 @@ class EtkinlikIOService {
     if (response.statusCode == 200) {
       var jsonResponse = json.decode(response.body);
       eventService = EventService.fromJson(jsonResponse);
-      await setVenueLocationInList();
       return eventService.eventList;
     } else {
       print(response.statusCode);

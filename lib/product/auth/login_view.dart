@@ -29,6 +29,7 @@ class _LoginViewState extends BaseState<LoginView> {
             CustomButton(
                 title: _viewModel.continueLabel,
                 isFilled: true,
+                verticalPadding: AppSizes.mediumSize,
                 marginPadding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: AppSizes.highSize),
                 onTap: () => _viewModel.authFunction(context)),
             // dividerWidget(),

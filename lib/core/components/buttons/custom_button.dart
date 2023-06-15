@@ -3,34 +3,41 @@ import 'package:flutter/material.dart';
 import '../../constants/theme/theme_constants.dart';
 
 // ignore: must_be_immutable
-class CustomButton extends StatelessWidget {
+class CustomButton extends StatefulWidget {
   final String title;
-  final bool isFilled;
+  bool isFilled;
   void Function()? onTap;
+  final double? horizontalPadding;
+  final double? verticalPadding;
   final String? iconPath;
   final EdgeInsetsGeometry? marginPadding;
-  CustomButton({super.key, required this.title, required this.isFilled, this.marginPadding, this.onTap, this.iconPath});
+  CustomButton({super.key, required this.title, required this.isFilled, this.marginPadding, this.onTap, this.iconPath, this.horizontalPadding, this.verticalPadding});
 
+  @override
+  State<CustomButton> createState() => _CustomButtonState();
+}
+
+class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: marginPadding ?? EdgeInsets.zero,
+      padding: widget.marginPadding ?? EdgeInsets.zero,
       child: InkWell(
-        onTap: onTap,
+        onTap: widget.onTap,
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize),
+          padding: EdgeInsets.symmetric(vertical: widget.verticalPadding ?? 0, horizontal: widget.horizontalPadding ?? 0),
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                iconPath != null ? Image.asset(iconPath.toString()) : SizedBox(),
-                Text(title, style: TextStyle(color: isFilled ? Colors.black : Colors.white)),
+                widget.iconPath != null ? Image.asset(widget.iconPath.toString()) : SizedBox(),
+                Text(widget.title, style: TextStyle(color: widget.isFilled ? Colors.black : Colors.white)),
               ],
             ),
           ),
           decoration: BoxDecoration(
-              color: isFilled ? AppColors.vanillaShake : Colors.black,
-              border: Border.all(width: 2, color: isFilled ? Colors.black : AppColors.vanillaShake),
+              color: widget.isFilled ? AppColors.vanillaShake : Colors.black,
+              border: Border.all(width: 2, color: widget.isFilled ? Colors.black : AppColors.vanillaShake),
               borderRadius: BorderRadius.all(Radius.circular(15))),
         ),
       ),

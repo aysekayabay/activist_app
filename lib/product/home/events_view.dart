@@ -22,7 +22,7 @@ class FutureBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<EventModel>?>(
-      future: EtkinlikIOService().fetchEventList(),
+      future: EtkinlikIOService.instance.fetchEventList(),
       builder: (context, AsyncSnapshot<List<EventModel>?> snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           return ListView.builder(
