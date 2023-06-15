@@ -13,7 +13,7 @@ abstract class _LoginViewModelBase with Store {
   TextEditingController passwordController = TextEditingController();
   final String signIn = "Sign In";
   final String continueLabel = "Continue";
-  final String signUp = "Log In";
+  final String logIn = "Log In";
   @observable
   AuthType authType = AuthType.SIGN_IN;
 

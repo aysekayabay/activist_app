@@ -33,7 +33,9 @@ class _LoginViewState extends BaseState<LoginView> {
                 onTap: () => _viewModel.authFunction(context)),
             // dividerWidget(),
             iconButtons(),
-            TextButton(onPressed: () => _viewModel.changeAuthType(), child: Text(_viewModel.signUp)),
+            Observer(builder: (context) {
+              return TextButton(onPressed: () => _viewModel.changeAuthType(), child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn));
+            }),
           ],
         ),
       ),
@@ -80,7 +82,7 @@ class _LoginViewState extends BaseState<LoginView> {
       return Stack(
         children: [
           Image.asset(ImageConstants.AUTH_IMAGE),
-          Positioned(left: 20, top: 150, child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.signUp, style: themeData.textTheme.displayMedium)),
+          Positioned(left: 20, top: 150, child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: themeData.textTheme.displayMedium)),
           Positioned(
               bottom: 0,
               left: 0,
