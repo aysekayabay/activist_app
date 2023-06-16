@@ -1,6 +1,5 @@
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/product/home/events_view.dart';
-import 'package:akademi_bootcamp/testview.dart';
 import 'package:flutter/material.dart';
 
 import '../../../product/auth/auth_view.dart';

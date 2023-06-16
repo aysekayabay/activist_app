@@ -92,7 +92,10 @@ class _HomeViewState extends BaseState<HomeView> {
                         ? Row(
                             children: List.generate(_viewModel.filteredEventList!.length, (index) {
                             EventModel eventModel = _viewModel.filteredEventList![index];
-                            return PosterCard(eventModel: eventModel, deviceWidth: deviceWidth);
+                            return PosterCard(
+                              eventModel: eventModel,
+                              deviceWidth: deviceWidth,
+                            );
                           }))
                         : SizedBox()),
               ),

@@ -8,22 +8,24 @@ import 'package:http/http.dart' as http;
 class EtkinlikIOService {
   EtkinlikIOService._();
   static late final EtkinlikIOService instance = EtkinlikIOService._();
-
-  List<EventModel>? eventList = [];
-  List<Format>? categoryList = [];
   late EventService eventService;
 
   Future<List<EventModel>?> fetchEventList() async {
-    var response =
-        await http.get(Uri.parse(ApiConstants.baseUrl + '/events?city_ids=40'), headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Etkinlik-Token': ApiConstants.token});
-    if (response.statusCode == 200) {
-      var jsonResponse = json.decode(response.body);
-      eventService = EventService.fromJson(jsonResponse);
-      return eventService.eventList;
-    } else {
-      print(response.statusCode);
-      return null;
+    try {
+      var response =
+          await http.get(Uri.parse(ApiConstants.baseUrl + '/events?city_ids=40'), headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Etkinlik-Token': ApiConstants.token});
+      if (response.statusCode == 200) {
+        var jsonResponse = json.decode(response.body);
+        eventService = EventService.fromJson(jsonResponse);
+        return eventService.eventList;
+      } else {
+        print(response.statusCode);
+        return null;
+      }
+    } catch (e) {
+      print(e);
     }
+    return null;
   }
 
   Future<void> setVenueLocationInList() async {
