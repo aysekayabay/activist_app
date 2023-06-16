@@ -3,7 +3,7 @@ import 'package:akademi_bootcamp/product/home/events_view.dart';
 import 'package:akademi_bootcamp/testview.dart';
 import 'package:flutter/material.dart';
 
-import '../../../product/auth/login_view.dart';
+import '../../../product/auth/auth_view.dart';
 import '../../../product/home/home_view.dart';
 import '../../components/page/not_found_navigation.dart';
 
@@ -15,8 +15,8 @@ class NavigationRoute {
     switch (args.name) {
       case NavigationConstants.HOME:
         return navigate(HomeView());
-      case NavigationConstants.LOGIN:
-        return navigate(LoginView());
+      case NavigationConstants.AUTH:
+        return navigate(AuthView());
       case NavigationConstants.TEST:
         return navigate(EventsView());
       default:

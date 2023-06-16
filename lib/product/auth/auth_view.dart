@@ -8,14 +8,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../core/components/buttons/circle_icon_button.dart';
 import 'auth_view_model.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class AuthView extends StatefulWidget {
+  const AuthView({super.key});
 
   @override
-  BaseState<LoginView> createState() => _LoginViewState();
+  BaseState<AuthView> createState() => _AuthViewState();
 }
 
-class _LoginViewState extends BaseState<LoginView> {
+class _AuthViewState extends BaseState<AuthView> {
   AuthViewModel _viewModel = AuthViewModel();
   bool obsecure = false;
   @override
