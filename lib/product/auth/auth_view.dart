@@ -3,10 +3,10 @@ import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/textfield/custom_textfield.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
-import 'package:akademi_bootcamp/product/auth/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../core/components/buttons/circle_icon_button.dart';
+import 'auth_view_model.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -16,7 +16,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends BaseState<LoginView> {
-  LoginViewModel _viewModel = LoginViewModel();
+  AuthViewModel _viewModel = AuthViewModel();
   bool obsecure = false;
   @override
   Widget build(BuildContext context) {

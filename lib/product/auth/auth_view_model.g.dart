@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_view_model.dart';
+part of 'auth_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'login_view_model.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$LoginViewModel on _LoginViewModelBase, Store {
+mixin _$AuthViewModel on _AuthViewModelBase, Store {
   late final _$authTypeAtom =
-      Atom(name: '_LoginViewModelBase.authType', context: context);
+      Atom(name: '_AuthViewModelBase.authType', context: context);
 
   @override
   AuthType get authType {
@@ -25,17 +25,17 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
     });
   }
 
-  late final _$_LoginViewModelBaseActionController =
-      ActionController(name: '_LoginViewModelBase', context: context);
+  late final _$_AuthViewModelBaseActionController =
+      ActionController(name: '_AuthViewModelBase', context: context);
 
   @override
   dynamic changeAuthType() {
-    final _$actionInfo = _$_LoginViewModelBaseActionController.startAction(
-        name: '_LoginViewModelBase.changeAuthType');
+    final _$actionInfo = _$_AuthViewModelBaseActionController.startAction(
+        name: '_AuthViewModelBase.changeAuthType');
     try {
       return super.changeAuthType();
     } finally {
-      _$_LoginViewModelBaseActionController.endAction(_$actionInfo);
+      _$_AuthViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 

@@ -3,11 +3,11 @@ import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-part 'login_view_model.g.dart';
+part 'auth_view_model.g.dart';
 
-class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
+class AuthViewModel = _AuthViewModelBase with _$AuthViewModel;
 
-abstract class _LoginViewModelBase with Store {
+abstract class _AuthViewModelBase with Store {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
