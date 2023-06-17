@@ -10,23 +10,26 @@ class PosterCard extends StatelessWidget {
     super.key,
     required this.eventModel,
     required this.deviceWidth,
+    required this.deviceHeight,
   });
 
   final EventModel eventModel;
   final double deviceWidth;
+  final double deviceHeight;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: deviceWidth * 0.8,
+      height: deviceHeight / 2,
       padding: EdgeInsets.all(AppSizes.lowSize),
       decoration: BoxDecoration(color: AppColors.darkGrey.withOpacity(0.39), borderRadius: AppRadius.primaryRadius),
       margin: EdgeInsets.only(right: 20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(child: ClipRRect(borderRadius: AppRadius.primaryRadius, child: Image.network(eventModel.posterUrl!))),
-          SizedBox(height: AppSizes.mediumSize),
+          Container(height: deviceHeight / 4, child: Align(alignment: Alignment.topCenter, child: ClipRRect(borderRadius: AppRadius.primaryRadius, child: Image.network(eventModel.posterUrl!)))),
           Text(eventModel.name!, maxLines: 1, style: TextStyle().copyWith(color: Colors.white)),
           Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
           dateWidget(),

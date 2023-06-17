@@ -8,6 +8,7 @@ import 'package:akademi_bootcamp/product/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
+import '../../core/components/cards/event_item_card.dart';
 import '../../core/components/cards/poster_card.dart';
 
 class HomeView extends StatefulWidget {
@@ -49,7 +50,7 @@ class _HomeViewState extends BaseState<HomeView> {
   Observer body() {
     return Observer(builder: (_) {
       return _viewModel.isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? loadingWidget()
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -60,60 +61,75 @@ class _HomeViewState extends BaseState<HomeView> {
     });
   }
 
+  Column loadingWidget() {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Center(child: CircularProgressIndicator()),
+      ],
+    );
+  }
+
   Widget eventBody() {
     return _viewModel.selectedIndex >= 0
         ? Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("${_viewModel.categoryList?[_viewModel.selectedIndex].name} Aktiviteleri", style: TextStyle().copyWith(color: Colors.white)),
-                    InkWell(
-                      onTap: () => _viewModel.seeAll(),
-                      child: Column(
-                        children: [
-                          Icon(!_viewModel.seeAllIsActive ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: AppColors.vanillaShake),
-                          Text("See All", style: TextStyle().copyWith(color: AppColors.vanillaShake)),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: !_viewModel.seeAllIsActive,
-                child: SingleChildScrollView(
-                    controller: _viewModel.scrollController,
-                    scrollDirection: Axis.horizontal,
-                    physics: BouncingScrollPhysics(),
-                    child: _viewModel.filteredEventList != null
-                        ? Row(
-                            children: List.generate(_viewModel.filteredEventList!.length, (index) {
-                            EventModel eventModel = _viewModel.filteredEventList![index];
-                            return PosterCard(
-                              eventModel: eventModel,
-                              deviceWidth: deviceWidth,
-                            );
-                          }))
-                        : SizedBox()),
-              ),
-              Visibility(
-                visible: _viewModel.seeAllIsActive,
-                child: SingleChildScrollView(
-                  child: Column(
-                      children: List.generate(_viewModel.filteredEventList?.length ?? 0, (index) {
-                    return Text(
-                      _viewModel.filteredEventList![index].name!,
-                      style: TextStyle().copyWith(color: AppColors.vanillaShake),
-                    );
-                  })),
-                ),
-              )
-            ],
+            children: [activityInfoHeader(), horizontalCards(), verticalCards()],
           )
         : SizedBox();
+  }
+
+  Padding activityInfoHeader() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("${_viewModel.categoryList?[_viewModel.selectedIndex].name} Aktiviteleri", style: TextStyle().copyWith(color: Colors.white)),
+          InkWell(
+            onTap: () => _viewModel.seeAll(),
+            child: Column(
+              children: [
+                Icon(!_viewModel.seeAllIsActive ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: AppColors.vanillaShake),
+                Text("See All", style: TextStyle().copyWith(color: AppColors.vanillaShake)),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Visibility verticalCards() {
+    return Visibility(
+      visible: _viewModel.seeAllIsActive,
+      child: SingleChildScrollView(
+        child: Column(
+            children: List.generate(_viewModel.filteredEventList?.length ?? 0, (index) {
+          return EventItemCard(deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index]);
+        })),
+      ),
+    );
+  }
+
+  Visibility horizontalCards() {
+    return Visibility(
+      visible: !_viewModel.seeAllIsActive,
+      child: SingleChildScrollView(
+          controller: _viewModel.scrollController,
+          scrollDirection: Axis.horizontal,
+          physics: BouncingScrollPhysics(),
+          child: _viewModel.filteredEventList != null
+              ? Row(
+                  children: List.generate(_viewModel.filteredEventList!.length, (index) {
+                  EventModel eventModel = _viewModel.filteredEventList![index];
+                  return PosterCard(
+                    eventModel: eventModel,
+                    deviceWidth: deviceWidth,
+                    deviceHeight: deviceHeight,
+                  );
+                }))
+              : SizedBox()),
+    );
   }
 
   Widget horizontalCategoriesWidget() {

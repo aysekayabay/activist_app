@@ -10,4 +10,9 @@ extension DateConverter on String {
     DateTime _inputDate = DateTime.parse(this);
     return DateFormat.Hm().format(_inputDate);
   }
+
+  String get formattedDay {
+    DateTime _inputDate = DateTime.parse(this);
+    return DateFormat("d MMMM", "tr_TR").format(_inputDate);
+  }
 }
