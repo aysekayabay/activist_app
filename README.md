@@ -15,6 +15,7 @@ Activiteam (F27)
 ActivitIST App
 
 ## Product Backlog URL
+[Activiteam Backlog Board](https://trello.com/b/IxLflOon/sprint-1)
 
 ## Ürün Açıklaması
 ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konumda ki konser, tiyatro, workshop vb. etkinlikleri görebilmelerini ve bu etkinliklerden yararlanmalarını sağlayacağız. Kullanıcılar uygulamayı kullanarak yakın tarihteki tüm etkinliklere erişebilecekler ve isterlerse satın alıp etkinliklere katılabileceklerdir. Uygulamadaki ‘haritada görüntülüme’ özelliği sayesinde konumuna en yakın olan etkinlikleri harita üzerinden toplu şekilde görüntüleyebileceklerdir.
@@ -67,6 +68,3 @@ https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/db2fc6b7-80bf-4
 
 **Neler Geliştirilebilir?**
 - Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
-
-## Product Backlog URL
-[Activiteam Backlog Board](https://trello.com/b/IxLflOon/sprint-1)
