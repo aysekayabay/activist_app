@@ -1,10 +1,10 @@
-# Activiteam
+# Ekip İsmi: Activiteam
 
 Takım Flutter 27
 
 # Ürün İle İlgili Bilgiler
 
-## Takım Elemanları
+## Ekip Üyeleri
 Ayşe Kayabay: Product Owner 
 Berkan Yüselgün: Scrum Master 
 Eda Yalçın: Developer
