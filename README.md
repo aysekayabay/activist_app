@@ -41,6 +41,9 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 
 - **Ürün Durumu:** Ekran görüntüleri:
 - **Sprint Review:**
-- **Sprint Retrospective:**
+- **Sprint Retrospective:** 
+- Roller ile ilgili düzenleme yapılmış, scrum master süreç içerisinde değişmiştir.
+- 1.Sprintte istenilen puana ulaşılamamış olup, kalan iş listesnin 2.sprint planını etkilemeden bitirilmesi gerektiği konusunda fikir birliğine varılmıştır.
+- Takım üyelerinin gelecek sprintlerde daha aktif olması gerektiğine ve aktiflik durumlarına göre iş dağılımlarının yapılıp geliştirme sürecinin hızlandırılmasına vurgu yapılmıştır.
 ## Product Backlog URL
 [Activiteam Backlog Board](https://trello.com/b/IxLflOon/sprint-1)
