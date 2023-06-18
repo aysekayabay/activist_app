@@ -41,3 +41,6 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 
 - Sprint board update: Sprint board screenshotları:
 - Ürün Durumu: Ekran görüntüleri:
+- Sprint Review:
+
+- Sprint Retrospective:
