@@ -51,10 +51,9 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 
 https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/db2fc6b7-80bf-4dd7-9546-4171ea420cea
 
-
-
-
 - **Sprint Review:**
+
+- Alınan kararlar: Uygulamanın onboard, authentication, home sayfaları tasarlanmış, bu sayfalardan auth ve home için gerekli fonksiyonlar koda dökülmüştür. Authentication için Firebase servisi entegre edilmiştir. İlk sprint için işleyişin önemli olmasına vurgu yapılmış ve bundan dolayı koddaki UI güncelleştirmeleri bir sonraki sprinte bırakılmıştır.
 
 - **Sprint Retrospective:** 
 
