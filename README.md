@@ -40,4 +40,4 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 - Daily Scrum:
 
 - Sprint board update: Sprint board screenshotları:
-
+- Ürün Durumu: Ekran görüntüleri:
