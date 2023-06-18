@@ -44,12 +44,15 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 - **Sprint Review:**
 
 - **Sprint Retrospective:** 
+
 **Neler iyi Gitti?**
 - API servisi için yapılan görüşmeler hızlı sonuçlandı
 - UI tasarım şablonu erken tamamlandı
+
 **Neler Kötü Gitti?**
 - Aktif üye yetersizliği nedeniyle authentication için başlangıçta planlanan sosyal giriş fonksiyonlarının Sprint-1 için gerekli olmadığına ve kapsam dışı kabul edilmesine karar verildi.
 - Ekip üyelerinin mazereti nedeniyle aktif olamaması sonucu Sprint-1 kapsamında yapılması gereken işlerde aksamalar olmuştur.
+
 **Neler Geliştirilebilir?**
 - Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
 
