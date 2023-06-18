@@ -31,3 +31,13 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 - Konser ilgisi olanlar
 - Tiyatro ilgisi olanlar
 - Workshop eğitim etkinliğine ilgisi olanlar
+
+# Sprint 1
+- Sprint içinde tamamlanması tahmin edilen puan: 
+
+- Puan tamamlama mantığı: 
+
+- Daily Scrum:
+
+- Sprint board update: Sprint board screenshotları:
+
