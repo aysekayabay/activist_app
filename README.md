@@ -37,6 +37,7 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 - Puan tamamlama mantığı: Toplamda proje kapsamında tamamlanması gereken 310 puanlık backlog bulunmaktadır. 3 sprinte bölündüğünde 110 Puanlık backlog ile 1.sprintin tamamlanmasına karar verildi.
 - Daily Scrum: Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır: 
 - Sprint board update: Sprint board screenshotları:
+[Sprint 1 Daily Scrum Chats](Sprint_1_Daily_Scrum_Chat.docx)
 - Ürün Durumu: Ekran görüntüleri:
 - Sprint Review:
 - Sprint Retrospective:
