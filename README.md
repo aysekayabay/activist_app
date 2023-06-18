@@ -43,3 +43,4 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 - **Sprint Review:**
 - **Sprint Retrospective:**
 ## Product Backlog URL
+[Activiteam Backlog Board](https://trello.com/b/IxLflOon/sprint-1)
