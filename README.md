@@ -41,6 +41,19 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 
 - **Ürün Durumu:** Ekran görüntüleri:
 
+![Screenshot_1687128987](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/1030a6ab-0bd2-4b19-9b4e-631dab154ef8)
+
+![Screenshot_1687128990](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/e29f8a50-e76c-44ea-9348-c1792bc3ea6c)
+
+![Screenshot_1687129130](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/c731ca1d-56ac-4acb-870d-7522d72b9696)
+
+![Screenshot_1687131442](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/fb43705c-9878-4c0c-8010-af38b2895caf)
+
+https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/db2fc6b7-80bf-4dd7-9546-4171ea420cea
+
+
+
+
 - **Sprint Review:**
 
 - **Sprint Retrospective:** 
