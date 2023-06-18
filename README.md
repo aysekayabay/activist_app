@@ -5,10 +5,10 @@ Takım Flutter 27
 # Ürün İle İlgili Bilgiler
 
 ## Ekip Üyeleri
-Ayşe Kayabay: Product Owner 
-Berkan Yüselgün: Scrum Master 
-Eda Yalçın: Developer
-İbrahim Ethem Arı: Developer
+- Ayşe Kayabay: Product Owner 
+- Berkan Yüselgün: Scrum Master 
+- Eda Yalçın: Developer
+- İbrahim Ethem Arı: Developer
 
 ## Ürün İsmi
 ActivitIST App
@@ -26,7 +26,7 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 -Kullanıcının ilgilendiği etkinlikleri favorilerine eklemesini sağlamak
 
 ## Hedef Kitle
--13-65 yaş arası kullanıcılar
--Konser ilgisi olanlar
--Tiyatro ilgisi olanlar
--Workshop eğitim etkinliğine ilgisi olanlar
+- 13-65 yaş arası kullanıcılar
+- Konser ilgisi olanlar
+- Tiyatro ilgisi olanlar
+- Workshop eğitim etkinliğine ilgisi olanlar
