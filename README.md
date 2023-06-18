@@ -1,6 +1,6 @@
 # Ekip İsmi: Activiteam
 
-Takım Flutter 27
+Activiteam (F27)
 
 # Ürün İle İlgili Bilgiler
 
