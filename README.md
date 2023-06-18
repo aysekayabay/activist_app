@@ -40,10 +40,18 @@ ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konum
 - **Sprint board update: Sprint board screenshotları:**![image](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/fd4b5d81-9a06-4268-ba4a-22e4dc4775b1)
 
 - **Ürün Durumu:** Ekran görüntüleri:
+
 - **Sprint Review:**
+
 - **Sprint Retrospective:** 
-- Roller ile ilgili düzenleme yapılmış, scrum master süreç içerisinde değişmiştir.
-- 1.Sprintte istenilen puana ulaşılamamış olup, kalan iş listesnin 2.sprint planını etkilemeden bitirilmesi gerektiği konusunda fikir birliğine varılmıştır.
-- Takım üyelerinin gelecek sprintlerde daha aktif olması gerektiğine ve aktiflik durumlarına göre iş dağılımlarının yapılıp geliştirme sürecinin hızlandırılmasına vurgu yapılmıştır.
+**Neler iyi Gitti?**
+- API servisi için yapılan görüşmeler hızlı sonuçlandı
+- UI tasarım şablonu erken tamamlandı
+**Neler Kötü Gitti?**
+- Aktif üye yetersizliği nedeniyle authentication için başlangıçta planlanan sosyal giriş fonksiyonlarının Sprint-1 için gerekli olmadığına ve kapsam dışı kabul edilmesine karar verildi.
+- Ekip üyelerinin mazereti nedeniyle aktif olamaması sonucu Sprint-1 kapsamında yapılması gereken işlerde aksamalar olmuştur.
+**Neler Geliştirilebilir?**
+- Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
+
 ## Product Backlog URL
 [Activiteam Backlog Board](https://trello.com/b/IxLflOon/sprint-1)
