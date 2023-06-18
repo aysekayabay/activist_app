@@ -1,16 +1,32 @@
-# akademi_bootcamp
+# Activiteam
 
-A new Flutter project.
+Takım Flutter 27
 
-## Getting Started
+# Ürün İle İlgili Bilgiler
 
-This project is a starting point for a Flutter application.
+## Takım Elemanları
+Ayşe Kayabay: Product Owner 
+Berkan Yüselgün: Scrum Master 
+Eda Yalçın: Developer
+İbrahim Ethem Arı: Developer
 
-A few resources to get you started if this is your first Flutter project:
+## Ürün İsmi
+ActivitIST App
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Product Backlog URL
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Ürün Açıklaması
+ActivitIST uygulamamız ile kullanıcıların İstanbul’da bulundukları konumda ki konser, tiyatro, workshop vb. etkinlikleri görebilmelerini ve bu etkinliklerden yararlanmalarını sağlayacağız. Kullanıcılar uygulamayı kullanarak yakın tarihteki tüm etkinliklere erişebilecekler ve isterlerse satın alıp etkinliklere katılabileceklerdir. Uygulamadaki ‘haritada görüntülüme’ özelliği sayesinde konumuna en yakın olan etkinlikleri harita üzerinden toplu şekilde görüntüleyebileceklerdir.
+
+## Ürün Özellikleri
+-Yakın tarihteki konser, tiyatro, workshop vb. etkinlikleri listeleyebilmek
+-Tüm etkinleri konumunuzu kullanarak harita üzerinden görebilmek
+-Bilet satın alımı için ilgili sitelere güvenli bir şekilde yönlendirmek ve satın alım işlemini yaratmak
+-Etkinlikleri türüne göre ayırabilmek
+-Kullanıcının ilgilendiği etkinlikleri favorilerine eklemesini sağlamak
+
+## Hedef Kitle
+-13-65 yaş arası kullanıcılar
+-Konser ilgisi olanlar
+-Tiyatro ilgisi olanlar
+-Workshop eğitim etkinliğine ilgisi olanlar
