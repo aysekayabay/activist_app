@@ -38,6 +38,7 @@ ActivitIST App ile kullanıcıların İstanbul’da bulundukları konumdaki kons
 # Sprint 1
 - **Sprint içinde tamamlanması tahmin edilen puan:**  110 Puan
 - **Puan tamamlama mantığı:** Toplamda proje kapsamında tamamlanması gereken 310 puanlık backlog bulunmaktadır. 3 sprinte bölündüğünde 110 Puanlık backlog ile 1.sprintin tamamlanmasına karar verildi.
+- **Sprint Notu:** Bu sprintte uygulamanın tanıtım, giriş ve ana sayfaları tasarlanmıştır.Sayfalardan uygulamaya giriş ve ana sayfa için gerekli kodlamalar yapılmıştır. Firebase servisi entegre edilmiştir. Öncelik uygulamanın işleyişi olarak planlanmıştır. Koddaki UI tasarımı için güncelleştirmeler bir sonraki sprinte bırakılmıştır. 
 - **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır: [Sprint_1_Daily_Scrum_Chat.docx](https://github.com/aysekayabay/akademi_bootcamp/files/11782758/Sprint_1_Daily_Scrum_Chat.docx)
 - **Sprint board update: Sprint board screenshotları:**![image](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/fd4b5d81-9a06-4268-ba4a-22e4dc4775b1)
 
