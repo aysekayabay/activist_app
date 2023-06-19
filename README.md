@@ -59,7 +59,7 @@ https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/db2fc6b7-80bf-4
 
 - **Sprint Retrospective:** 
 
-**Neler iyi Gitti?**
+**Neler İyi Gitti?**
 - API servisi için yapılan görüşmeler hızlı sonuçlandı
 - UI tasarım şablonu erken tamamlandı
 
