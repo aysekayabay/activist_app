@@ -35,7 +35,7 @@ class _AuthViewState extends BaseState<AuthView> {
             // dividerWidget(),
             iconButtons(),
             Observer(builder: (context) {
-              return TextButton(onPressed: () => _viewModel.changeAuthType(), child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn));
+              return TextButton(onPressed: () => _viewModel.changeAuthType(), child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.logIn : _viewModel.signIn));
             }),
           ],
         ),
@@ -56,24 +56,24 @@ class _AuthViewState extends BaseState<AuthView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        CircleIconButton(
-            iconPath: ImageConstants.FACEBOOK,
-            onTap: () {
-              _viewModel.authType = AuthType.FACEBOOK;
-              _viewModel.authFunction(context);
-            }),
+        // CircleIconButton(
+        //     iconPath: ImageConstants.FACEBOOK,
+        //     onTap: () {
+        //       _viewModel.authType = AuthType.FACEBOOK;
+        //       _viewModel.authFunction(context);
+        //     }),
         CircleIconButton(
             iconPath: ImageConstants.GOOGLE,
             onTap: () {
               _viewModel.authType = AuthType.GOOGLE;
               _viewModel.authFunction(context);
             }),
-        CircleIconButton(
-            iconPath: ImageConstants.TWITTER,
-            onTap: () {
-              _viewModel.authType = AuthType.TWITTER;
-              _viewModel.authFunction(context);
-            }),
+        // CircleIconButton(
+        //     iconPath: ImageConstants.TWITTER,
+        //     onTap: () {
+        //       _viewModel.authType = AuthType.TWITTER;
+        //       _viewModel.authFunction(context);
+        //     }),
       ],
     );
   }

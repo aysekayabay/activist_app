@@ -12,6 +12,9 @@ class ImageConstants {
   static final String NOTIFICATION = iconToPng("notification");
   static final String DIVIDER = imageToPng("divider");
   static final String LOCATION = iconToPng("location");
+  static final String MAP = iconToPng("map");
+  static final String TICKET = iconToPng("ticket");
+  static final String HOME = iconToPng("home");
 }
 
 String iconToPng(String name) => 'assets/icons/$name.png';

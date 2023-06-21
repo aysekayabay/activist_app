@@ -1,5 +1,5 @@
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
-import 'package:akademi_bootcamp/product/home/events_view.dart';
+import 'package:akademi_bootcamp/testview.dart';
 import 'package:flutter/material.dart';
 
 import '../../../product/auth/auth_view.dart';
@@ -17,7 +17,7 @@ class NavigationRoute {
       case NavigationConstants.AUTH:
         return navigate(AuthView());
       case NavigationConstants.TEST:
-        return navigate(EventsView());
+        return navigate(TestView());
       default:
         MaterialPageRoute(builder: (context) => NotFoundNavigatonWidget());
     }

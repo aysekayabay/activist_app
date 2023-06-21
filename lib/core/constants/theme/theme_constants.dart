@@ -13,8 +13,8 @@ class AppColors {
 
 class AppSizes {
   const AppSizes._();
-  static double highSize = 40;
-  static double mediumSize = 20;
+  static double highSize = mediumSize * 2;
+  static double mediumSize = lowSize * 2;
   static double lowSize = 10;
   static double radiusSize = 15;
 }
