@@ -12,8 +12,8 @@ class EtkinlikIOService {
 
   Future<List<EventModel>?> fetchEventList() async {
     try {
-      var response =
-          await http.get(Uri.parse(ApiConstants.baseUrl + '/events?city_ids=40'), headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Etkinlik-Token': ApiConstants.token});
+      var response = await http.get(Uri.parse(ApiConstants.BASE_URL + '/events?city_ids=40'),
+          headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Etkinlik-Token': ApiConstants.ETKINLIKIO_TOKEN});
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
         eventService = EventService.fromJson(jsonResponse);

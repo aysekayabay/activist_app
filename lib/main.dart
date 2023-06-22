@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Etkinlik',
+      title: 'ActivitIST',
       debugShowCheckedModeBanner: false,
       theme: AppThemeDark.instance.theme,
       navigatorKey: NavigationService.instance.navigatorKey,

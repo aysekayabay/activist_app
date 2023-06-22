@@ -1,5 +1,6 @@
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppThemeDark {
   AppThemeDark._();
@@ -16,8 +17,7 @@ class AppThemeDark {
 
   TextTheme appTextTheme() {
     return TextTheme(
-      displayMedium: TextStyle(color: Colors.white),
-      labelMedium: TextStyle(color: Colors.white),
+      headline1: GoogleFonts.poppins(fontSize: 22.0, fontWeight: FontWeight.bold, color: AppColors.vanillaShake),
     );
   }
 
