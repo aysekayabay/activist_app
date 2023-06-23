@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MyApp());
 }
+//seninkiler
 
 class MyApp extends StatelessWidget {
   @override

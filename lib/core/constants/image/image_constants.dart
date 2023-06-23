@@ -2,20 +2,33 @@ class ImageConstants {
   ImageConstants._();
   static late final ImageConstants instance = ImageConstants._();
 
-  static final String AUTH_IMAGE = imageToPng("auth_image");
-  static final String GOOGLE = iconToPng("google");
-  static final String TWITTER = iconToPng("twitter");
-  static final String FACEBOOK = iconToPng("facebook");
-  static final String LOGO_GREY = iconToPng("logo_grey");
-  static final String BACK = iconToPng("back");
-  static final String NEXT = iconToPng("next");
-  static final String NOTIFICATION = iconToPng("notification");
-  static final String DIVIDER = imageToPng("divider");
-  static final String LOCATION = iconToPng("location");
-  static final String MAP = iconToPng("map");
-  static final String TICKET = iconToPng("ticket");
-  static final String HOME = iconToPng("home");
+  static final String AUTH_IMAGE = 'auth_image'.toPngFromImageAsset();
+  static final String GOOGLE = 'google'.toPngFromIconAsset();
+  static final String TWITTER = 'twitter'.toPngFromIconAsset();
+  static final String FACEBOOK = 'facebook'.toPngFromIconAsset();
+  static final String LOGO_GREY = 'logo_grey'.toPngFromIconAsset();
+  static final String BACK = 'back'.toPngFromIconAsset();
+  static final String NEXT = 'next'.toPngFromIconAsset();
+  static final String NOTIFICATION = 'notification'.toPngFromIconAsset();
+  static final String DIVIDER = 'divider'.toPngFromImageAsset();
+  static final String LOCATION = 'location'.toPngFromIconAsset();
+  static final String MAP = 'map'.toPngFromIconAsset();
+  static final String TICKET = 'ticket'.toPngFromIconAsset();
+  static final String HOME = 'home'.toPngFromIconAsset();
+  static final String CAMP = 'camp'.toPngFromIconAsset();
+  static final String COMPETITION = 'competition'.toPngFromIconAsset();
+  static final String CONCERT = 'concert'.toPngFromIconAsset();
+  static final String CONFERENCE = 'conference'.toPngFromIconAsset();
+  static final String EXHIBITION = 'exhibition'.toPngFromIconAsset();
+  static final String FAIR = 'fair'.toPngFromIconAsset();
+  static final String FESTIVAL = 'festival'.toPngFromIconAsset();
+  static final String SIGNING_DAY = 'signing_day'.toPngFromIconAsset();
+  static final String THEATRE = 'theatre'.toPngFromIconAsset();
+  static final String TRIP = 'trip'.toPngFromIconAsset();
+  static final String WORKSHOP = 'workshop'.toPngFromIconAsset();
 }
 
-String iconToPng(String name) => 'assets/icons/$name.png';
-String imageToPng(String name) => 'assets/images/$name.png';
+extension ImageExtensions on String {
+  String toPngFromIconAsset() => 'assets/icons/$this.png';
+  String toPngFromImageAsset() => 'assets/images/$this.png';
+}
