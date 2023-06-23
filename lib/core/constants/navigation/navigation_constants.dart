@@ -4,4 +4,5 @@ class NavigationConstants {
   static const String PROFILE = '/profile';
   static const String TEST = '/test';
   static const String MAP= '/map';
+  static const String DETAIL= '/detail';
 }

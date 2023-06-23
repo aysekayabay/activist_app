@@ -4,6 +4,7 @@ import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/textfield/custom_textfield.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
+import 'package:akademi_bootcamp/product/detail_page/detail_page.dart';
 import 'package:akademi_bootcamp/product/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -122,10 +123,18 @@ class _HomeViewState extends BaseState<HomeView> {
               ? Row(
                   children: List.generate(_viewModel.filteredEventList!.length, (index) {
                   EventModel eventModel = _viewModel.filteredEventList![index];
-                  return PosterCard(
-                    eventModel: eventModel,
-                    deviceWidth: deviceWidth,
-                    deviceHeight: deviceHeight,
+                  return Padding(
+                    padding: EdgeInsets.only(right: AppSizes.lowSize),
+                    child: PosterCard(
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return DetailPage(eventModel: eventModel);
+                        },
+                      )),
+                      eventModel: eventModel,
+                      deviceWidth: deviceWidth,
+                      deviceHeight: deviceHeight,
+                    ),
                   );
                 }))
               : SizedBox()),

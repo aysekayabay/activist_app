@@ -20,6 +20,8 @@ class NavigationRoute {
         return navigate(TestView());
       case NavigationConstants.MAP:
         return navigate(EventsMapView());
+      // case NavigationConstants.DETAIL:
+      //   return navigate(DetailPage());
       default:
         MaterialPageRoute(builder: (context) => NotFoundNavigatonWidget());
     }
