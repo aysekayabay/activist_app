@@ -31,13 +31,7 @@ abstract class _HomeViewModelBase with Store {
 
   Future<void> getEventList() async {
     eventList = await EtkinlikIOService.instance.fetchEventList();
-    for (EventModel event in eventList!) {
-      if (event.format != null) {
-        if (categoryList == null || categoryList!.isEmpty || categoryList!.every((format) => format.id != event.format!.id)) {
-          categoryList!.add(event.format!);
-        }
-      }
-    }
+    categoryList = EtkinlikIOService.instance.categoryList;
     if (categoryList != null && categoryList!.length > 0) {
       filterEventsByCategory(categoryList!.first);
     }

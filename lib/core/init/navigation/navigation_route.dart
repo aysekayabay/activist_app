@@ -1,5 +1,5 @@
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
-import 'package:akademi_bootcamp/product/map/events_map_view.dart';
+import 'package:akademi_bootcamp/product/map/mapbox_map_view.dart';
 import 'package:akademi_bootcamp/product/testview.dart';
 import 'package:flutter/material.dart';
 import '../../../product/auth/auth_view.dart';
@@ -19,7 +19,7 @@ class NavigationRoute {
       case NavigationConstants.TEST:
         return navigate(TestView());
       case NavigationConstants.MAP:
-        return navigate(EventsMapView());
+        return navigate(MapBoxView());
       // case NavigationConstants.DETAIL:
       //   return navigate(DetailPage());
       default:
