@@ -1,5 +1,6 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/cards/map_detail_card.dart';
+import 'package:akademi_bootcamp/core/constants/api/api_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/product/map/mapbox_view_model.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
             nonRotatedChildren: [
               TileLayer(
                 urlTemplate: "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-                additionalOptions: {'accessToken': _viewModel.MAPBOX_ACCESS_TOKEN, 'id': _viewModel.MAPBOX_STYLE},
+                additionalOptions: {'accessToken': ApiConstants.MAPBOX_ACCESS_TOKEN, 'id': _viewModel.MAPBOX_STYLE},
               ),
               MarkerLayer(markers: [Marker(point: _viewModel.myLocation, builder: (context) => userLocationMarker())]),
               MarkerLayer(markers: _viewModel.markerList)

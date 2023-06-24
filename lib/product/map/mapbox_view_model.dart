@@ -10,7 +10,6 @@ part 'mapbox_view_model.g.dart';
 class MapBoxViewModel = _MapBoxViewModelBase with _$MapBoxViewModel;
 
 abstract class _MapBoxViewModelBase with Store {
-  final MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiYXlzZWt5YnkiLCJhIjoiY2xqYTZ6YWhoMWtkZjNnbng4OXBwYXpxNSJ9.dYRVd6k2rXgF3JBa9D-ebw';
   final MAPBOX_STYLE = 'mapbox/dark-v10';
   final MARKER_SIZE_EXPANDED = 55.0;
   final MARKER_SIZE_SHRINK = 80.0;
