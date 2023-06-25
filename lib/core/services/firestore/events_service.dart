@@ -33,4 +33,13 @@ class EventsService {
     }
     return 0;
   }
+
+  fetchGroups() async {
+    UserModel? user = AuthService.instance.currentUser;
+    List? groupList;
+    if (user != null) {
+      groupList = await FirestoreManager.instance.firestoreGetSomeDocuments(collectionID: "groups", docID: "id", whereIn: user.favEvents);
+    }
+    groupList = groupList ?? [];
+  }
 }

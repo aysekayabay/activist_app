@@ -19,4 +19,10 @@ class FirestoreManager {
   Future<void> firestoreUpdate({required String collectionID, required String docID, required String key, required dynamic value}) async {
     await _firestore.collection(collectionID).doc(docID).update({key: value});
   }
+
+  Future<List<DocumentSnapshot<Map<String, dynamic>>>> firestoreGetSomeDocuments({required String collectionID, required String docID, required Iterable<Object?>? whereIn}) async {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore.collection(collectionID).where(docID, whereIn: whereIn).get();
+    List<DocumentSnapshot<Map<String, dynamic>>> documents = querySnapshot.docs;
+    return documents;
+  }
 }
