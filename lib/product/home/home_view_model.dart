@@ -90,6 +90,9 @@ abstract class _HomeViewModelBase with Store {
       seeAllIsActive = true;
     } else if (value.isEmpty) {
       isSearched = false;
+      if (categoryList != null && categoryList!.length > 0) {
+        selectCategory(0);
+      }
     }
   }
 
