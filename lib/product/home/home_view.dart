@@ -91,7 +91,7 @@ class _HomeViewState extends BaseState<HomeView> {
             child: Column(
               children: [
                 Icon(!_viewModel.seeAllIsActive ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: AppColors.vanillaShake),
-                Text("See All", style: TextStyle().copyWith(color: AppColors.vanillaShake)),
+                Text("Hepsini Gör", style: TextStyle().copyWith(color: AppColors.vanillaShake)),
               ],
             ),
           )
@@ -106,7 +106,14 @@ class _HomeViewState extends BaseState<HomeView> {
       child: SingleChildScrollView(
         child: Column(
             children: List.generate(_viewModel.filteredEventList?.length ?? 0, (index) {
-          return EventItemCard(deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index]);
+          return EventItemCard(
+              deviceWidth: deviceWidth,
+              eventModel: _viewModel.filteredEventList![index],
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return DetailPage(eventModel: _viewModel.filteredEventList![index]);
+                    },
+                  )));
         })),
       ),
     );
@@ -121,7 +128,7 @@ class _HomeViewState extends BaseState<HomeView> {
           physics: BouncingScrollPhysics(),
           child: _viewModel.filteredEventList != null
               ? Row(
-                  children: List.generate(_viewModel.filteredEventList!.length, (index) {
+                  children: List.generate(_viewModel.filteredEventList!.length > 5 ? 5 : _viewModel.filteredEventList!.length, (index) {
                   EventModel eventModel = _viewModel.filteredEventList![index];
                   return Padding(
                     padding: EdgeInsets.only(right: AppSizes.lowSize),
