@@ -89,6 +89,22 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$isSearchedAtom =
+      Atom(name: '_HomeViewModelBase.isSearched', context: context);
+
+  @override
+  bool get isSearched {
+    _$isSearchedAtom.reportRead();
+    return super.isSearched;
+  }
+
+  @override
+  set isSearched(bool value) {
+    _$isSearchedAtom.reportWrite(value, super.isSearched, () {
+      super.isSearched = value;
+    });
+  }
+
   late final _$selectedIndexAtom =
       Atom(name: '_HomeViewModelBase.selectedIndex', context: context);
 
@@ -179,6 +195,7 @@ eventList: ${eventList},
 seeAllIsActive: ${seeAllIsActive},
 categoryList: ${categoryList},
 filteredEventList: ${filteredEventList},
+isSearched: ${isSearched},
 selectedIndex: ${selectedIndex}
     ''';
   }

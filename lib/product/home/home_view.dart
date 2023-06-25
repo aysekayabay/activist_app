@@ -38,7 +38,8 @@ class _HomeViewState extends BaseState<HomeView> {
               children: [
                 CustomTextfield(
                     hintText: "Search",
-                    controller: TextEditingController(),
+                    controller: _viewModel.searchTextEditingController,
+                    onChanged: (value) => _viewModel.searchEventInList(value),
                     focusNode: _viewModel.focusNode,
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.search,
@@ -59,7 +60,7 @@ class _HomeViewState extends BaseState<HomeView> {
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                horizontalCategoriesWidget(),
+                _viewModel.isSearched ? SizedBox() : horizontalCategoriesWidget(),
                 eventBody(),
               ],
             );
@@ -78,7 +79,11 @@ class _HomeViewState extends BaseState<HomeView> {
   Widget eventBody() {
     return _viewModel.selectedIndex >= 0
         ? Column(
-            children: [activityInfoHeader(), horizontalCards(), verticalCards()],
+            children: [
+              _viewModel.isSearched ? SizedBox() : activityInfoHeader(),
+              horizontalCards(),
+              verticalCards(),
+            ],
           )
         : SizedBox();
   }

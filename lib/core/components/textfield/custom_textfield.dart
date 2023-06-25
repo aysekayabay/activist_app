@@ -11,6 +11,7 @@ class CustomTextfield extends StatefulWidget {
   final FocusNode? focusNode;
   bool isVisible;
   final bool isPassword;
+  void Function(String)? onChanged;
   final bool isSearch;
   CustomTextfield({
     super.key,
@@ -19,6 +20,7 @@ class CustomTextfield extends StatefulWidget {
     required this.keyboardType,
     required this.textInputAction,
     this.focusNode,
+    this.onChanged,
     this.isVisible = true,
     this.isPassword = false,
     this.isSearch = false,
@@ -49,6 +51,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                 : SizedBox(),
             Expanded(
               child: TextField(
+                onChanged: widget.onChanged,
                 controller: widget.controller,
                 obscureText: widget.isPassword ? obsecure : false,
                 style: TextStyle(color: AppColors.vanillaShake),

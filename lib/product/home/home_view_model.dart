@@ -10,6 +10,7 @@ class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
 
 abstract class _HomeViewModelBase with Store {
   ScrollController scrollController = ScrollController();
+  TextEditingController searchTextEditingController = TextEditingController();
   FocusNode focusNode = FocusNode();
   @observable
   bool isLoading = true;
@@ -43,6 +44,9 @@ abstract class _HomeViewModelBase with Store {
 
   @observable
   List<EventModel>? filteredEventList;
+
+  @observable
+  bool isSearched = false;
   @action
   void filterEventsByCategory(Format selectedCategory) {
     filteredEventList = eventList?.where((event) => event.format?.id == selectedCategory.id).toList();
@@ -78,4 +82,16 @@ abstract class _HomeViewModelBase with Store {
       },
     ));
   }
+
+  void searchEventInList(String value) {
+    filteredEventList = eventList?.where((event) => event.name.toString().toLowerCase().contains(value.toLowerCase())).toList();
+    if (value.isNotEmpty) {
+      isSearched = true;
+      seeAllIsActive = true;
+    } else if (value.isEmpty) {
+      isSearched = false;
+    }
+  }
+
+  void removeSearch() {}
 }
