@@ -26,6 +26,8 @@ class ImageConstants {
   static final String THEATRE = 'theatre'.toPngFromIconAsset();
   static final String TRIP = 'trip'.toPngFromIconAsset();
   static final String WORKSHOP = 'workshop'.toPngFromIconAsset();
+  static final String MESSAGES = 'messages'.toPngFromIconAsset();
+  static final String PROFILE = 'profile'.toPngFromIconAsset();
 }
 
 extension ImageExtensions on String {

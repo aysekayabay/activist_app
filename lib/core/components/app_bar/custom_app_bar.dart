@@ -79,16 +79,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     double widgetWith = AppSizes.highSize + AppSizes.mediumSize;
-    return Container(
-        height: preferredSize.height,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(width: widgetWith, height: preferredSize.height, child: InkWell(onTap: onTapLeft, child: leftWidgetGenerator())),
-            SizedBox(height: preferredSize.height, child: centerWidgetGenerator()),
-            SizedBox(width: widgetWith, height: preferredSize.height, child: InkWell(onTap: onTapRight, child: rightWidgetGenerator())),
-          ],
-        ));
+    return SafeArea(
+      child: Container(
+          height: preferredSize.height,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(width: widgetWith, height: preferredSize.height, child: InkWell(onTap: onTapLeft, child: leftWidgetGenerator())),
+              SizedBox(height: preferredSize.height, child: centerWidgetGenerator()),
+              SizedBox(width: widgetWith, height: preferredSize.height, child: InkWell(onTap: onTapRight, child: rightWidgetGenerator())),
+            ],
+          )),
+    );
   }
 }
 

@@ -28,25 +28,23 @@ class _HomeViewState extends BaseState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomTextfield(
-                    hintText: "Search",
-                    controller: _viewModel.searchTextEditingController,
-                    onChanged: (value) => _viewModel.searchEventInList(value),
-                    focusNode: _viewModel.focusNode,
-                    keyboardType: TextInputType.name,
-                    textInputAction: TextInputAction.search,
-                    isSearch: true),
-                body(),
-              ],
-            ),
+    return Scaffold(
+      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTextfield(
+                  hintText: "Search",
+                  controller: _viewModel.searchTextEditingController,
+                  onChanged: (value) => _viewModel.searchEventInList(value),
+                  focusNode: _viewModel.focusNode,
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.search,
+                  isSearch: true),
+              body(),
+            ],
           ),
         ),
       ),

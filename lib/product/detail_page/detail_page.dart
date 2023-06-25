@@ -63,18 +63,16 @@ class _DetailPageState extends State<DetailPage> {
       Color(0xff323232).withOpacity(0),
       Color(0xff323232).withOpacity(0),
     ];
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xff323232),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            detailHeader(context, gradientColors),
-            eventPeopleLiked(peopleCount),
-            buttons(buyText),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: Color(0xff323232),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          detailHeader(context, gradientColors),
+          eventPeopleLiked(peopleCount),
+          buttons(buyText),
+        ],
       ),
     );
   }

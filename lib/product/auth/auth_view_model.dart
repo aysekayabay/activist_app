@@ -40,7 +40,7 @@ abstract class _AuthViewModelBase with Store {
       case AuthType.GOOGLE:
         int value = await AuthService.instance.signInWithGoogle();
         if (value == 1) {
-          NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.HOME);
+          navigateToAppBase();
         }
         break;
       case AuthType.FACEBOOK:
@@ -57,7 +57,7 @@ abstract class _AuthViewModelBase with Store {
     int result = await AuthService.instance.register(context, emailController.text, passwordController.text);
     if (result == 1) {
       //success
-      NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.HOME);
+      navigateToAppBase();
     } else {
       //failed
     }
@@ -67,11 +67,15 @@ abstract class _AuthViewModelBase with Store {
     int result = await AuthService.instance.login(context, emailController.text, passwordController.text);
     if (result == 1) {
       //success
-      NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.HOME);
+      navigateToAppBase();
     } else {
       //failed
     }
   }
+}
+
+navigateToAppBase() {
+  NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.APP_BASE);
 }
 
 enum AuthType { SIGN_IN, LOG_IN, GOOGLE, FACEBOOK, TWITTER }
