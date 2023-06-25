@@ -4,11 +4,9 @@ import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/textfield/custom_textfield.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
-import 'package:akademi_bootcamp/product/detail_page/detail_page.dart';
 import 'package:akademi_bootcamp/product/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
 import '../../core/components/cards/event_item_card.dart';
 import '../../core/components/cards/poster_card.dart';
 
@@ -38,7 +36,13 @@ class _HomeViewState extends BaseState<HomeView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                CustomTextfield(hintText: "Search", controller: TextEditingController(), keyboardType: TextInputType.name, textInputAction: TextInputAction.search, isSearch: true),
+                CustomTextfield(
+                    hintText: "Search",
+                    controller: TextEditingController(),
+                    focusNode: _viewModel.focusNode,
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.search,
+                    isSearch: true),
                 body(),
               ],
             ),
@@ -106,14 +110,7 @@ class _HomeViewState extends BaseState<HomeView> {
       child: SingleChildScrollView(
         child: Column(
             children: List.generate(_viewModel.filteredEventList?.length ?? 0, (index) {
-          return EventItemCard(
-              deviceWidth: deviceWidth,
-              eventModel: _viewModel.filteredEventList![index],
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return DetailPage(eventModel: _viewModel.filteredEventList![index]);
-                    },
-                  )));
+          return EventItemCard(deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index], onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]));
         })),
       ),
     );
@@ -133,11 +130,7 @@ class _HomeViewState extends BaseState<HomeView> {
                   return Padding(
                     padding: EdgeInsets.only(right: AppSizes.lowSize),
                     child: PosterCard(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) {
-                          return DetailPage(eventModel: eventModel);
-                        },
-                      )),
+                      onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]),
                       eventModel: eventModel,
                       deviceWidth: deviceWidth,
                       deviceHeight: deviceHeight,
@@ -160,9 +153,7 @@ class _HomeViewState extends BaseState<HomeView> {
                     marginPadding: EdgeInsets.only(right: AppSizes.lowSize, top: AppSizes.mediumSize, bottom: AppSizes.mediumSize),
                     title: category.name!,
                     isFilled: _viewModel.isSelected(index),
-                    onTap: () {
-                      _viewModel.tapped(index);
-                    },
+                    onTap: () => _viewModel.tapped(index),
                     horizontalPadding: AppSizes.lowSize,
                     verticalPadding: AppSizes.lowSize);
               }),

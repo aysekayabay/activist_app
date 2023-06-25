@@ -8,6 +8,7 @@ class CustomTextfield extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final TextInputAction textInputAction;
+  final FocusNode? focusNode;
   bool isVisible;
   final bool isPassword;
   final bool isSearch;
@@ -17,6 +18,7 @@ class CustomTextfield extends StatefulWidget {
     required this.controller,
     required this.keyboardType,
     required this.textInputAction,
+    this.focusNode,
     this.isVisible = true,
     this.isPassword = false,
     this.isSearch = false,
@@ -33,29 +35,49 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   Widget build(BuildContext context) {
     return Visibility(
       visible: widget.isVisible,
-      child: TextField(
-        controller: widget.controller,
-        obscureText: widget.isPassword ? obsecure : false,
-        style: TextStyle(color: AppColors.vanillaShake),
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          prefixIcon: widget.isSearch ? Icon(Icons.search) : null,
-          suffixIcon: Visibility(
-            visible: widget.isPassword,
-            child: IconButton(
-              icon: Icon(obsecure ? Icons.visibility : Icons.visibility_off),
-              onPressed: () {
-                setState(
-                  () {
-                    obsecure = !obsecure;
-                  },
-                );
-              },
+      child: Container(
+        padding: widget.isSearch ? EdgeInsets.symmetric(horizontal: AppSizes.lowSize, vertical: AppSizes.lowSize / 2) : EdgeInsets.zero,
+        decoration: widget.isSearch ? BoxDecoration(border: Border.all(color: AppColors.vanillaShake, width: 1), borderRadius: AppRadius.primaryRadius) : null,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            widget.isSearch
+                ? Padding(
+                    padding: EdgeInsets.only(right: AppSizes.lowSize),
+                    child: Icon(Icons.search, color: AppColors.vanillaShake),
+                  )
+                : SizedBox(),
+            Expanded(
+              child: TextField(
+                controller: widget.controller,
+                obscureText: widget.isPassword ? obsecure : false,
+                style: TextStyle(color: AppColors.vanillaShake),
+                focusNode: widget.focusNode,
+                maxLines: 1,
+                minLines: 1,
+                decoration: InputDecoration(
+                  border: widget.isSearch ? InputBorder.none : null,
+                  hintText: widget.hintText,
+                  suffixIcon: Visibility(
+                    visible: widget.isPassword,
+                    child: IconButton(
+                      icon: Icon(obsecure ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(
+                          () {
+                            obsecure = !obsecure;
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                keyboardType: widget.keyboardType,
+                textInputAction: widget.textInputAction,
+              ),
             ),
-          ),
+          ],
         ),
-        keyboardType: widget.keyboardType,
-        textInputAction: widget.textInputAction,
       ),
     );
   }

@@ -2,12 +2,15 @@ import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/core/services/api/etkinlikIO_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../detail_page/detail_page.dart';
 part 'home_view_model.g.dart';
 
 class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
 
 abstract class _HomeViewModelBase with Store {
   ScrollController scrollController = ScrollController();
+  FocusNode focusNode = FocusNode();
   @observable
   bool isLoading = true;
   @observable
@@ -65,5 +68,14 @@ abstract class _HomeViewModelBase with Store {
         scrollController.animateTo(0, duration: Duration(milliseconds: 500), curve: Curves.ease);
       }
     }
+  }
+
+  void navigateToDetailPage(BuildContext context, EventModel eventModel) {
+    focusNode.unfocus();
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) {
+        return DetailPage(eventModel: eventModel);
+      },
+    ));
   }
 }
