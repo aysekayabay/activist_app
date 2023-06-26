@@ -29,13 +29,13 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
       Atom(name: '_HomeViewModelBase.eventList', context: context);
 
   @override
-  List<EventModel>? get eventList {
+  List<EventModel> get eventList {
     _$eventListAtom.reportRead();
     return super.eventList;
   }
 
   @override
-  set eventList(List<EventModel>? value) {
+  set eventList(List<EventModel> value) {
     _$eventListAtom.reportWrite(value, super.eventList, () {
       super.eventList = value;
     });
@@ -86,6 +86,22 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   set filteredEventList(List<EventModel>? value) {
     _$filteredEventListAtom.reportWrite(value, super.filteredEventList, () {
       super.filteredEventList = value;
+    });
+  }
+
+  late final _$isSearchedAtom =
+      Atom(name: '_HomeViewModelBase.isSearched', context: context);
+
+  @override
+  bool get isSearched {
+    _$isSearchedAtom.reportRead();
+    return super.isSearched;
+  }
+
+  @override
+  set isSearched(bool value) {
+    _$isSearchedAtom.reportWrite(value, super.isSearched, () {
+      super.isSearched = value;
     });
   }
 
@@ -179,6 +195,7 @@ eventList: ${eventList},
 seeAllIsActive: ${seeAllIsActive},
 categoryList: ${categoryList},
 filteredEventList: ${filteredEventList},
+isSearched: ${isSearched},
 selectedIndex: ${selectedIndex}
     ''';
   }

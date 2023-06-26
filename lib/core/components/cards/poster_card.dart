@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
@@ -6,36 +8,39 @@ import 'package:flutter/material.dart';
 import '../../model/event_model.dart';
 
 class PosterCard extends StatelessWidget {
-  const PosterCard({
+  PosterCard({
     super.key,
     required this.eventModel,
     required this.deviceWidth,
     required this.deviceHeight,
+    this.onTap,
   });
 
   final EventModel eventModel;
   final double deviceWidth;
   final double deviceHeight;
-
+  void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: deviceWidth * 0.8,
-      height: deviceHeight / 2,
-      padding: EdgeInsets.all(AppSizes.lowSize),
-      decoration: BoxDecoration(color: AppColors.darkGrey.withOpacity(0.39), borderRadius: AppRadius.primaryRadius),
-      margin: EdgeInsets.only(right: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(height: deviceHeight / 4, child: Align(alignment: Alignment.topCenter, child: ClipRRect(borderRadius: AppRadius.primaryRadius, child: Image.network(eventModel.posterUrl!)))),
-          Text(eventModel.name!, maxLines: 1, style: TextStyle().copyWith(color: Colors.white)),
-          Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
-          dateWidget(),
-          timeWidget(),
-          locationWidget(),
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: deviceWidth * 0.8,
+        height: deviceHeight / 2,
+        padding: EdgeInsets.all(AppSizes.lowSize),
+        decoration: BoxDecoration(color: AppColors.darkGrey.withOpacity(0.39), borderRadius: AppRadius.primaryRadius),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(height: deviceHeight / 4, child: Align(alignment: Alignment.topCenter, child: ClipRRect(borderRadius: AppRadius.primaryRadius, child: Image.network(eventModel.posterUrl!)))),
+            Text(eventModel.name!, maxLines: 1, style: TextStyle().copyWith(color: Colors.white)),
+            Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
+            dateWidget(),
+            timeWidget(),
+            locationWidget(),
+          ],
+        ),
       ),
     );
   }

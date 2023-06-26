@@ -17,8 +17,7 @@ class _TestViewState extends BaseState<TestView> {
         appBar: CustomAppBar(context: context),
         body: Center(
           child: Column(
-            children: [
-            ],
+            children: [],
           ),
         ),
       ),

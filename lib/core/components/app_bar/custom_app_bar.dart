@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? leftIconColor;
   final Color? rightIconColor;
   final String? centerTitle;
+  void Function()? onTapLeft;
+  void Function()? onTapRight;
 
-  CustomAppBar({required this.context, this.height = kToolbarHeight, this.left, this.right, this.center, this.leftIconColor, this.rightIconColor, this.centerTitle});
+  CustomAppBar({required this.context, this.height = kToolbarHeight, this.left, this.right, this.center, this.leftIconColor, this.rightIconColor, this.centerTitle, this.onTapLeft, this.onTapRight});
 
   @override
   Size get preferredSize => Size.fromHeight(height + AppSizes.mediumSize);
@@ -49,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           return Icon(Icons.favorite_rounded, size: preferredSize.height / 2, color: AppColors.red);
         case AppBarWidgets.NOT_NOTIFICATION:
           return Image.asset(ImageConstants.NOTIFICATION, color: rightIconColor ?? null);
-        case AppBarWidgets.NOTIFICATION: //TODO prepare functions
+        case AppBarWidgets.NOTIFICATION:
           return Image.asset(ImageConstants.NOTIFICATION, color: rightIconColor ?? null);
         default:
           return SizedBox();
@@ -75,16 +79,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     double widgetWith = AppSizes.highSize + AppSizes.mediumSize;
-    return Container(
-        height: preferredSize.height,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(width: widgetWith, height: preferredSize.height, child: leftWidgetGenerator()),
-            SizedBox(height: preferredSize.height, child: centerWidgetGenerator()),
-            SizedBox(width: widgetWith, height: preferredSize.height, child: rightWidgetGenerator()),
-          ],
-        ));
+    return SafeArea(
+      child: Container(
+          height: preferredSize.height,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(width: widgetWith, height: preferredSize.height, child: InkWell(onTap: onTapLeft, child: leftWidgetGenerator())),
+              SizedBox(height: preferredSize.height, child: centerWidgetGenerator()),
+              SizedBox(width: widgetWith, height: preferredSize.height, child: InkWell(onTap: onTapRight, child: rightWidgetGenerator())),
+            ],
+          )),
+    );
   }
 }
 

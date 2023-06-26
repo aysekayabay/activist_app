@@ -29,7 +29,7 @@ abstract class _AuthViewModelBase with Store {
     }
   }
 
-  authFunction(BuildContext context) {
+  authFunction(BuildContext context) async {
     switch (authType) {
       case AuthType.SIGN_IN:
         register(context);
@@ -38,10 +38,13 @@ abstract class _AuthViewModelBase with Store {
         login(context);
         break;
       case AuthType.GOOGLE:
-        AuthService.instance.signInWithGoogle();
+        int value = await AuthService.instance.signInWithGoogle();
+        if (value == 1) {
+          navigateToAppBase();
+        }
         break;
       case AuthType.FACEBOOK:
-        AuthService.instance.signInWithFacebook();
+        // AuthService.instance.signInWithFacebook();
         break;
       case AuthType.TWITTER:
         // AuthService.instance.signInWithTwitter();
@@ -54,7 +57,7 @@ abstract class _AuthViewModelBase with Store {
     int result = await AuthService.instance.register(context, emailController.text, passwordController.text);
     if (result == 1) {
       //success
-      NavigationService.instance.navigateToPage(path: NavigationConstants.HOME);
+      navigateToAppBase();
     } else {
       //failed
     }
@@ -64,11 +67,15 @@ abstract class _AuthViewModelBase with Store {
     int result = await AuthService.instance.login(context, emailController.text, passwordController.text);
     if (result == 1) {
       //success
-      NavigationService.instance.navigateToPage(path: NavigationConstants.HOME);
+      navigateToAppBase();
     } else {
       //failed
     }
   }
+}
+
+navigateToAppBase() {
+  NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.APP_BASE);
 }
 
 enum AuthType { SIGN_IN, LOG_IN, GOOGLE, FACEBOOK, TWITTER }

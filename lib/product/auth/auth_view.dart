@@ -83,7 +83,10 @@ class _AuthViewState extends BaseState<AuthView> {
       return Stack(
         children: [
           Image.asset(ImageConstants.AUTH_IMAGE),
-          Positioned(left: 20, top: 150, child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: themeData.textTheme.displayMedium)),
+          Positioned(
+              left: 20,
+              top: 150,
+              child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: themeData.textTheme.displayMedium!.copyWith(color: AppColors.vanillaShake))),
           Positioned(
               bottom: 0,
               left: 0,
@@ -93,7 +96,9 @@ class _AuthViewState extends BaseState<AuthView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    labelText(_viewModel.authType == AuthType.SIGN_IN ? "Name" : "Email"),
+                    labelText(
+                      _viewModel.authType == AuthType.SIGN_IN ? "Name" : "Email",
+                    ),
                     CustomTextfield(
                         hintText: "Xxxx Xxxx",
                         controller: _viewModel.nameController,
@@ -140,7 +145,7 @@ class _AuthViewState extends BaseState<AuthView> {
   Padding labelText(String label) {
     return Padding(
       padding: EdgeInsets.all(AppSizes.lowSize),
-      child: Text(label, style: themeData.textTheme.labelMedium),
+      child: Text(label, style: themeData.textTheme.labelMedium!.copyWith(color: AppColors.vanillaShake)),
     );
   }
 }

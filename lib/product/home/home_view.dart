@@ -7,7 +7,6 @@ import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/product/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
 import '../../core/components/cards/event_item_card.dart';
 import '../../core/components/cards/poster_card.dart';
 
@@ -29,18 +28,23 @@ class _HomeViewState extends BaseState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomTextfield(hintText: "Search", controller: TextEditingController(), keyboardType: TextInputType.name, textInputAction: TextInputAction.search, isSearch: true),
-                body(),
-              ],
-            ),
+    return Scaffold(
+      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomTextfield(
+                  hintText: "Search",
+                  controller: _viewModel.searchTextEditingController,
+                  onChanged: (value) => _viewModel.searchEventInList(value),
+                  focusNode: _viewModel.focusNode,
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.search,
+                  isSearch: true),
+              body(),
+            ],
           ),
         ),
       ),
@@ -54,26 +58,25 @@ class _HomeViewState extends BaseState<HomeView> {
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                horizontalCategoriesWidget(),
+                _viewModel.isSearched ? SizedBox() : horizontalCategoriesWidget(),
                 eventBody(),
               ],
             );
     });
   }
 
-  Column loadingWidget() {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Center(child: CircularProgressIndicator()),
-      ],
-    );
+  SizedBox loadingWidget() {
+    return SizedBox(width: deviceWidth, height: deviceHeight / 2, child: Center(child: CircularProgressIndicator()));
   }
 
   Widget eventBody() {
-    return _viewModel.selectedIndex >= 0
+    return _viewModel.selectedIndex >= 0 && _viewModel.filteredEventList != null
         ? Column(
-            children: [activityInfoHeader(), horizontalCards(), verticalCards()],
+            children: [
+              _viewModel.isSearched ? SizedBox() : activityInfoHeader(),
+              horizontalCards(),
+              verticalCards(),
+            ],
           )
         : SizedBox();
   }
@@ -90,7 +93,7 @@ class _HomeViewState extends BaseState<HomeView> {
             child: Column(
               children: [
                 Icon(!_viewModel.seeAllIsActive ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: AppColors.vanillaShake),
-                Text("See All", style: TextStyle().copyWith(color: AppColors.vanillaShake)),
+                Text("Hepsini Gör", style: TextStyle().copyWith(color: AppColors.vanillaShake)),
               ],
             ),
           )
@@ -105,7 +108,7 @@ class _HomeViewState extends BaseState<HomeView> {
       child: SingleChildScrollView(
         child: Column(
             children: List.generate(_viewModel.filteredEventList?.length ?? 0, (index) {
-          return EventItemCard(deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index]);
+          return EventItemCard(deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index], onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]));
         })),
       ),
     );
@@ -120,12 +123,16 @@ class _HomeViewState extends BaseState<HomeView> {
           physics: BouncingScrollPhysics(),
           child: _viewModel.filteredEventList != null
               ? Row(
-                  children: List.generate(_viewModel.filteredEventList!.length, (index) {
+                  children: List.generate(_viewModel.filteredEventList!.length > 5 ? 5 : _viewModel.filteredEventList!.length, (index) {
                   EventModel eventModel = _viewModel.filteredEventList![index];
-                  return PosterCard(
-                    eventModel: eventModel,
-                    deviceWidth: deviceWidth,
-                    deviceHeight: deviceHeight,
+                  return Padding(
+                    padding: EdgeInsets.only(right: AppSizes.lowSize),
+                    child: PosterCard(
+                      onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]),
+                      eventModel: eventModel,
+                      deviceWidth: deviceWidth,
+                      deviceHeight: deviceHeight,
+                    ),
                   );
                 }))
               : SizedBox()),
@@ -144,9 +151,7 @@ class _HomeViewState extends BaseState<HomeView> {
                     marginPadding: EdgeInsets.only(right: AppSizes.lowSize, top: AppSizes.mediumSize, bottom: AppSizes.mediumSize),
                     title: category.name!,
                     isFilled: _viewModel.isSelected(index),
-                    onTap: () {
-                      _viewModel.tapped(index);
-                    },
+                    onTap: () => _viewModel.tapped(index),
                     horizontalPadding: AppSizes.lowSize,
                     verticalPadding: AppSizes.lowSize);
               }),

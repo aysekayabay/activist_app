@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_this
-
 class EventService {
   List<EventModel>? eventList;
 
@@ -21,6 +19,7 @@ class EventModel {
   String? phone;
   String? email;
   String? posterUrl;
+  String? markerIcon;
   String? ticketUrl;
   String? facebookUrl;
   String? twitterUrl;
@@ -46,6 +45,7 @@ class EventModel {
       this.phone,
       this.email,
       this.posterUrl,
+      this.markerIcon,
       this.ticketUrl,
       this.facebookUrl,
       this.twitterUrl,
@@ -71,6 +71,7 @@ class EventModel {
     phone = json['phone'] ?? '';
     email = json['email'] ?? '';
     posterUrl = json['poster_url'] ?? '';
+    markerIcon = json['marker_icon'] ?? '';
     ticketUrl = json['ticket_url'] ?? '';
     facebookUrl = json['facebook_url'] ?? '';
     twitterUrl = json['twitter_url'] ?? '';
@@ -104,6 +105,7 @@ class EventModel {
     data['email'] = this.email;
     data['email'] = this.email;
     data['poster_url'] = this.posterUrl;
+    data['marker_icon'] = this.markerIcon;
     data['ticket_url'] = this.ticketUrl;
     data['facebook_url'] = this.facebookUrl;
     data['twitter_url'] = this.twitterUrl;

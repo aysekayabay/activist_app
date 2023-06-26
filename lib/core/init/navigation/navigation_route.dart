@@ -1,9 +1,11 @@
+import 'package:akademi_bootcamp/product/app-base/app_base.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/product/testview.dart';
 import 'package:flutter/material.dart';
 import '../../../product/auth/auth_view.dart';
 import '../../../product/home/home_view.dart';
-import '../../../product/map/events_map_view.dart';
+import '../../../product/map/mapbox_map_view.dart';
+import '../../../product/profile/profile_view.dart';
 import '../../components/page/not_found_navigation.dart';
 
 class NavigationRoute {
@@ -19,7 +21,13 @@ class NavigationRoute {
       case NavigationConstants.TEST:
         return navigate(TestView());
       case NavigationConstants.MAP:
-        return navigate(EventsMapView());
+        return navigate(MapBoxView());
+      case NavigationConstants.APP_BASE:
+        return navigate(AppBaseView());
+      case NavigationConstants.PROFILE:
+        return navigate(ProfileView());
+      // case NavigationConstants.DETAIL:
+      //   return navigate(DetailPage());
       default:
         MaterialPageRoute(builder: (context) => NotFoundNavigatonWidget());
     }

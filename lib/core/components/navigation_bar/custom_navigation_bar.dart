@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,12 @@ import 'package:flutter/material.dart';
 import 'navigation_bar_model.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
+  final int currentIndex;
+  final ValueChanged<int> onIndexChanged;
+
   const CustomBottomNavigationBar({
-    super.key,
+    this.currentIndex = 0,
+    required this.onIndexChanged,
   });
 
   @override
@@ -15,38 +20,52 @@ class CustomBottomNavigationBar extends StatefulWidget {
 
 class _CustomBottomNavigationBarState extends BaseState<CustomBottomNavigationBar> {
   NavigationBarModel selectedBottomNav = bottomNavs.first;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedBottomNav = bottomNavs[widget.currentIndex];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: AppSizes.lowSize, horizontal: AppSizes.mediumSize),
-        margin: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
-        decoration: BoxDecoration(
-          color: AppColors.darkGrey,
-          borderRadius: BorderRadius.all(Radius.circular(24)),
-        ),
-        child: Row(
+    return ClipRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          decoration: BoxDecoration(color: AppColors.darkGrey.withOpacity(0.15)),
+          padding: EdgeInsets.symmetric(vertical: AppSizes.lowSize + AppSizes.lowSize / 2, horizontal: AppSizes.mediumSize),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(bottomNavs.length, (index) {
               return InkWell(
-                  onTap: () {
-                    if (bottomNavs[index] != selectedBottomNav) {
-                      setState(() {
-                        selectedBottomNav = bottomNavs[index];
-                      });
-                    }
-                  },
-                  child: SizedBox(
-                    width: ((deviceWidth - AppSizes.highSize) / bottomNavs.length) - AppSizes.highSize,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Opacity(opacity: bottomNavs[index] == selectedBottomNav ? 1 : 0.5, child: Image.asset(bottomNavs[index].imagePath)),
-                        line(index),
-                      ],
-                    ),
-                  ));
-            })),
+                onTap: () {
+                  if (bottomNavs[index] != selectedBottomNav) {
+                    setState(() {
+                      selectedBottomNav = bottomNavs[index];
+                    });
+                    widget.onIndexChanged(index);
+                  }
+                },
+                child: SizedBox(
+                  width: ((deviceWidth - AppSizes.highSize) / bottomNavs.length) - AppSizes.highSize,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Opacity(
+                        opacity: bottomNavs[index] == selectedBottomNav ? 1 : 0.5,
+                        child: Image.asset(
+                          bottomNavs[index].imagePath,
+                        ),
+                      ),
+                      line(index),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          ),
+        ),
       ),
     );
   }

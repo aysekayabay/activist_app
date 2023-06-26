@@ -10,5 +10,6 @@ class NavigationBarModel {
 List<NavigationBarModel> bottomNavs = [
   NavigationBarModel("Home", ImageConstants.HOME),
   NavigationBarModel("Map", ImageConstants.MAP),
-  NavigationBarModel("Ticket", ImageConstants.TICKET),
+  NavigationBarModel("Messages", ImageConstants.MESSAGES),
+  NavigationBarModel("Profile", ImageConstants.PROFILE),
 ];
