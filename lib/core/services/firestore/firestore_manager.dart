@@ -5,11 +5,17 @@ class FirestoreManager {
   static late final FirestoreManager instance = FirestoreManager._();
   final _firestore = FirebaseFirestore.instance;
 
-  Future<Object?> firestoreGetDocument({required String collectionID, required String docID}) async {
+  Future<Object?> firestoreGetDocumentData({required String collectionID, required String docID}) async {
     DocumentReference documentRef = _firestore.collection(collectionID).doc(docID);
     DocumentSnapshot document = await documentRef.get();
     Object? data = document.data();
     return data;
+  }
+
+  Future<DocumentSnapshot<Object?>> firestoreGetDocument({required String collectionID, required String docID}) async {
+    DocumentReference documentRef = _firestore.collection(collectionID).doc(docID);
+    DocumentSnapshot document = await documentRef.get();
+    return document;
   }
 
   Future<void> firestoreSendDataMap({required String collectionID, required String docID, required Map<String, dynamic> data}) async {
@@ -20,9 +26,8 @@ class FirestoreManager {
     await _firestore.collection(collectionID).doc(docID).update({key: value});
   }
 
-  Future<List<DocumentSnapshot<Map<String, dynamic>>>> firestoreGetSomeDocuments({required String collectionID, required String docID, required Iterable<Object?>? whereIn}) async {
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore.collection(collectionID).where(docID, whereIn: whereIn).get();
-    List<DocumentSnapshot<Map<String, dynamic>>> documents = querySnapshot.docs;
-    return documents;
+  Future<List<QueryDocumentSnapshot<dynamic>>> firestoreGetSomeDocuments({required String collectionID, required List<dynamic> whereIn}) async {
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection(collectionID).where(FieldPath.documentId, whereIn: whereIn).get();
+    return querySnapshot.docs;
   }
 }

@@ -29,13 +29,13 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
       Atom(name: '_HomeViewModelBase.eventList', context: context);
 
   @override
-  List<EventModel>? get eventList {
+  List<EventModel> get eventList {
     _$eventListAtom.reportRead();
     return super.eventList;
   }
 
   @override
-  set eventList(List<EventModel>? value) {
+  set eventList(List<EventModel> value) {
     _$eventListAtom.reportWrite(value, super.eventList, () {
       super.eventList = value;
     });

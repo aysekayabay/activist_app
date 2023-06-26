@@ -6,13 +6,15 @@ class GroupModel {
   EventModel? event;
   List<UserModel>? users;
   List<MessageModel>? messages;
+  int? favCount;
 
-  GroupModel({this.event, this.users, this.messages});
+  GroupModel({this.event, this.users, this.messages, this.favCount});
 
   GroupModel.fromJson(Map<String, dynamic> json) {
     event = json['event'] != null ? EventModel.fromJson(json['event']) : null;
     users = (json['users'] ?? []).map((element) => UserModel.fromJson(element)).toList().cast<UserModel>();
-    messages = (json['messages'] ?? []).map((element) => UserModel.fromJson(element)).toList().cast<MessageModel>();
+    messages = (json['messages'] ?? []).map((element) => MessageModel.fromJson(element)).toList().cast<MessageModel>();
+    favCount = json['fav_count'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +28,7 @@ class GroupModel {
     if (this.messages != null) {
       data['messages'] = this.messages!.map((message) => message.toJson()).toList();
     }
+    data['fav_count'] = this.favCount;
     return data;
   }
 }

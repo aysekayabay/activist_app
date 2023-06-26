@@ -28,7 +28,7 @@ class AuthService {
           docID: user.user!.uid,
           data: currentUser!.toJson(),
         );
-        userData = await FirestoreManager.instance.firestoreGetDocument(collectionID: "users", docID: user.user!.uid);
+        userData = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: "users", docID: user.user!.uid);
         currentUser = UserModel.fromJson(userData);
         uid = user.user!.uid;
         return 1;
@@ -46,7 +46,7 @@ class AuthService {
       UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       if (user.user != null) {
         uid = user.user!.uid;
-        userData = await FirestoreManager.instance.firestoreGetDocument(collectionID: "users", docID: user.user!.uid);
+        userData = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: "users", docID: user.user!.uid);
         currentUser = UserModel.fromJson(userData);
         if (userData['fav_events'] != null) {
           List<Map<String, dynamic>> favEventsData = List<Map<String, dynamic>>.from(userData['fav_events']);
@@ -112,7 +112,7 @@ class AuthService {
       UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
       if (userCredential != null) {
         uid = userCredential.user!.uid;
-        userData = await FirestoreManager.instance.firestoreGetDocument(collectionID: "users", docID: userCredential.user!.uid);
+        userData = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: "users", docID: userCredential.user!.uid);
         if (userData == null) {
           currentUser = UserModel(email: userCredential.user?.email, createdAt: Timestamp.now().toString(), lastLogin: Timestamp.now().toString(), userID: userCredential.user!.uid);
           await FirestoreManager.instance.firestoreSendDataMap(

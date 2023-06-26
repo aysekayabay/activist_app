@@ -2,7 +2,6 @@ import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/core/services/api/etkinlikIO_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-
 import '../detail_page/detail_page.dart';
 part 'home_view_model.g.dart';
 
@@ -15,7 +14,7 @@ abstract class _HomeViewModelBase with Store {
   @observable
   bool isLoading = true;
   @observable
-  List<EventModel>? eventList = [];
+  List<EventModel> eventList = [];
 
   @observable
   bool seeAllIsActive = false;
@@ -34,7 +33,7 @@ abstract class _HomeViewModelBase with Store {
   }
 
   Future<void> getEventList() async {
-    eventList = await EtkinlikIOService.instance.fetchEventList();
+    eventList = await EtkinlikIOService.instance.fetchEventList() ?? [];
     categoryList = EtkinlikIOService.instance.categoryList;
     if (categoryList != null && categoryList!.length > 0) {
       filterEventsByCategory(categoryList!.first);
@@ -49,7 +48,7 @@ abstract class _HomeViewModelBase with Store {
   bool isSearched = false;
   @action
   void filterEventsByCategory(Format selectedCategory) {
-    filteredEventList = eventList?.where((event) => event.format?.id == selectedCategory.id).toList();
+    filteredEventList = eventList.where((event) => event.format?.id == selectedCategory.id).toList();
   }
 
   @observable
@@ -84,7 +83,7 @@ abstract class _HomeViewModelBase with Store {
   }
 
   void searchEventInList(String value) {
-    filteredEventList = eventList?.where((event) => event.name.toString().toLowerCase().contains(value.toLowerCase())).toList();
+    filteredEventList = eventList.where((event) => event.name.toString().toLowerCase().contains(value.toLowerCase())).toList();
     if (value.isNotEmpty) {
       isSearched = true;
       seeAllIsActive = true;

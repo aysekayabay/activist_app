@@ -65,17 +65,12 @@ class _HomeViewState extends BaseState<HomeView> {
     });
   }
 
-  Column loadingWidget() {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Center(child: CircularProgressIndicator()),
-      ],
-    );
+  SizedBox loadingWidget() {
+    return SizedBox(width: deviceWidth, height: deviceHeight / 2, child: Center(child: CircularProgressIndicator()));
   }
 
   Widget eventBody() {
-    return _viewModel.selectedIndex >= 0
+    return _viewModel.selectedIndex >= 0 && _viewModel.filteredEventList != null
         ? Column(
             children: [
               _viewModel.isSearched ? SizedBox() : activityInfoHeader(),
