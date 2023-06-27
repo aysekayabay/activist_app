@@ -1,3 +1,5 @@
+import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
+import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
@@ -25,13 +27,15 @@ abstract class _OnboardViewModelBase with Store {
   }
 
   void goToNextPage() {
-    if (currentPageIndex < onboard_data.length - 1) {
+    if (currentPageIndex != onboard_data.length) {
       currentPageIndex++;
       pageController.animateToPage(
         currentPageIndex,
         duration: const Duration(milliseconds: 300),
         curve: Curves.ease,
       );
+    } else {
+      NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.AUTH);
     }
   }
 

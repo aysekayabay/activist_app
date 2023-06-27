@@ -2,6 +2,7 @@ import 'package:akademi_bootcamp/product/app-base/app_base.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/product/onboard/onboard_view.dart';
 import 'package:akademi_bootcamp/product/testview.dart';
+import 'package:akademi_bootcamp/product/welcome/welcome_view.dart';
 import 'package:flutter/material.dart';
 import '../../../product/auth/auth_view.dart';
 import '../../../product/home/home_view.dart';
@@ -27,6 +28,8 @@ class NavigationRoute {
         return navigate(OnboardView());
       case NavigationConstants.APP_BASE:
         return navigate(AppBaseView());
+      case NavigationConstants.WELCOME:
+        return navigate(WelcomeView());
       case NavigationConstants.PROFILE:
         return navigate(ProfileView());
       // case NavigationConstants.DETAIL:

@@ -6,5 +6,6 @@ class NavigationConstants {
   static const String MAP = '/map';
   static const String DETAIL = '/detail';
   static const String ONBOARD = '/onboard';
-  static const String APP_BASE = '/app-base';
+  static const String APP_BASE = '/app_base';
+  static const String WELCOME = '/welcome';
 }
