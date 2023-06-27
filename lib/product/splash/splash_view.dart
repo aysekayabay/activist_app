@@ -12,7 +12,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3)).then((value) => NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.AUTH));
+    Future.delayed(Duration(seconds: 3)).then((value) => NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.ONBOARD));
     super.initState();
   }
 
