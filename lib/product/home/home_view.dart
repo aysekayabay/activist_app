@@ -30,12 +30,12 @@ class _HomeViewState extends BaseState<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomTextfield(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
+              child: CustomTextfield(
                   hintText: "Search",
                   controller: _viewModel.searchTextEditingController,
                   onChanged: (value) => _viewModel.searchEventInList(value),
@@ -43,9 +43,9 @@ class _HomeViewState extends BaseState<HomeView> {
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.search,
                   isSearch: true),
-              body(),
-            ],
-          ),
+            ),
+            body(),
+          ],
         ),
       ),
     );
@@ -59,7 +59,11 @@ class _HomeViewState extends BaseState<HomeView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _viewModel.isSearched ? SizedBox() : horizontalCategoriesWidget(),
-                eventBody(),
+                Container(
+                    width: deviceWidth,
+                    height: deviceHeight,
+                    decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.transparent, Colors.black], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                    child: eventBody()),
               ],
             );
     });
@@ -83,7 +87,7 @@ class _HomeViewState extends BaseState<HomeView> {
 
   Padding activityInfoHeader() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize, vertical: AppSizes.lowSize),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -123,40 +127,45 @@ class _HomeViewState extends BaseState<HomeView> {
           physics: BouncingScrollPhysics(),
           child: _viewModel.filteredEventList != null
               ? Row(
-                  children: List.generate(_viewModel.filteredEventList!.length > 5 ? 5 : _viewModel.filteredEventList!.length, (index) {
-                  EventModel eventModel = _viewModel.filteredEventList![index];
-                  return Padding(
-                    padding: EdgeInsets.only(right: AppSizes.lowSize),
-                    child: PosterCard(
-                      onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]),
-                      eventModel: eventModel,
-                      deviceWidth: deviceWidth,
-                      deviceHeight: deviceHeight,
-                    ),
-                  );
-                }))
+                  children: [
+                    SizedBox(width: AppSizes.lowSize / 2),
+                    Row(
+                        children: List.generate(_viewModel.filteredEventList!.length > 5 ? 5 : _viewModel.filteredEventList!.length, (index) {
+                      EventModel eventModel = _viewModel.filteredEventList![index];
+                      return PosterCard(
+                        onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]),
+                        eventModel: eventModel,
+                        deviceWidth: deviceWidth,
+                        deviceHeight: deviceHeight,
+                      );
+                    })),
+                  ],
+                )
               : SizedBox()),
     );
   }
 
   Widget horizontalCategoriesWidget() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      physics: BouncingScrollPhysics(),
-      child: _viewModel.categoryList != null
-          ? Row(
-              children: List.generate(_viewModel.categoryList!.length, (index) {
-                Format category = _viewModel.categoryList![index];
-                return CustomButton(
-                    marginPadding: EdgeInsets.only(right: AppSizes.lowSize, top: AppSizes.mediumSize, bottom: AppSizes.mediumSize),
-                    title: category.name!,
-                    isFilled: _viewModel.isSelected(index),
-                    onTap: () => _viewModel.tapped(index),
-                    horizontalPadding: AppSizes.lowSize,
-                    verticalPadding: AppSizes.lowSize);
-              }),
-            )
-          : SizedBox(),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        physics: BouncingScrollPhysics(),
+        child: _viewModel.categoryList != null
+            ? Row(
+                children: List.generate(_viewModel.categoryList!.length, (index) {
+                  Format category = _viewModel.categoryList![index];
+                  return CustomButton(
+                      marginPadding: EdgeInsets.only(right: AppSizes.lowSize, top: AppSizes.mediumSize, bottom: AppSizes.mediumSize),
+                      title: category.name!,
+                      isFilled: _viewModel.isSelected(index),
+                      onTap: () => _viewModel.tapped(index),
+                      horizontalPadding: AppSizes.lowSize,
+                      verticalPadding: AppSizes.lowSize);
+                }),
+              )
+            : SizedBox(),
+      ),
     );
   }
 }

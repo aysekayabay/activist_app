@@ -60,6 +60,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                 minLines: 1,
                 decoration: InputDecoration(
                   border: widget.isSearch ? InputBorder.none : null,
+                  hintStyle: Theme.of(context).textTheme.displayMedium,
                   hintText: widget.hintText,
                   suffixIcon: Visibility(
                     visible: widget.isPassword,

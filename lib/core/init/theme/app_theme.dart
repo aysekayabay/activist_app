@@ -9,7 +9,7 @@ class AppThemeDark {
       fontFamily: 'Poppins',
       textSelectionTheme: TextSelectionThemeData(selectionColor: Colors.red),
       colorScheme: appColorSheme(),
-      scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: AppColors.bgColor,
       snackBarTheme: SnackBarThemeData(backgroundColor: Colors.deepOrangeAccent),
       textTheme: appTextTheme(),
       appBarTheme: appBarTheme().appBarTheme.copyWith(iconTheme: IconThemeData(color: AppColors.vanillaShake)),

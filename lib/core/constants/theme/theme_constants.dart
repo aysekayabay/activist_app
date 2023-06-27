@@ -20,11 +20,9 @@ class AppColors {
   static Color yellowHue = Color(0xffF0E68C);
   static Color white = Color(0xffFFFFFF);
   static Color lightblue = Color(0xff32D7E1);
+  static Color bgColor = Color(0xff323232);
 
-  static LinearGradient greyGradient = LinearGradient(
-      colors: [darkGrey.withOpacity(0.39), darkYellow.withOpacity(0)],
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter);
+  static LinearGradient greyGradient = LinearGradient(colors: [darkGrey.withOpacity(0.39), darkYellow.withOpacity(0)], begin: Alignment.topCenter, end: Alignment.bottomCenter);
 }
 
 class AppSizes {
@@ -42,6 +40,9 @@ class AppPadings {
 
 class AppRadius {
   const AppRadius._();
-  static BorderRadius primaryRadius =
-      BorderRadius.all(Radius.circular(AppSizes.radiusSize));
+  static BorderRadius primaryRadius = BorderRadius.all(Radius.circular(AppSizes.radiusSize));
+}
+
+class AppShadows {
+  static List<BoxShadow>? boxShadow = [BoxShadow(blurRadius: 10, color: AppColors.black, spreadRadius: 0, offset: Offset(10, 10))];
 }

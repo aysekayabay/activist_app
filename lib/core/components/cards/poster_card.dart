@@ -22,24 +22,32 @@ class PosterCard extends StatelessWidget {
   void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: deviceWidth * 0.8,
-        height: deviceHeight / 2,
-        padding: EdgeInsets.all(AppSizes.lowSize),
-        decoration: BoxDecoration(color: AppColors.darkGrey.withOpacity(0.39), borderRadius: AppRadius.primaryRadius),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(height: deviceHeight / 4, child: Align(alignment: Alignment.topCenter, child: ClipRRect(borderRadius: AppRadius.primaryRadius, child: Image.network(eventModel.posterUrl!)))),
-            Text(eventModel.name!, maxLines: 1, style: TextStyle().copyWith(color: Colors.white)),
-            Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
-            dateWidget(),
-            timeWidget(),
-            locationWidget(),
-          ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.lowSize),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          width: deviceWidth * 0.8,
+          height: deviceHeight / 2,
+          padding: EdgeInsets.all(AppSizes.lowSize),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                AppColors.darkGrey.withOpacity(0.39),
+                Colors.transparent,
+              ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+              borderRadius: AppRadius.primaryRadius),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(height: deviceHeight / 4, child: Align(alignment: Alignment.topCenter, child: ClipRRect(borderRadius: AppRadius.primaryRadius, child: Image.network(eventModel.posterUrl!)))),
+              Text(eventModel.name!, maxLines: 1, style: TextStyle().copyWith(color: Colors.white)),
+              Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
+              dateWidget(),
+              timeWidget(),
+              locationWidget(),
+            ],
+          ),
         ),
       ),
     );
@@ -65,7 +73,11 @@ class PosterCard extends StatelessWidget {
 
   Row dateWidget() {
     return Row(
-      children: [Icon(Icons.calendar_month_rounded, color: AppColors.vanillaShake, size: 18), Text(eventModel.start!.formattedDate, style: TextStyle().copyWith(color: Colors.white))],
+      children: [
+        Icon(Icons.calendar_month_rounded, color: AppColors.vanillaShake, size: 18),
+        SizedBox(width: AppSizes.lowSize / 2),
+        Text(eventModel.start!.formattedDate, style: TextStyle().copyWith(color: Colors.white)),
+      ],
     );
   }
 }

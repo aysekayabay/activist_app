@@ -31,14 +31,14 @@ class _CustomButtonState extends State<CustomButton> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 widget.iconPath != null ? Image.asset(widget.iconPath.toString()) : SizedBox(),
-                Text(widget.title, style: TextStyle(color: widget.isFilled ? Colors.black : Colors.white)),
+                Text(widget.title, style: Theme.of(context).textTheme.displayMedium!.copyWith(color: widget.isFilled ? AppColors.black : AppColors.vanillaShake)),
               ],
             ),
           ),
           decoration: BoxDecoration(
-              color: widget.isFilled ? AppColors.vanillaShake : Colors.black,
-              border: Border.all(width: 2, color: widget.isFilled ? Colors.black : AppColors.vanillaShake),
-              borderRadius: BorderRadius.all(Radius.circular(15))),
+              color: widget.isFilled ? AppColors.vanillaShake : Colors.transparent,
+              border: Border.all(width: 2, color: widget.isFilled ? Colors.transparent : AppColors.vanillaShake),
+              borderRadius: AppRadius.primaryRadius),
         ),
       ),
     );
