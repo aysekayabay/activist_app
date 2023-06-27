@@ -160,7 +160,7 @@ class _DetailPageState extends State<DetailPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(name, style: Theme.of(context).textTheme.headline1),
+        Text(name, style: Theme.of(context).textTheme.displayLarge),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
