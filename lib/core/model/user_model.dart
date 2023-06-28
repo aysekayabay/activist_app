@@ -2,9 +2,9 @@ import 'package:akademi_bootcamp/core/model/event_model.dart';
 
 class UserModel {
   String? userID;
-  String? name;
-  int? lastName;
+  String? fullname;
   String? birthdate;
+  String? photoUrl;
   String? email;
   bool? emailVerified;
   String? password;
@@ -13,13 +13,13 @@ class UserModel {
   String? lastLogin;
   List<EventModel>? favEvents;
 
-  UserModel({this.userID, this.name, this.lastName, this.birthdate, this.email, this.emailVerified, this.password, this.createdAt, this.updatedAt, this.lastLogin, this.favEvents});
+  UserModel({this.userID, this.fullname, this.birthdate, this.photoUrl, this.email, this.emailVerified, this.password, this.createdAt, this.updatedAt, this.lastLogin, this.favEvents});
 
   UserModel.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
+    fullname = json['name'];
     userID = json['userID'];
-    lastName = json['lastName'];
     birthdate = json['birthdate'];
+    photoUrl = json['photo_url'];
     email = json['email'];
     emailVerified = json['email_verified'];
     password = json['password'];
@@ -31,10 +31,10 @@ class UserModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
+    data['name'] = this.fullname;
     data['userID'] = this.userID;
-    data['lastName'] = this.lastName;
     data['birthdate'] = this.birthdate;
+    data['photo_url'] = this.photoUrl;
     data['email'] = this.email;
     data['email_verified'] = this.emailVerified;
     data['password'] = this.password;

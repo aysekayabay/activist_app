@@ -27,7 +27,7 @@ abstract class _OnboardViewModelBase with Store {
   }
 
   void goToNextPage() {
-    if (currentPageIndex != onboard_data.length) {
+    if (currentPageIndex != onboard_data.length - 1) {
       currentPageIndex++;
       pageController.animateToPage(
         currentPageIndex,

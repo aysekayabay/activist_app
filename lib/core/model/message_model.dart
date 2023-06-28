@@ -1,17 +1,47 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class MessageModel {
-  String? id;
+  SentBy? sentBy;
   dynamic content;
-  MessageModel({this.id, this.content});
-  
+  FieldValue? time;
+
+  String? type;
+  MessageModel({this.sentBy, this.content, this.type, this.time});
+
   MessageModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? '';
+    sentBy = json['sent_by'] != null ? SentBy.fromJson(json['sent_by']) : null;
     content = json['content'] ?? '';
+    type = json['type'] ?? '';
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (this.sentBy != null) {
+      data['sent_by'] = this.sentBy!.toJson();
+    }
+    data['content'] = this.content;
+    data['type'] = this.type;
+    return data;
+  }
+}
+
+class SentBy {
+  String? fullname;
+  String? photoUrl;
+  String? id;
+  SentBy({this.fullname, this.photoUrl, this.id});
+
+  SentBy.fromJson(Map<String, dynamic> json) {
+    id = json['id'] ?? '';
+    fullname = json['fullname'] ?? '';
+    photoUrl = json['photo_url'] ?? '';
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
-    data['content'] = this.content;
+    data['fullname'] = this.fullname;
+    data['photo_url'] = this.photoUrl;
     return data;
   }
 }

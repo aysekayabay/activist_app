@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreManager {
@@ -29,5 +30,21 @@ class FirestoreManager {
   Future<List<QueryDocumentSnapshot<dynamic>>> firestoreGetSomeDocuments({required String collectionID, required List<dynamic> whereIn}) async {
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore.instance.collection(collectionID).where(FieldPath.documentId, whereIn: whereIn).get();
     return querySnapshot.docs;
+  }
+
+  Stream<QuerySnapshot> firestoreGetSomeDocumentsAsStream({required String collectionID, required List<String> whereIn}) {
+    return FirebaseFirestore.instance.collection(collectionID).where(FieldPath.documentId, whereIn: whereIn).snapshots();
+  }
+
+  Stream<DocumentSnapshot<Object?>> firestoreStreamDocument({required String collectionID, required String docID}) {
+    StreamController<DocumentSnapshot<Object?>> controller = StreamController<DocumentSnapshot<Object?>>();
+
+    _firestore.collection(collectionID).doc(docID).snapshots().listen((snapshot) {
+      controller.add(snapshot);
+    }, onError: (error) {
+      controller.addError(error);
+    });
+
+    return controller.stream;
   }
 }
