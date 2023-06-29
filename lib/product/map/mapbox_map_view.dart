@@ -85,8 +85,6 @@ class LocationMarker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("tek:");
-    print(eventModel.markerIcon);
     return Center(
       child:
           AnimatedContainer(height: isSelected ? 60.0 : 30.0, width: isSelected ? 60.0 : 30.0, duration: Duration(milliseconds: 400), child: Image.asset(eventModel.markerIcon ?? ImageConstants.HOME)),

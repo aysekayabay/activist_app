@@ -50,6 +50,7 @@ class _ChatViewState extends State<ChatView> {
                   child: Padding(
                     padding: EdgeInsets.all(AppSizes.lowSize),
                     child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                       reverse: true,
                       itemCount: messages.length,
                       itemBuilder: (context, index) {

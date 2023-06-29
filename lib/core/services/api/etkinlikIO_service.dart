@@ -6,6 +6,7 @@ import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:http/http.dart' as http;
 
+
 class EtkinlikIOService {
   EtkinlikIOService._();
   static late final EtkinlikIOService instance = EtkinlikIOService._();
@@ -24,15 +25,7 @@ class EtkinlikIOService {
             if (event.format != null && categoryList.every((format) => format.id != event.format!.id)) {
               categoryList.add(event.format!);
             }
-            // print(event.venue?.address ?? 'YOK : ${event.name}');
             event.markerIcon = setCategoryIcons(event);
-            // if (event.venue != null && event.venue?.lat == null && event.venue?.lng == null && event.venue?.address != null && event.venue!.address!.isNotEmpty) {
-            //   Location? location = await GeocodingService().getLatLng(event.venue!.address.toString());
-            //   if (location != null) {
-            //     event.venue!.lat = location.latitude as String;
-            //     event.venue!.lng = location.longitude as String;
-            //   }
-            // }
           }
         }
         return eventService.eventList;

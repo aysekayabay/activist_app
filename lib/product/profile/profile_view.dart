@@ -28,43 +28,41 @@ class _ProfileViewState extends BaseState<ProfileView> {
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           userHeader(),
           label(),
-          Expanded(
-            child: StreamBuilder<QuerySnapshot>(
-                stream: EventsService.instance.fetchUserGroups(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    List<GroupModel> groupList = snapshot.data!.docs.map((doc) => GroupModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
-                    return Container(
-                      width: deviceWidth,
-                      height: deviceHeight,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: AppSizes.mediumSize,
-                              top: AppSizes.highSize,
-                            ),
-                            child: Text("Favorilerim", style: themeData.textTheme.headlineSmall),
-                          ),
-                          Expanded(
-                            child: ListView.builder(
-                                itemCount: groupList.isNotEmpty ? groupList.length : 0,
-                                itemBuilder: (context, index) {
-                                  return slidableItem(groupList[index], context);
-                                }),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox(height: deviceHeight, child: Center(child: CircularProgressIndicator()));
-                  } else {
-                    return SizedBox(height: deviceHeight, child: Center(child: Text("Henüz bir etkinliği favoriye almadın..")));
-                  }
-                }),
-          )
+          events(),
         ]));
+  }
+
+  Expanded events() {
+    return Expanded(
+      child: StreamBuilder<QuerySnapshot>(
+          stream: EventsService.instance.fetchUserGroups(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<GroupModel> groupList = snapshot.data!.docs.map((doc) => GroupModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
+              return Container(
+                width: deviceWidth,
+                height: deviceHeight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: groupList.isNotEmpty ? groupList.length : 0,
+                          itemBuilder: (context, index) {
+                            return slidableItem(groupList[index], context);
+                          }),
+                    ),
+                  ],
+                ),
+              );
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return SizedBox(height: deviceHeight, child: Center(child: CircularProgressIndicator()));
+            } else {
+              return SizedBox(height: deviceHeight, child: Center(child: Text("Henüz bir etkinliği favoriye almadın..")));
+            }
+          }),
+    );
   }
 
   Slidable slidableItem(GroupModel groupModel, BuildContext context) {
@@ -140,8 +138,10 @@ class _ProfileViewState extends BaseState<ProfileView> {
 
   Padding label() {
     return Padding(
-      padding: EdgeInsets.only(left: AppSizes.mediumSize),
-      child: Text("Favorilerim", style: themeData.textTheme.displayMedium),
+      padding: EdgeInsets.only(
+        left: AppSizes.mediumSize,
+      ),
+      child: Text("Favorilerim", style: themeData.textTheme.headlineSmall),
     );
   }
 

@@ -46,7 +46,7 @@ class _GroupsViewState extends BaseState<GroupsView> {
                     ),
                     child: Text("Gruplarım", style: themeData.textTheme.headlineSmall),
                   ),
-                  Expanded(child: ListView.builder(itemCount: filteredGroups.length, itemBuilder: (context, index) => slidableItem(filteredGroups, index, context))),
+                  Expanded(child: ListView.builder(physics: BouncingScrollPhysics(), itemCount: filteredGroups.length, itemBuilder: (context, index) => slidableItem(filteredGroups, index, context))),
                 ],
               ),
             );
