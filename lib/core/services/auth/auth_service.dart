@@ -18,11 +18,11 @@ class AuthService {
   dynamic userData;
   UserModel? currentUser;
 
-  Future<int> register(BuildContext context, String email, String password) async {
+  Future<int> register(BuildContext context, String email, String fullname, String password) async {
     try {
       UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
       if (user.user != null) {
-        currentUser = UserModel(email: email, createdAt: Timestamp.now().toString(), lastLogin: Timestamp.now().toString(), userID: user.user!.uid);
+        currentUser = UserModel(email: email, createdAt: Timestamp.now().toString(), lastLogin: Timestamp.now().toString(), userID: user.user!.uid, fullname: fullname);
         await FirestoreManager.instance.firestoreSendDataMap(
           collectionID: 'users',
           docID: user.user!.uid,
@@ -113,15 +113,21 @@ class AuthService {
       if (userCredential != null) {
         uid = userCredential.user!.uid;
         userData = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: "users", docID: userCredential.user!.uid);
+        currentUser = UserModel(
+            fullname: userCredential.user?.displayName,
+            emailVerified: userCredential.user?.emailVerified,
+            photoUrl: userCredential.user?.photoURL,
+            email: userCredential.user?.email,
+            createdAt: Timestamp.now().toString(),
+            lastLogin: Timestamp.now().toString(),
+            userID: userCredential.user!.uid);
         if (userData == null) {
-          currentUser = UserModel(email: userCredential.user?.email, createdAt: Timestamp.now().toString(), lastLogin: Timestamp.now().toString(), userID: userCredential.user!.uid);
           await FirestoreManager.instance.firestoreSendDataMap(
             collectionID: "users",
             docID: userCredential.user!.uid,
             data: currentUser!.toJson(),
           );
         } else {
-          currentUser = UserModel(email: userCredential.user?.email, createdAt: Timestamp.now().toString(), lastLogin: Timestamp.now().toString(), userID: userCredential.user!.uid);
           await FirestoreManager.instance.firestoreUpdate(collectionID: "users", docID: currentUser!.userID.toString(), key: "last_login", value: currentUser!.lastLogin);
           if (userData['fav_events'] != null) {
             List<Map<String, dynamic>> favEventsData = List<Map<String, dynamic>>.from(userData['fav_events']);

@@ -82,15 +82,14 @@ class EventsService {
     }
   }
 
-  leaveChatGroup(String eventID, String userID) async {
-    try {
-      dynamic data = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: GROUPS, docID: eventID) as Map;
-      if (data != null) {
-        List<dynamic> users = data[USERS] ?? [];
-        users.remove(userID);
-        await FirestoreManager.instance.firestoreUpdate(collectionID: GROUPS, docID: eventID, key: USERS, value: users);
-      }
-    } catch (e) {}
+  void leaveChatGroup(String eventID, String userID) async {
+    dynamic data = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: GROUPS, docID: eventID);
+    if (data != null) {
+      List<SentBy> users = (data[USERS] as List<dynamic>).map((item) => SentBy.fromJson(item)).toList();
+      users.removeWhere((user) => user.id == userID);
+      List<Map<String, dynamic>> updatedUsers = users.map((user) => user.toJson()).toList();
+      await FirestoreManager.instance.firestoreUpdate(collectionID: GROUPS, docID: eventID, key: USERS, value: updatedUsers);
+    }
   }
 
   pushMessage(String eventID, MessageModel message) async {

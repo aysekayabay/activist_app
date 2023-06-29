@@ -54,7 +54,7 @@ abstract class _AuthViewModelBase with Store {
   }
 
   register(BuildContext context) async {
-    int result = await AuthService.instance.register(context, emailController.text, passwordController.text);
+    int result = await AuthService.instance.register(context, emailController.text, nameController.text, passwordController.text);
     if (result == 1) {
       //success
       navigateToAppBase();
