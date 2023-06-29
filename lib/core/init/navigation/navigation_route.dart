@@ -1,13 +1,13 @@
 import 'package:akademi_bootcamp/product/app-base/app_base.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/product/onboard/onboard_view.dart';
+import 'package:akademi_bootcamp/product/profile/profile_view.dart';
 import 'package:akademi_bootcamp/product/testview.dart';
 import 'package:akademi_bootcamp/product/welcome/welcome_view.dart';
 import 'package:flutter/material.dart';
 import '../../../product/auth/auth_view.dart';
 import '../../../product/home/home_view.dart';
 import '../../../product/map/mapbox_map_view.dart';
-import '../../../product/profile/profile_view.dart';
 import '../../components/page/not_found_navigation.dart';
 
 class NavigationRoute {

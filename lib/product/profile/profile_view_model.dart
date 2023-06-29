@@ -14,22 +14,31 @@ abstract class _ProfileViewModelBase with Store {
   UserModel? currentUser = AuthService.instance.currentUser;
 
   @observable
-  List<GroupModel> groups = [];
+  List<GroupModel> favEventsGroups = [];
 
   @observable
   bool isLoading = true;
 
+  @action
+  bool containsUser(GroupModel groupModel) => groupModel.users != null ? groupModel.users!.any((user) => user.id == currentUser?.userID) : false;
+
+  @action
   leaveGroup(BuildContext context, EventModel? eventModel) {
     if (currentUser != null && currentUser!.userID != null && eventModel != null) {
       EventsService.instance.leaveChatGroup(eventModel.id.toString(), currentUser!.userID!);
+      favEventsGroups.removeWhere((group) => group.event?.id == eventModel.id);
     }
   }
 
-  joinGroup(EventModel? eventModel, context) {
+  @action
+  joinGroup(BuildContext context, EventModel? eventModel) {
     if (currentUser != null && currentUser!.userID != null && eventModel != null) {
       EventsService.instance.joinChatGroup(eventModel, currentUser!.userID!);
     }
   }
 
-  removeFav() {}
+  @action
+  removeFav(EventModel eventModel) {
+    EventsService.instance.updateUserFavList(eventModel, false);
+  }
 }
