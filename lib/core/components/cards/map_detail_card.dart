@@ -1,4 +1,5 @@
 import 'package:akademi_bootcamp/core/model/event_model.dart';
+import 'package:akademi_bootcamp/product/detail_page/detail_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme/theme_constants.dart';
@@ -9,34 +10,46 @@ class MapDetailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
-      color: Colors.white,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 50),
+      decoration: BoxDecoration(color: AppColors.vanillaShake, borderRadius: BorderRadius.all(Radius.circular(55))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(child: Image.network(event.posterUrl ?? '')),
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(event.name ?? ''),
-                      Text(event.venue?.address ?? ''),
-                    ],
-                  ),
-                )
-              ],
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(55)),
+            child: Image.network(
+              event.posterUrl ?? '',
+              height: 120,
+              fit: BoxFit.fitWidth,
             ),
           ),
-          MaterialButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {},
-            elevation: 6,
-            color: Color.fromARGB(255, 33, 212, 206),
-            child: Text("İncele"),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                event.name ?? '',
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(color: AppColors.black),
+                maxLines: 1,
+              ),
+              Text(event.venue?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: AppColors.black)),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: MaterialButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return DetailPage(eventModel: event);
+                  },
+                ));
+              },
+              elevation: 6,
+              color: AppColors.orange,
+              child: Text("İncele"),
+            ),
           )
         ],
       ),

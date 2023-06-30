@@ -1,6 +1,7 @@
 import 'package:akademi_bootcamp/core/services/api/etkinlikIO_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mobx/mobx.dart';
 import '../../core/model/event_model.dart';
@@ -13,17 +14,22 @@ abstract class _MapBoxViewModelBase with Store {
   final MAPBOX_STYLE = 'mapbox/dark-v10';
   final MARKER_SIZE_EXPANDED = 55.0;
   final MARKER_SIZE_SHRINK = 80.0;
-  final myLocation = LatLng(41.0565767, 28.9511806);
+  final mapCenter = LatLng(41.0565767, 28.9511806);
+  Position? currentPosition;
+
+  @observable
+  bool cardVisible = false;
+  @observable
+  List<EventModel> eventList = [];
+  @observable
+  List<Marker> markerList = [];
   @action
   void initPageController() {
     pageController.addListener(() {});
   }
 
   @observable
-  List<EventModel> eventList = [];
-  @observable
-  List<Marker> markerList = [];
-  final PageController pageController = PageController();
+  PageController pageController = PageController();
 
   @observable
   int selectedIndex = -1;
@@ -38,7 +44,7 @@ abstract class _MapBoxViewModelBase with Store {
         width: MARKER_SIZE_SHRINK,
         point: LatLng(double.parse(mapItem.venue?.lat ?? '0'), double.parse(mapItem.venue?.lng ?? '0')),
         builder: (context) {
-          return GestureDetector(onTap: () => onTap(i), child: LocationMarker(isSelected: i == selectedIndex, eventModel: mapItem));
+          return GestureDetector(onTap: () => onTap(i), child: LocationMarker(isSelected: cardVisible && i == selectedIndex, eventModel: mapItem));
         },
       ));
     }
@@ -46,9 +52,12 @@ abstract class _MapBoxViewModelBase with Store {
   }
 
   @action
-  void onTap(int index) {
-    selectedIndex = index;
-    pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.elasticOut);
+  Future<void> onTap(int index) async {
+    cardVisible = true;
+    if (pageController.hasClients) {
+      selectedIndex = index;
+      pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
+    }
   }
 
   @action
@@ -59,7 +68,20 @@ abstract class _MapBoxViewModelBase with Store {
   @action
   init() async {
     initPageController();
+    await getLocation();
     await getEventList();
+    if (eventList.isNotEmpty) {
+      selectedIndex = 0;
+    }
     markerList = buildMarkers();
+  }
+
+  @action
+  Future<void> getLocation() async {
+    await Geolocator.checkPermission();
+    await Geolocator.requestPermission();
+    currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+    print(currentPosition);
   }
 }

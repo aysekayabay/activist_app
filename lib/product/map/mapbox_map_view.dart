@@ -6,6 +6,7 @@ import 'package:akademi_bootcamp/product/map/mapbox_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:latlong2/latlong.dart';
 import '../../core/constants/image/image_constants.dart';
 import '../../core/model/event_model.dart';
 
@@ -26,35 +27,38 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_) {
-      return Scaffold(
-          body: Stack(
+    return Scaffold(body: Observer(builder: (_) {
+      return Stack(
         children: [
           FlutterMap(
-            options: MapOptions(maxZoom: 19, minZoom: 11, zoom: 11, center: _viewModel.myLocation),
+            options: MapOptions(
+                maxZoom: 18,
+                minZoom: 11,
+                zoom: 11,
+                center: _viewModel.currentPosition != null ? LatLng(_viewModel.currentPosition!.latitude, _viewModel.currentPosition!.longitude) : _viewModel.mapCenter),
             nonRotatedChildren: [
               TileLayer(
                 urlTemplate: "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
                 additionalOptions: {'accessToken': ApiConstants.MAPBOX_ACCESS_TOKEN, 'id': _viewModel.MAPBOX_STYLE},
               ),
-              MarkerLayer(markers: [Marker(point: _viewModel.myLocation, builder: (context) => userLocationMarker())]),
+              _viewModel.currentPosition != null ? MarkerLayer(markers: [Marker(point: _viewModel.mapCenter, builder: (context) => userLocationMarker())]) : MarkerLayer(),
               MarkerLayer(markers: _viewModel.markerList)
             ],
           ),
-          Visibility(visible: _viewModel.selectedIndex != -1, child: detailCardPageView(_viewModel.markerList))
+          Visibility(visible: _viewModel.cardVisible, child: detailCardPageView(_viewModel.markerList))
         ],
-      ));
-    });
+      );
+    }));
   }
 
   Positioned detailCardPageView(List<Marker> _markers) {
     return Positioned(
-      bottom: AppSizes.highSize,
+      top: AppSizes.highSize * 2,
       left: 0,
       right: 0,
       height: deviceHeight * 0.3,
       child: PageView.builder(
-        controller: _viewModel.selectedIndex == -1 ? null : _viewModel.pageController,
+        controller: _viewModel.pageController,
         physics: NeverScrollableScrollPhysics(),
         itemCount: _markers.length,
         itemBuilder: (context, index) {
@@ -86,8 +90,14 @@ class LocationMarker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child:
-          AnimatedContainer(height: isSelected ? 60.0 : 30.0, width: isSelected ? 60.0 : 30.0, duration: Duration(milliseconds: 400), child: Image.asset(eventModel.markerIcon ?? ImageConstants.HOME)),
+      child: AnimatedContainer(
+        height: 30,
+        width: 30,
+        // height: isSelected ? 60.0 : 30.0,
+        // width: isSelected ? 60.0 : 30.0,
+        duration: Duration(milliseconds: 400),
+        child: Image.asset(eventModel.markerIcon ?? ImageConstants.HOME),
+      ),
     );
   }
 }

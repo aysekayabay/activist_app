@@ -9,6 +9,22 @@ part of 'mapbox_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
+  late final _$cardVisibleAtom =
+      Atom(name: '_MapBoxViewModelBase.cardVisible', context: context);
+
+  @override
+  bool get cardVisible {
+    _$cardVisibleAtom.reportRead();
+    return super.cardVisible;
+  }
+
+  @override
+  set cardVisible(bool value) {
+    _$cardVisibleAtom.reportWrite(value, super.cardVisible, () {
+      super.cardVisible = value;
+    });
+  }
+
   late final _$eventListAtom =
       Atom(name: '_MapBoxViewModelBase.eventList', context: context);
 
@@ -41,6 +57,22 @@ mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
     });
   }
 
+  late final _$pageControllerAtom =
+      Atom(name: '_MapBoxViewModelBase.pageController', context: context);
+
+  @override
+  PageController get pageController {
+    _$pageControllerAtom.reportRead();
+    return super.pageController;
+  }
+
+  @override
+  set pageController(PageController value) {
+    _$pageControllerAtom.reportWrite(value, super.pageController, () {
+      super.pageController = value;
+    });
+  }
+
   late final _$selectedIndexAtom =
       Atom(name: '_MapBoxViewModelBase.selectedIndex', context: context);
 
@@ -57,6 +89,14 @@ mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
     });
   }
 
+  late final _$onTapAsyncAction =
+      AsyncAction('_MapBoxViewModelBase.onTap', context: context);
+
+  @override
+  Future<void> onTap(int index) {
+    return _$onTapAsyncAction.run(() => super.onTap(index));
+  }
+
   late final _$getEventListAsyncAction =
       AsyncAction('_MapBoxViewModelBase.getEventList', context: context);
 
@@ -71,6 +111,14 @@ mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
   @override
   Future init() {
     return _$initAsyncAction.run(() => super.init());
+  }
+
+  late final _$getLocationAsyncAction =
+      AsyncAction('_MapBoxViewModelBase.getLocation', context: context);
+
+  @override
+  Future<void> getLocation() {
+    return _$getLocationAsyncAction.run(() => super.getLocation());
   }
 
   late final _$_MapBoxViewModelBaseActionController =
@@ -99,21 +147,12 @@ mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
   }
 
   @override
-  void onTap(int index) {
-    final _$actionInfo = _$_MapBoxViewModelBaseActionController.startAction(
-        name: '_MapBoxViewModelBase.onTap');
-    try {
-      return super.onTap(index);
-    } finally {
-      _$_MapBoxViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
+cardVisible: ${cardVisible},
 eventList: ${eventList},
 markerList: ${markerList},
+pageController: ${pageController},
 selectedIndex: ${selectedIndex}
     ''';
   }
