@@ -82,7 +82,24 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün
 ![Screenshot_1688333207](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/534cd4de-1f32-4c53-826d-833494854ccd)
 ![Screenshot_1688333293](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/5a2a5bd5-a247-463c-9c02-a081616f3b03)
 ![Screenshot_1688333548](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/efd3e998-e205-483b-b2cd-b32ede14e7e9)
+![Screenshot_1688332424](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/396ae41b-8f44-4de8-b51a-d264e652dce5)
 
+- **Sprint Review:** Alınan kararlar: Bu sprintte uygulamanın tanıtım, gruplar, etkinlik detay, mesajlaşma, profil ve harita sayfaları tasarlanıp koda dökülmüştür. Cloud firestore entegre edilip kullanılmıştır. Bu sprintte tüm görevlerin bitirilmesi önceliklendirilmiştir. Son kalan sprint için ui güncelleştirmeleri ve testler bırakılmıştır.
+Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
+
+- **Sprint Retrospective:** 
+**Neler İyi Gitti?**
+- Sprint 2 ve Sprint 3 görevlerinin çoğu beklenenden erken bir şekilde tamamlandı. Son sprint süreci test ve kalan görevlere ayrıldı.
+
+**Neler Kötü Gitti?**
+- Aktif üye yetersizliği devam etti.
+- API'den gelen etkinlik verilerinin bazılarının koordinat bilgisinin olmamasından ötürü harita ekranında görüntülenebiecek etkinlik sayısı beklenenden az oldu.
+
+**Neler Geliştirilebilir?**
+- Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.
+
+## Product Backlog URL
+[Activiteam Backlog Board](https://trello.com/b/bGyVcs5W/sprint-2)
 
 
 
