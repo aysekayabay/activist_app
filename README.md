@@ -70,6 +70,7 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün
 
 # Sprint 2
 - **Sprint içinde tamamlanması tahmin edilen puan:**  200 Puan
+- **Puan tamamlama mantığı:** Toplamda proje kapsamında tamamlanması gereken 310 puanlık backlog bulunmaktadır. 3 sprinte bölündüğünde 200 Puanlık backlog ile 2.sprintin tamamlanmasına 3.sprintin test ve kalan işlere ayrılmasına karar verildi.
 - **Sprint Notu:** Bu sprintte uygulamanın tanıtım, gruplar, etkinlik detay, mesajlaşma, profil ve harita sayfaları tasarlanıp koda dökülmüştür. Cloud firestore entegre edilip kullanılmıştır. Bu sprintte tüm görevlerin bitirilmesi önceliklendirilmiştir. Son kalan sprint için ui güncelleştirmeleri ve testler bırakılmıştır.
 - **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 2.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:[Sprint_2_Daily_Scrum_Chat.docx](https://github.com/aysekayabay/akademi_bootcamp/files/11931645/Sprint_2_Daily_Scrum_Chat.docx)
 
