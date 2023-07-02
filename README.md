@@ -87,7 +87,8 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün
 - **Sprint Review:** Alınan kararlar: Bu sprintte uygulamanın tanıtım, gruplar, etkinlik detay, mesajlaşma, profil ve harita sayfaları tasarlanıp koda dökülmüştür. Cloud firestore entegre edilip kullanılmıştır. Bu sprintte tüm görevlerin bitirilmesi önceliklendirilmiştir. Son kalan sprint için ui güncelleştirmeleri ve testler bırakılmıştır.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 
-- **Sprint Retrospective:** 
+- **Sprint Retrospective:**
+
 **Neler İyi Gitti?**
 - Sprint 2 ve Sprint 3 görevlerinin çoğu beklenenden erken bir şekilde tamamlandı. Son sprint süreci test ve kalan görevlere ayrıldı.
 
