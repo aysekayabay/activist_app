@@ -4,6 +4,7 @@ import 'package:akademi_bootcamp/core/init/theme/app_theme.dart';
 import 'package:akademi_bootcamp/product/initialize/application_start.dart';
 import 'package:akademi_bootcamp/product/splash/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   await ApplicationStart.init();
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+      DeviceOrientation.portraitUp,
+    ]);
     return MaterialApp(
         title: 'ActivitIST',
         debugShowCheckedModeBanner: false,

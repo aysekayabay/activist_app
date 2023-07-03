@@ -1,6 +1,5 @@
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
-import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
-import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
+import 'package:akademi_bootcamp/product/splash/splash_view_model.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -11,10 +10,11 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  SplashViewmodel _viewmodel = SplashViewmodel();
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3)).then((value) => NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.WELCOME));
     super.initState();
+    Future.delayed(Duration(seconds: 3), () async => _viewmodel.pageGenerator());
   }
 
   @override

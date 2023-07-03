@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:akademi_bootcamp/core/constants/memory/shared_prefs_keys.dart';
+import 'package:akademi_bootcamp/core/memory/shared_preferences_manager.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,6 +33,8 @@ class AuthService {
         userData = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: "users", docID: user.user!.uid);
         currentUser = UserModel.fromJson(userData);
         uid = user.user!.uid;
+        SharedPrefsManager.instance.setStringValue(SharedPrefsKeys.UID, uid ?? '');
+        SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, userData ?? '');
         return 1;
       } else {
         return 0;
@@ -55,7 +59,8 @@ class AuthService {
         }
         currentUser!.lastLogin = Timestamp.now().toString();
         await FirestoreManager.instance.firestoreUpdate(collectionID: "users", docID: user.user!.uid, key: "last_login", value: currentUser!.lastLogin);
-
+        SharedPrefsManager.instance.setStringValue(SharedPrefsKeys.UID, uid ?? '');
+        SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, userData ?? '');
         return 1;
       } else {
         return 0;
@@ -135,6 +140,8 @@ class AuthService {
             currentUser!.favEvents = favEvents;
           }
         }
+        SharedPrefsManager.instance.setStringValue(SharedPrefsKeys.UID, uid ?? '');
+        SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, userData ?? '');
         return 1;
       }
     } on GoogleAuthCredential catch (e) {

@@ -6,17 +6,16 @@ import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:http/http.dart' as http;
 
-
 class EtkinlikIOService {
   EtkinlikIOService._();
   static late final EtkinlikIOService instance = EtkinlikIOService._();
   late EventService eventService;
   List<Format> categoryList = [];
+  Map<String, String> headers = {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Etkinlik-Token': ApiConstants.ETKINLIKIO_TOKEN};
 
   Future<List<EventModel>?> fetchEventList() async {
     try {
-      var response = await http.get(Uri.parse(ApiConstants.BASE_URL + '/events?city_ids=40'),
-          headers: {'Content-Type': 'application/json', 'Accept': 'application/json', 'X-Etkinlik-Token': ApiConstants.ETKINLIKIO_TOKEN});
+      var response = await http.get(Uri.parse(ApiConstants.BASE_URL + '/events?city_ids=40'), headers: headers);
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
         eventService = EventService.fromJson(jsonResponse);
