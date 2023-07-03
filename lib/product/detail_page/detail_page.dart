@@ -80,7 +80,13 @@ class _DetailPageState extends State<DetailPage> {
   Row buttons(String buyText) {
     return Row(
       children: [
-        Expanded(child: CustomButton(title: buyText, isFilled: true, verticalPadding: AppSizes.mediumSize, marginPadding: EdgeInsets.all(AppSizes.mediumSize))),
+        Expanded(
+            child: CustomButton(
+                title: buyText,
+                isFilled: true,
+                verticalPadding: AppSizes.mediumSize,
+                marginPadding: EdgeInsets.all(AppSizes.mediumSize),
+                onTap: () => _viewModel.goToTicketSelling(widget.eventModel.ticketUrl))),
         Padding(
           padding: EdgeInsets.only(right: AppSizes.mediumSize),
           child: Observer(builder: (context) {
