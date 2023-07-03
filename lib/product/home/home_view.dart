@@ -29,7 +29,7 @@ class _HomeViewState extends BaseState<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION),
+      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION, left: AppBarWidgets.LOG_OUT, onTapLeft: () => _viewModel.signOut()),
       body: SingleChildScrollView(
         child: Column(
           children: [

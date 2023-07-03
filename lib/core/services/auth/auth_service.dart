@@ -76,6 +76,8 @@ class AuthService {
     uid = null;
     userData = null;
     currentUser = null;
+    SharedPrefsManager.instance.setStringValue(SharedPrefsKeys.UID, "");
+    SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, {});
   }
 
   Future<int> signInWithTwitter() async {

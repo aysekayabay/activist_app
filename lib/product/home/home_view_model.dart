@@ -1,7 +1,10 @@
+import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
+import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/core/services/api/etkinlikIO_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import '../../core/services/auth/auth_service.dart';
 import '../detail_page/detail_page.dart';
 part 'home_view_model.g.dart';
 
@@ -30,6 +33,11 @@ abstract class _HomeViewModelBase with Store {
   @action
   init() async {
     await getEventList();
+  }
+
+  signOut() {
+    AuthService.instance.signOut();
+    NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
   }
 
   Future<void> getEventList() async {
