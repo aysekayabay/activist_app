@@ -1,3 +1,5 @@
+import 'package:akademi_bootcamp/core/components/image/custom_image.dart';
+import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/product/detail_page/detail_page.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +18,15 @@ class MapDetailCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(55)),
-            child: Image.network(
-              event.posterUrl ?? '',
-              height: 120,
-              fit: BoxFit.fitWidth,
+          SizedBox(
+            height: 120,
+            child: ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(55)),
+              child: CustomImage(
+                imageUrl: event.posterUrl!,
+                backupImagePath: ImageConstants.AUTH_IMAGE,
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
           Column(

@@ -1,3 +1,6 @@
+import 'package:hive/hive.dart';
+part 'event_model.g.dart';
+
 class EventService {
   List<EventModel>? eventList;
 
@@ -7,30 +10,51 @@ class EventService {
   }
 }
 
+@HiveType(typeId: 0)
 class EventModel {
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? slug;
+  @HiveField(3)
   String? url;
+  @HiveField(4)
   String? content;
+  @HiveField(5)
   String? start;
+  @HiveField(6)
   String? end;
+  @HiveField(7)
   bool? isFree;
+  @HiveField(8)
   String? phone;
+  @HiveField(9)
   String? email;
+  @HiveField(10)
   String? posterUrl;
+  @HiveField(11)
   String? markerIcon;
+  @HiveField(12)
   String? ticketUrl;
-  String? facebookUrl;
-  String? twitterUrl;
+  @HiveField(13)
   String? hashtag;
+  @HiveField(14)
   String? webUrl;
+  @HiveField(15)
   String? liveUrl;
+  @HiveField(16)
   String? androidUrl;
+  @HiveField(17)
   String? iosUrl;
+  @HiveField(18)
   Format? format;
+  @HiveField(19)
   Format? category;
+  @HiveField(20)
   Venue? venue;
+  @HiveField(21)
   List<Format>? tags;
 
   EventModel(
@@ -47,8 +71,6 @@ class EventModel {
       this.posterUrl,
       this.markerIcon,
       this.ticketUrl,
-      this.facebookUrl,
-      this.twitterUrl,
       this.hashtag,
       this.webUrl,
       this.liveUrl,
@@ -73,8 +95,6 @@ class EventModel {
     posterUrl = json['poster_url'] ?? '';
     markerIcon = json['marker_icon'] ?? '';
     ticketUrl = json['ticket_url'] ?? '';
-    facebookUrl = json['facebook_url'] ?? '';
-    twitterUrl = json['twitter_url'] ?? '';
     hashtag = json['hashtag'] ?? '';
     webUrl = json['web_url'] ?? '';
     liveUrl = json['live_url'] ?? '';
@@ -107,8 +127,6 @@ class EventModel {
     data['poster_url'] = this.posterUrl;
     data['marker_icon'] = this.markerIcon;
     data['ticket_url'] = this.ticketUrl;
-    data['facebook_url'] = this.facebookUrl;
-    data['twitter_url'] = this.twitterUrl;
     data['hashtag'] = this.hashtag;
     data['web_url'] = this.webUrl;
     data['live_url'] = this.liveUrl;
@@ -130,9 +148,13 @@ class EventModel {
   }
 }
 
-class Format {
+@HiveType(typeId: 1)
+class Format extends HiveObject {
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? slug;
 
   Format({this.id, this.name, this.slug});
@@ -152,20 +174,35 @@ class Format {
   }
 }
 
-class Venue {
+@HiveType(typeId: 2)
+class Venue extends HiveObject {
+  @HiveField(0)
   int? id;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? slug;
+  @HiveField(3)
   String? about;
+  @HiveField(4)
   String? lat;
+  @HiveField(5)
   String? lng;
+  @HiveField(6)
   String? phone;
+  @HiveField(7)
   String? webUrl;
+  @HiveField(8)
   String? facebookUrl;
+  @HiveField(9)
   String? twitterUrl;
+  @HiveField(10)
   Format? city;
+  @HiveField(11)
   Format? district;
+  @HiveField(12)
   Format? neighborhood;
+  @HiveField(13)
   String? address;
 
   Venue({this.id, this.name, this.slug, this.about, this.lat, this.lng, this.phone, this.webUrl, this.facebookUrl, this.twitterUrl, this.city, this.district, this.neighborhood, this.address});

@@ -14,7 +14,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () async => _viewmodel.pageGenerator());
+    _viewmodel.initialize();
   }
 
   @override

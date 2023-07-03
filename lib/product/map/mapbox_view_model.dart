@@ -1,9 +1,9 @@
-import 'package:akademi_bootcamp/core/services/api/etkinlikIO_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:mobx/mobx.dart';
+import '../../core/memory/hive_manager.dart';
 import '../../core/model/event_model.dart';
 import 'mapbox_map_view.dart';
 part 'mapbox_view_model.g.dart';
@@ -62,7 +62,7 @@ abstract class _MapBoxViewModelBase with Store {
 
   @action
   Future<void> getEventList() async {
-    eventList = await EtkinlikIOService.instance.fetchEventList() ?? [];
+    eventList = HiveManager.instance.getAllEvents();
   }
 
   @action

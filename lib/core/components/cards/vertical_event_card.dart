@@ -1,12 +1,14 @@
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
+import 'package:akademi_bootcamp/core/components/image/custom_image.dart';
+import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme/theme_constants.dart';
 
 // ignore: must_be_immutable
-class EventItemCard extends StatelessWidget {
-  EventItemCard({super.key, required this.deviceWidth, required this.eventModel, this.onTap});
+class VerticalEventCard extends StatelessWidget {
+  VerticalEventCard({super.key, required this.deviceWidth, required this.eventModel, this.onTap});
 
   final double deviceWidth;
   void Function()? onTap;
@@ -25,8 +27,9 @@ class EventItemCard extends StatelessWidget {
               width: deviceWidth / 3,
               child: Align(
                 alignment: Alignment.topCenter,
-                child: Image.network(
-                  eventModel.posterUrl!,
+                child: CustomImage(
+                  imageUrl: eventModel.posterUrl!,
+                  backupImagePath: ImageConstants.AUTH_IMAGE,
                 ),
               ),
             ),

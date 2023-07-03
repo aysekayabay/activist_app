@@ -7,8 +7,8 @@ import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/product/home/home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../../core/components/cards/event_item_card.dart';
-import '../../core/components/cards/poster_card.dart';
+import '../../core/components/cards/vertical_event_card.dart';
+import '../../core/components/cards/horizontal_event_card.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -112,7 +112,8 @@ class _HomeViewState extends BaseState<HomeView> {
       child: SingleChildScrollView(
         child: Column(
             children: List.generate(_viewModel.filteredEventList?.length ?? 0, (index) {
-          return EventItemCard(deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index], onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]));
+          return VerticalEventCard(
+              deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index], onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]));
         })),
       ),
     );
@@ -132,7 +133,7 @@ class _HomeViewState extends BaseState<HomeView> {
                     Row(
                         children: List.generate(_viewModel.filteredEventList!.length > 5 ? 5 : _viewModel.filteredEventList!.length, (index) {
                       EventModel eventModel = _viewModel.filteredEventList![index];
-                      return PosterCard(
+                      return HorizontalEventCard(
                         onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]),
                         eventModel: eventModel,
                         deviceWidth: deviceWidth,

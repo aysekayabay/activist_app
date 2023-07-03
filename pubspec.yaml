@@ -12,7 +12,6 @@ dependencies:
   flutter_mobx: ^2.0.6+5
   mobx_codegen: ^2.3.0
   mobx: ^2.2.0
-  build_runner: ^2.4.5
   # FIREBASE
   cloud_firestore: ^4.8.1
   firebase_auth: ^4.6.3
@@ -36,11 +35,17 @@ dependencies:
   flutter_slidable: ^3.0.0
   geolocator: ^9.0.2
   shared_preferences: ^2.2.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   smooth_page_indicator: ^1.1.0
+  connectivity_plus: ^4.0.1
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  hive_generator: ^2.0.0
+  build_runner: ^2.4.5 
 
 flutter:
 
@@ -48,19 +53,3 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/input/
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700

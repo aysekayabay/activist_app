@@ -129,6 +129,14 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     return _$initAsyncAction.run(() => super.init());
   }
 
+  late final _$getEventListAsyncAction =
+      AsyncAction('_HomeViewModelBase.getEventList', context: context);
+
+  @override
+  Future<void> getEventList() {
+    return _$getEventListAsyncAction.run(() => super.getEventList());
+  }
+
   late final _$_HomeViewModelBaseActionController =
       ActionController(name: '_HomeViewModelBase', context: context);
 

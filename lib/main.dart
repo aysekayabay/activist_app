@@ -5,10 +5,18 @@ import 'package:akademi_bootcamp/product/initialize/application_start.dart';
 import 'package:akademi_bootcamp/product/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
-void main() async {
+import 'core/base/provider/internet_connection_provider.dart';
+
+void main() async { 
   await ApplicationStart.init();
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider<InternetConnectionProvider>(
+      create: (_) => InternetConnectionProvider()..checkInternetConnection(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
