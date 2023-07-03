@@ -8,4 +8,5 @@ class NavigationConstants {
   static const String ONBOARD = '/onboard';
   static const String APP_BASE = '/app_base';
   static const String WELCOME = '/welcome';
+  static const String ENTRY = '/entry';
 }

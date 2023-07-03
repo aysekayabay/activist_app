@@ -37,7 +37,7 @@ abstract class _HomeViewModelBase with Store {
 
   signOut() {
     AuthService.instance.signOut();
-    NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
+    NavigationService.instance.navigateToPage(path: NavigationConstants.ENTRY);
   }
 
   @action

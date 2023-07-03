@@ -32,6 +32,8 @@ class ImageConstants {
   static final String ONBOARD1 = 'o1'.toPngFromImageAsset();
   static final String ONBOARD2 = 'o2'.toPngFromImageAsset();
   static final String ONBOARD3 = 'o3'.toPngFromImageAsset();
+  static final String ENTRY_MAP = 'entry_map'.toPngFromImageAsset();
+  static final String ENTRY_TICKET = 'entry_ticket'.toPngFromImageAsset();
 }
 
 extension ImageExtensions on String {

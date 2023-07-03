@@ -54,7 +54,7 @@ class SplashViewmodel {
         AuthService.instance.userData = userData;
         NavigationService.instance.navigateToPage(path: NavigationConstants.APP_BASE);
       } else {
-        return NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
+        return NavigationService.instance.navigateToPage(path: NavigationConstants.ENTRY);
       }
     }
   }
