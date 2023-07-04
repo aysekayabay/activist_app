@@ -44,7 +44,7 @@ class SplashViewmodel {
     bool openedBefore = SharedPrefsManager.instance.getBoolValue(SharedPrefsKeys.OPENED_BEFORE);
     if (!openedBefore) {
       SharedPrefsManager.instance.setBoolValue(SharedPrefsKeys.OPENED_BEFORE, true);
-      return NavigationService.instance.navigateToPage(path: NavigationConstants.ONBOARD);
+      return NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.ONBOARD);
     } else {
       var uid = SharedPrefsManager.instance.getStringValue(SharedPrefsKeys.UID);
       if (uid != '') {
@@ -53,7 +53,7 @@ class SplashViewmodel {
         AuthService.instance.currentUser = UserModel.fromJson(userData);
         AuthService.instance.userData = userData;
       }
-      NavigationService.instance.navigateToPage(path: NavigationConstants.APP_BASE);
+      NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.APP_BASE);
     }
   }
 }
