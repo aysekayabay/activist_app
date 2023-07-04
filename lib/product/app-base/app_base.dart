@@ -13,11 +13,14 @@ class AppBaseView extends StatefulWidget {
 }
 
 class _AppBaseViewState extends State<AppBaseView> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(key: _scaffoldKey),
       extendBody: true,
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: currentIndex,
@@ -34,7 +37,7 @@ class _AppBaseViewState extends State<AppBaseView> {
   Widget _buildCurrentView() {
     switch (currentIndex) {
       case 0:
-        return HomeView();
+        return HomeView(scaffoldKey: _scaffoldKey);
       case 1:
         return MapBoxView();
       case 2:

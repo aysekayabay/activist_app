@@ -8,7 +8,6 @@ import 'package:akademi_bootcamp/product/testview.dart';
 import 'package:akademi_bootcamp/product/welcome/welcome_view.dart';
 import 'package:flutter/material.dart';
 import '../../../product/auth/auth_view.dart';
-import '../../../product/home/home_view.dart';
 import '../../../product/map/mapbox_map_view.dart';
 import '../../components/page/not_found_navigation.dart';
 
@@ -18,8 +17,6 @@ class NavigationRoute {
 
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
-      case NavigationConstants.HOME:
-        return navigate(HomeView());
       case NavigationConstants.AUTH:
         return navigate(AuthView());
       case NavigationConstants.TEST:
@@ -38,8 +35,6 @@ class NavigationRoute {
         return navigate(EntryScreen());
       case NavigationConstants.PROFILE_EDIT:
         return navigate(ProfileEditView());
-      // case NavigationConstants.DETAIL:
-      //   return navigate(DetailPage());
       default:
         MaterialPageRoute(builder: (context) => NotFoundNavigatonWidget());
     }

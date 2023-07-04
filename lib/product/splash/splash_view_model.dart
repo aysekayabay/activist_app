@@ -52,10 +52,8 @@ class SplashViewmodel {
         dynamic userData = SharedPrefsManager.instance.getMapValue(SharedPrefsKeys.USER_DATA);
         AuthService.instance.currentUser = UserModel.fromJson(userData);
         AuthService.instance.userData = userData;
-        NavigationService.instance.navigateToPage(path: NavigationConstants.APP_BASE);
-      } else {
-        return NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
       }
+      NavigationService.instance.navigateToPage(path: NavigationConstants.APP_BASE);
     }
   }
 }

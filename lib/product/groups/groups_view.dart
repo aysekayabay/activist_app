@@ -1,4 +1,6 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
+import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
+import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:akademi_bootcamp/core/services/firestore/events_service.dart';
 import 'package:akademi_bootcamp/product/profile/profile_view_model.dart';
@@ -52,6 +54,22 @@ class _GroupsViewState extends BaseState<GroupsView> {
             );
           } else if (snapshot.connectionState == ConnectionState.waiting) {
             return SizedBox(height: deviceHeight, child: Center(child: CircularProgressIndicator()));
+          } else if (AuthService.instance.uid == null) {
+            return SizedBox(
+              height: deviceHeight,
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Grupları görebilmek için"),
+                  InkWell(
+                      onTap: () {
+                        NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
+                      },
+                      child: Text("Kayıt Ol veya Giriş Yap")),
+                ],
+              )),
+            );
           } else {
             return SizedBox(height: deviceHeight, child: Center(child: Text("Henüz bir gruba katılmadın sanırım..")));
           }

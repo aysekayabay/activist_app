@@ -1,6 +1,7 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
+import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:akademi_bootcamp/product/profile/profile_view_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -26,17 +27,35 @@ class _ProfileViewState extends BaseState<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(
-          context: context,
-          center: AppBarWidgets.LOGO,
-          right: AppBarWidgets.EDIT,
-          onTapRight: () => NavigationService.instance.navigateToPage(path: NavigationConstants.PROFILE_EDIT),
-        ),
-        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          userHeader(),
-          label(),
-          events(),
-        ]));
+        appBar: AuthService.instance.uid != null
+            ? CustomAppBar(
+                context: context,
+                center: AppBarWidgets.LOGO,
+                right: AppBarWidgets.EDIT,
+                onTapRight: () => NavigationService.instance.navigateToPage(path: NavigationConstants.PROFILE_EDIT),
+              )
+            : null,
+        body: AuthService.instance.uid != null
+            ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                userHeader(),
+                label(),
+                events(),
+              ])
+            : SizedBox(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Profil oluşturabilmek için"),
+                      InkWell(
+                          onTap: () {
+                            NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
+                          },
+                          child: Text("Kayıt Ol veya Giriş Yap")),
+                    ],
+                  ),
+                ),
+              ));
   }
 
   Expanded events() {

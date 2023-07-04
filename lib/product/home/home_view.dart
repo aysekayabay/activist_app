@@ -11,7 +11,9 @@ import '../../core/components/cards/vertical_event_card.dart';
 import '../../core/components/cards/horizontal_event_card.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const HomeView({Key? key, required this.scaffoldKey}) : super(key: key);
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -29,7 +31,7 @@ class _HomeViewState extends BaseState<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION, left: AppBarWidgets.LOG_OUT, onTapLeft: () => _viewModel.signOut()),
+      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION, left: AppBarWidgets.MENU, onTapLeft: () => _viewModel.openDrawer(context)),
       body: SingleChildScrollView(
         child: Column(
           children: [

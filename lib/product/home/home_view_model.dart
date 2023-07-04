@@ -1,5 +1,3 @@
-import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
-import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -19,6 +17,11 @@ abstract class _HomeViewModelBase with Store {
   @observable
   List<EventModel> eventList = [];
 
+  void openDrawer(BuildContext context) {
+    final ScaffoldState? scaffoldState = Scaffold.of(context);
+    scaffoldState?.openDrawer();
+  }
+
   @observable
   bool seeAllIsActive = false;
 
@@ -37,7 +40,6 @@ abstract class _HomeViewModelBase with Store {
 
   signOut() {
     AuthService.instance.signOut();
-    NavigationService.instance.navigateToPage(path: NavigationConstants.ENTRY);
   }
 
   @action

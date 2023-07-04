@@ -25,8 +25,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       switch (left) {
         case AppBarWidgets.BACK:
           return Image.asset(ImageConstants.BACK, color: leftIconColor ?? null);
-        case AppBarWidgets.LOG_OUT:
-          return Icon(Icons.logout_rounded, color: AppColors.vanillaShake, size: 32);
+        case AppBarWidgets.MENU:
+          return Icon(Icons.menu, color: AppColors.vanillaShake, size: 32);
         default:
           return SizedBox();
       }
@@ -98,4 +98,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-enum AppBarWidgets { LOGO, TITLE, NOTIFICATION, BACK, NEXT, LOG_OUT, FAVOURITE, NOT_FAVOURITE, NOT_NOTIFICATION, EDIT, DONE }
+enum AppBarWidgets { LOGO, TITLE, NOTIFICATION, BACK, NEXT, MENU, FAVOURITE, NOT_FAVOURITE, NOT_NOTIFICATION, EDIT, DONE }
