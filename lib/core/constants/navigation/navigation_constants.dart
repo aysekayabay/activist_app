@@ -9,4 +9,5 @@ class NavigationConstants {
   static const String APP_BASE = '/app_base';
   static const String WELCOME = '/welcome';
   static const String ENTRY = '/entry';
+  static const String PROFILE_EDIT = '/profile_edit';
 }

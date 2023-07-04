@@ -51,6 +51,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           return Icon(Icons.favorite_outline_rounded, size: preferredSize.height / 2, color: AppColors.vanillaShake);
         case AppBarWidgets.FAVOURITE:
           return Icon(Icons.favorite_rounded, size: preferredSize.height / 2, color: AppColors.red);
+        case AppBarWidgets.EDIT:
+          return Icon(Icons.mode_edit_outline_rounded, size: preferredSize.height / 2 - AppSizes.lowSize, color: AppColors.vanillaShake);
+        case AppBarWidgets.DONE:
+          return Icon(Icons.done_rounded, size: preferredSize.height / 2, color: AppColors.vanillaShake);
         case AppBarWidgets.NOT_NOTIFICATION:
           return Image.asset(ImageConstants.NOTIFICATION, color: rightIconColor ?? null);
         case AppBarWidgets.NOTIFICATION:
@@ -94,4 +98,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-enum AppBarWidgets { LOGO, TITLE, NOTIFICATION, BACK, NEXT, LOG_OUT, FAVOURITE, NOT_FAVOURITE, NOT_NOTIFICATION }
+enum AppBarWidgets { LOGO, TITLE, NOTIFICATION, BACK, NEXT, LOG_OUT, FAVOURITE, NOT_FAVOURITE, NOT_NOTIFICATION, EDIT, DONE }

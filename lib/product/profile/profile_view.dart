@@ -1,4 +1,6 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
+import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
+import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/product/profile/profile_view_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,12 @@ class _ProfileViewState extends BaseState<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION),
+        appBar: CustomAppBar(
+          context: context,
+          center: AppBarWidgets.LOGO,
+          right: AppBarWidgets.EDIT,
+          onTapRight: () => NavigationService.instance.navigateToPage(path: NavigationConstants.PROFILE_EDIT),
+        ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           userHeader(),
           label(),

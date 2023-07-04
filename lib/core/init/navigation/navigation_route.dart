@@ -1,3 +1,4 @@
+import 'package:akademi_bootcamp/product/edit.dart/profile_edit.dart';
 import 'package:akademi_bootcamp/product/entry/entry_view.dart';
 import 'package:akademi_bootcamp/product/app-base/app_base.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
@@ -35,6 +36,8 @@ class NavigationRoute {
         return navigate(ProfileView());
       case NavigationConstants.ENTRY:
         return navigate(EntryScreen());
+      case NavigationConstants.PROFILE_EDIT:
+        return navigate(ProfileEditView());
       // case NavigationConstants.DETAIL:
       //   return navigate(DetailPage());
       default:
