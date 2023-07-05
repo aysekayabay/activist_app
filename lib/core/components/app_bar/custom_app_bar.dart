@@ -54,7 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         case AppBarWidgets.EDIT:
           return Icon(Icons.mode_edit_outline_rounded, size: preferredSize.height / 2 - AppSizes.lowSize, color: AppColors.vanillaShake);
         case AppBarWidgets.DONE:
-          return Icon(Icons.done_rounded, size: preferredSize.height / 2, color: AppColors.vanillaShake);
+          return Image.asset(ImageConstants.DONE, color: rightIconColor ?? null);
         case AppBarWidgets.NOT_NOTIFICATION:
           return Image.asset(ImageConstants.NOTIFICATION, color: rightIconColor ?? null);
         case AppBarWidgets.NOTIFICATION:
@@ -72,7 +72,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         case AppBarWidgets.LOGO:
           return Image.asset(ImageConstants.LOGO_WITH_NAME, width: 102);
         case AppBarWidgets.TITLE:
-          return Align(alignment: Alignment.center, child: Text(centerTitle ?? '', style: Theme.of(context).textTheme.displaySmall));
+          return Align(alignment: Alignment.center, child: Text(centerTitle ?? '', style: Theme.of(context).textTheme.displaySmall!.copyWith(color: AppColors.vanillaShake)));
         default:
           return SizedBox();
       }

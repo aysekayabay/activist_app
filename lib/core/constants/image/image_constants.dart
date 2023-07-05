@@ -37,6 +37,7 @@ class ImageConstants {
   static final String TRASH = 'trash'.toPngFromIconAsset();
   static final String GALLERY = 'gallery'.toPngFromIconAsset();
   static final String CAMERA = 'camera'.toPngFromIconAsset();
+  static final String DONE = 'done'.toPngFromIconAsset();
 }
 
 extension ImageExtensions on String {

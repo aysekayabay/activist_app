@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
+import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
@@ -16,9 +17,7 @@ class ProfileEditView extends StatefulWidget {
 class _ProfileEditViewState extends State<ProfileEditView> {
   File? pickedImage;
 
-  saveChanges(){
-    
-  }
+  saveChanges() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +27,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
         center: AppBarWidgets.TITLE,
         right: AppBarWidgets.DONE,
         left: AppBarWidgets.BACK,
+        leftIconColor: AppColors.vanillaShake,
         onTapLeft: () => Navigator.of(context).pop(),
       ),
       body: Column(
@@ -57,19 +57,9 @@ class _ProfileEditViewState extends State<ProfileEditView> {
           child: ClipOval(
               child: pickedImage == null
                   ? AuthService.instance.currentUser!.photoUrl != null
-                      ? Image.network(
-                          AuthService.instance.currentUser!.photoUrl!,
-                          width: 150,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        )
+                      ? cachedNetworkImageWidget(posterUrl: AuthService.instance.currentUser!.photoUrl, width: 150, height: 150)
                       : Image.asset(ImageConstants.HOME)
-                  : Image.file(
-                      pickedImage!,
-                      width: 150,
-                      height: 150,
-                      fit: BoxFit.cover,
-                    ))),
+                  : Image.file(pickedImage!, width: 150, height: 150, fit: BoxFit.cover))),
     );
   }
 
