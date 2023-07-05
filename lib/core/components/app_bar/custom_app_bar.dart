@@ -70,7 +70,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (center != null) {
       switch (center) {
         case AppBarWidgets.LOGO:
-          return Image.asset(ImageConstants.LOGO_GREY);
+          return Image.asset(ImageConstants.LOGO_WITH_NAME);
         case AppBarWidgets.TITLE:
           return Align(alignment: Alignment.center, child: Text(centerTitle ?? '', style: Theme.of(context).textTheme.displaySmall));
         default:

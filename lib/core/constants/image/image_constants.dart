@@ -6,7 +6,7 @@ class ImageConstants {
   static final String GOOGLE = 'google'.toPngFromIconAsset();
   static final String TWITTER = 'twitter'.toPngFromIconAsset();
   static final String FACEBOOK = 'facebook'.toPngFromIconAsset();
-  static final String LOGO_GREY = 'logo_grey'.toPngFromIconAsset();
+  static final String LOGO_WITH_NAME = 'logo_with_name'.toPngFromIconAsset();
   static final String BACK = 'back'.toPngFromIconAsset();
   static final String NEXT = 'next'.toPngFromIconAsset();
   static final String NOTIFICATION = 'notification'.toPngFromIconAsset();
