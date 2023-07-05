@@ -1,4 +1,3 @@
-import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/textfield/custom_textfield.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
@@ -12,12 +11,12 @@ class AuthView extends StatefulWidget {
   const AuthView({super.key});
 
   @override
-  BaseState<AuthView> createState() => _AuthViewState();
+  State<AuthView> createState() => _AuthViewState();
 }
 
-class _AuthViewState extends BaseState<AuthView> {
+class _AuthViewState extends State<AuthView> {
   AuthViewModel _viewModel = AuthViewModel();
-  bool obsecure = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +29,8 @@ class _AuthViewState extends BaseState<AuthView> {
                 title: _viewModel.continueLabel,
                 isFilled: true,
                 verticalPadding: AppSizes.mediumSize,
-                marginPadding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: AppSizes.highSize),
+                marginPadding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: AppSizes.mediumSize, top: AppSizes.mediumSize),
                 onTap: () => _viewModel.authFunction(context)),
-            // dividerWidget(),
             iconButtons(),
             Observer(builder: (context) {
               return TextButton(onPressed: () => _viewModel.changeAuthType(), child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.logIn : _viewModel.signIn));
@@ -47,7 +45,9 @@ class _AuthViewState extends BaseState<AuthView> {
     return Stack(
       children: [
         Divider(indent: AppSizes.mediumSize, endIndent: AppSizes.mediumSize, thickness: 1, color: AppColors.vanillaShake),
-        Center(child: Container(padding: EdgeInsets.all(AppSizes.lowSize), color: AppColors.black, child: Text("or", style: themeData.textTheme.labelLarge!.copyWith(color: AppColors.vanillaShake)))),
+        Center(
+            child: Container(
+                padding: EdgeInsets.all(AppSizes.lowSize), color: AppColors.black, child: Text("or", style: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColors.vanillaShake)))),
       ],
     );
   }
@@ -56,24 +56,12 @@ class _AuthViewState extends BaseState<AuthView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        // CircleIconButton(
-        //     iconPath: ImageConstants.FACEBOOK,
-        //     onTap: () {
-        //       _viewModel.authType = AuthType.FACEBOOK;
-        //       _viewModel.authFunction(context);
-        //     }),
         CircleIconButton(
             iconPath: ImageConstants.GOOGLE,
             onTap: () {
               _viewModel.authType = AuthType.GOOGLE;
               _viewModel.authFunction(context);
             }),
-        // CircleIconButton(
-        //     iconPath: ImageConstants.TWITTER,
-        //     onTap: () {
-        //       _viewModel.authType = AuthType.TWITTER;
-        //       _viewModel.authFunction(context);
-        //     }),
       ],
     );
   }
@@ -86,7 +74,7 @@ class _AuthViewState extends BaseState<AuthView> {
           Positioned(
               left: 20,
               top: 150,
-              child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: themeData.textTheme.displayMedium!.copyWith(color: AppColors.vanillaShake))),
+              child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.vanillaShake))),
           Positioned(
               bottom: 0,
               left: 0,
@@ -101,7 +89,7 @@ class _AuthViewState extends BaseState<AuthView> {
                     ),
                     CustomTextfield(
                         hintText: "Xxxx Xxxx",
-                        controller: _viewModel.nameController,
+                        controller: _viewModel.fullnameController,
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
                         isVisible: _viewModel.authType == AuthType.SIGN_IN),
@@ -135,7 +123,20 @@ class _AuthViewState extends BaseState<AuthView> {
                 isVisible: _viewModel.authType == AuthType.SIGN_IN),
             labelText("Password"),
             CustomTextfield(hintText: "******", controller: _viewModel.passwordController, keyboardType: TextInputType.text, textInputAction: TextInputAction.next, isPassword: true),
-            SizedBox(height: 20),
+            _viewModel.authType == AuthType.LOG_IN
+                ? Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: InkWell(
+                          onTap: () => forgotPasswordAlertBox(context),
+                          child: Text(
+                            "Şifremi Unuttum",
+                            style: TextStyle(color: AppColors.lightYellow, fontSize: 12),
+                          )),
+                    ),
+                  )
+                : SizedBox(),
           ],
         );
       }),
@@ -145,7 +146,62 @@ class _AuthViewState extends BaseState<AuthView> {
   Padding labelText(String label) {
     return Padding(
       padding: EdgeInsets.all(AppSizes.lowSize),
-      child: Text(label, style: themeData.textTheme.labelMedium!.copyWith(color: AppColors.vanillaShake)),
+      child: Text(label, style: Theme.of(context).textTheme.labelMedium!.copyWith(color: AppColors.vanillaShake)),
+    );
+  }
+
+  forgotPasswordAlertBox(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
+          contentPadding: EdgeInsets.only(top: 20.0),
+          content: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Şifreni Yenile",
+                  style: TextStyle(fontSize: 20.0),
+                  textAlign: TextAlign.center,
+                ),
+                Divider(
+                  color: Colors.grey,
+                  height: 4.0,
+                ),
+                Text("Email"),
+                TextField(
+                  controller: _viewModel.forgotPasswordController,
+                  decoration: InputDecoration(
+                    hintText: "xxxx@xxx.xxx",
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _viewModel.passwordReset(context);
+                    FocusScope.of(context).unfocus();
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.orange,
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(32.0), bottomRight: Radius.circular(32.0)),
+                    ),
+                    child: Text(
+                      "Şifre Yenileme Linki Gönder",
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

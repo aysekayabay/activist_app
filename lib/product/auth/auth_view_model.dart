@@ -1,16 +1,20 @@
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../core/constants/theme/theme_constants.dart';
 part 'auth_view_model.g.dart';
 
 class AuthViewModel = _AuthViewModelBase with _$AuthViewModel;
 
 abstract class _AuthViewModelBase with Store {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController forgotPasswordController = TextEditingController();
   final String signIn = "Sign In";
   final String continueLabel = "Continue";
   final String logIn = "Log In";
@@ -19,7 +23,7 @@ abstract class _AuthViewModelBase with Store {
 
   @action
   changeAuthType() {
-    nameController.clear();
+    fullnameController.clear();
     emailController.clear();
     passwordController.clear();
     if (authType == AuthType.SIGN_IN) {
@@ -27,6 +31,18 @@ abstract class _AuthViewModelBase with Store {
     } else {
       authType = AuthType.SIGN_IN;
     }
+  }
+
+  Future passwordReset(BuildContext? context) async {
+    if (context == null) return;
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: forgotPasswordController.text.trim());
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: AppColors.green, content: Text("Şifre yenileme linki gönderildi. Lütfen e-postanızı kontrol edin.")));
+    } on FirebaseException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message.toString())));
+    }
+
+    forgotPasswordController.clear();
   }
 
   authFunction(BuildContext context) async {
@@ -54,7 +70,7 @@ abstract class _AuthViewModelBase with Store {
   }
 
   register(BuildContext context) async {
-    int result = await AuthService.instance.register(context, emailController.text, nameController.text, passwordController.text);
+    int result = await AuthService.instance.register(context, emailController.text, fullnameController.text, passwordController.text);
     if (result == 1) {
       //success
       navigateToAppBase();
