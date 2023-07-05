@@ -1,3 +1,4 @@
+import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/model/group_model.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,12 @@ class GroupItemCard extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: Row(
           children: [
-            ClipOval(child: Image.network(group.event?.posterUrl ?? '', width: 80, height: 80, fit: BoxFit.cover)),
+            cachedNetworkImageWidget(
+              posterUrl: group.event?.posterUrl,
+              width: 80,
+              height: 80,
+              shape: BoxShape.circle,
+            ),
             SizedBox(
               height: 80,
               width: MediaQuery.of(context).size.width - AppSizes.highSize * 3,

@@ -1,6 +1,7 @@
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
+import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/product/detail_page/detail_page_view_model.dart';
@@ -137,10 +138,7 @@ class _DetailPageState extends State<DetailPage> {
     return Stack(
       children: [
         Column(
-          children: [
-            Image.network(widget.eventModel.posterUrl ?? '', height: MediaQuery.of(context).size.height / 2, fit: BoxFit.fitHeight, alignment: Alignment.center),
-            Container(height: AppSizes.highSize)
-          ],
+          children: [cachedNetworkImageWidget(posterUrl: widget.eventModel.posterUrl, height: MediaQuery.of(context).size.height / 2), Container(height: AppSizes.highSize)],
         ),
         Positioned(
           bottom: 0,

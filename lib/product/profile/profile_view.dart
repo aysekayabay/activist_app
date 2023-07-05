@@ -1,7 +1,9 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
+import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
+import 'package:akademi_bootcamp/product/detail_page/detail_page.dart';
 import 'package:akademi_bootcamp/product/profile/profile_view_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,6 @@ import '../../core/constants/image/image_constants.dart';
 import '../../core/constants/theme/theme_constants.dart';
 import '../../core/model/group_model.dart';
 import '../../core/services/firestore/events_service.dart';
-import '../chat/chat_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -100,7 +101,10 @@ class _ProfileViewState extends BaseState<ProfileView> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
-                  return ChatView(groupModel: groupModel);
+                  if (groupModel.event != null) {
+                    return DetailPage(eventModel: groupModel.event!);
+                  }
+                  return SizedBox();
                 },
               ));
             }));
@@ -187,21 +191,12 @@ class _ProfileViewState extends BaseState<ProfileView> {
     );
   }
 
-  Container profilePhoto() {
-    bool hasPhotoUrl = _viewModel.currentUser != null && _viewModel.currentUser!.photoUrl != null;
-    return Container(
-        margin: EdgeInsets.all(AppSizes.mediumSize),
-        decoration: BoxDecoration(
-          borderRadius: AppRadius.primaryRadius,
-          image: hasPhotoUrl
-              ? DecorationImage(
-                  image: NetworkImage(_viewModel.currentUser!.photoUrl!),
-                  fit: BoxFit.cover,
-                )
-              : null,
-        ),
-        child: hasPhotoUrl ? SizedBox() : Icon(Icons.person_pin, size: 80),
-        width: 100,
-        height: 100);
+  Widget profilePhoto() {
+    return cachedNetworkImageWidget(
+      posterUrl: _viewModel.currentUser!.photoUrl,
+      shape: BoxShape.circle,
+      width: 100,
+      height: 100,
+    );
   }
 }

@@ -1,12 +1,12 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
-import 'package:akademi_bootcamp/core/components/image/custom_image.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/event_model.dart';
+import '../image/cached_network_image_widget.card.dart';
 
 class HorizontalEventCard extends StatelessWidget {
   HorizontalEventCard({
@@ -41,11 +41,7 @@ class HorizontalEventCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  height: deviceHeight / 4,
-                  child: Align(
-                      alignment: Alignment.topCenter,
-                      child: ClipRRect(borderRadius: AppRadius.primaryRadius, child: CustomImage(imageUrl: eventModel.posterUrl!, backupImagePath: ImageConstants.AUTH_IMAGE)))),
+              cachedNetworkImageWidget(posterUrl: eventModel.posterUrl, height: deviceHeight / 4, borderRadius: AppRadius.primaryRadius),
               Text(eventModel.name!, maxLines: 1, style: TextStyle().copyWith(color: Colors.white)),
               Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
               dateWidget(),

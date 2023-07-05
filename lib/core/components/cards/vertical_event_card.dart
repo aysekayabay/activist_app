@@ -1,9 +1,7 @@
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
-import 'package:akademi_bootcamp/core/components/image/custom_image.dart';
-import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
+import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:flutter/material.dart';
-
 import '../../constants/theme/theme_constants.dart';
 
 // ignore: must_be_immutable
@@ -22,16 +20,10 @@ class VerticalEventCard extends StatelessWidget {
         margin: EdgeInsets.only(bottom: AppSizes.lowSize),
         child: Row(
           children: [
-            Container(
-              margin: EdgeInsets.only(right: AppSizes.lowSize),
+            cachedNetworkImageWidget(
+              posterUrl: eventModel.posterUrl,
               width: deviceWidth / 3,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: CustomImage(
-                  imageUrl: eventModel.posterUrl!,
-                  backupImagePath: ImageConstants.AUTH_IMAGE,
-                ),
-              ),
+              height: deviceWidth / 4,
             ),
             Expanded(
               child: Column(
