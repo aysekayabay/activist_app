@@ -123,7 +123,7 @@ class AuthService {
         currentUser = UserModel(
             fullname: userCredential.user?.displayName,
             emailVerified: userCredential.user?.emailVerified,
-            photoUrl: userCredential.user?.photoURL,
+            photoUrl: userData['photo_url'],
             email: userCredential.user?.email,
             createdAt: Timestamp.now().toString(),
             lastLogin: Timestamp.now().toString(),

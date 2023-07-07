@@ -35,7 +35,7 @@ abstract class _OnboardViewModelBase with Store {
         curve: Curves.ease,
       );
     } else {
-      NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.AUTH);
+      NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.APP_BASE);
     }
   }
 
