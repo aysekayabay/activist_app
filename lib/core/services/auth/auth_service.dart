@@ -4,6 +4,7 @@ import 'package:akademi_bootcamp/core/constants/memory/shared_prefs_keys.dart';
 import 'package:akademi_bootcamp/core/memory/shared_preferences_manager.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
+import 'package:akademi_bootcamp/core/services/storage/storage_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -120,21 +121,25 @@ class AuthService {
       if (userCredential != null) {
         uid = userCredential.user!.uid;
         userData = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: "users", docID: userCredential.user!.uid);
-        currentUser = UserModel(
+        if (userData == null) {
+          currentUser = UserModel(
             fullname: userCredential.user?.displayName,
             emailVerified: userCredential.user?.emailVerified,
-            photoUrl: userData['photo_url'],
             email: userCredential.user?.email,
             createdAt: Timestamp.now().toString(),
             lastLogin: Timestamp.now().toString(),
-            userID: userCredential.user!.uid);
-        if (userData == null) {
+            userID: userCredential.user!.uid,
+          );
+          if (userCredential.user!.photoURL != null) {
+            await StorageService.instance.uploadGooglePhotoToStorage(userCredential.user!.photoURL!);
+          }
           await FirestoreManager.instance.firestoreSendDataMap(
             collectionID: "users",
             docID: userCredential.user!.uid,
             data: currentUser!.toJson(),
           );
         } else {
+          currentUser = UserModel.fromJson(userData);
           await FirestoreManager.instance.firestoreUpdate(collectionID: "users", docID: currentUser!.userID.toString(), key: "last_login", value: currentUser!.lastLogin);
           if (userData['fav_events'] != null) {
             List<Map<String, dynamic>> favEventsData = List<Map<String, dynamic>>.from(userData['fav_events']);

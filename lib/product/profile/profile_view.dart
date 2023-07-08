@@ -1,5 +1,4 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
-import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../core/components/app_bar/custom_app_bar.dart';
 import '../../core/components/cards/group_item_card.dart';
+import '../../core/components/image/profile_photo_widget.dart';
 import '../../core/constants/image/image_constants.dart';
 import '../../core/constants/theme/theme_constants.dart';
 import '../../core/model/group_model.dart';
@@ -178,7 +178,7 @@ class _ProfileViewState extends BaseState<ProfileView> {
   Row userHeader() {
     return Row(
       children: [
-        profilePhoto(),
+        ProfilePhotoWidget(radius: 50),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -188,15 +188,6 @@ class _ProfileViewState extends BaseState<ProfileView> {
           ],
         )
       ],
-    );
-  }
-
-  Widget profilePhoto() {
-    return cachedNetworkImageWidget(
-      posterUrl: _viewModel.currentUser!.photoUrl,
-      shape: BoxShape.circle,
-      width: 100,
-      height: 100,
     );
   }
 }

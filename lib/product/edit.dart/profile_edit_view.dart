@@ -1,15 +1,15 @@
 import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
-import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
-import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
-import 'package:akademi_bootcamp/core/services/firestore/firestore_manager.dart';
-import 'package:akademi_bootcamp/core/services/storage/storage_service.dart';
+import 'package:akademi_bootcamp/product/edit.dart/profile_edit_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../core/constants/memory/shared_prefs_keys.dart';
-import '../../core/memory/shared_preferences_manager.dart';
+
+import '../../core/components/image/profile_photo_widget.dart';
 
 class ProfileEditView extends StatefulWidget {
   const ProfileEditView({super.key});
@@ -19,30 +19,7 @@ class ProfileEditView extends StatefulWidget {
 }
 
 class _ProfileEditViewState extends State<ProfileEditView> {
-  File? pickedImage;
-
-  saveChanges() async {
-    if (pickedImage != null) {
-      String uid = AuthService.instance.uid ?? '';
-      String? downloadURL = await StorageService.instance.uploadMedia(pickedImage!);
-      if (downloadURL != null) {
-        await FirestoreManager.instance.firestoreUpdate(collectionID: "users", docID: uid, key: 'photo_url', value: downloadURL);
-        AuthService.instance.currentUser!.photoUrl = downloadURL;
-        AuthService.instance.userData['photo_url'] = downloadURL;
-        SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, AuthService.instance.userData);
-      } else {
-        print('Dosya yükleme hatası.');
-      }
-
-      if (downloadURL != null) {
-        print('Dosya yükleme tamamlandı. İndirme URL\'si: $downloadURL');
-      } else {
-        print('Dosya yükleme hatası.');
-      }
-    } else {
-      print("Hiçbir şey fotoğraf seçmediniz.");
-    }
-  }
+  ProfileEditViewModel _viewModel = ProfileEditViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +32,13 @@ class _ProfileEditViewState extends State<ProfileEditView> {
         left: AppBarWidgets.BACK,
         leftIconColor: AppColors.vanillaShake,
         onTapLeft: () => Navigator.of(context).pop(),
-        onTapRight: saveChanges,
+        onTapRight: _viewModel.saveChanges,
       ),
       body: Column(
         children: [
-          photo(),
+          Observer(builder: (context) {
+            return profilePhoto();
+          }),
           changePhotoButton(),
         ],
       ),
@@ -70,36 +49,18 @@ class _ProfileEditViewState extends State<ProfileEditView> {
     return TextButton(
         onPressed: () => imagePickerOption(),
         child: Text(
-          "Profili Düzenle",
+          "Fotoğrafı Değiştir",
           style: TextStyle(color: Colors.green),
         ));
   }
 
-  Center photo() {
-    return Center(
-      child: Container(
-          width: 150,
-          height: 150,
-          decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(100))),
-          child: ClipOval(
-              child: pickedImage == null
-                  ? AuthService.instance.currentUser!.photoUrl != null
-                      ? cachedNetworkImageWidget(posterUrl: AuthService.instance.currentUser!.photoUrl, width: 150, height: 150)
-                      : Image.asset(ImageConstants.HOME)
-                  : Image.file(pickedImage!, width: 150, height: 150, fit: BoxFit.cover))),
-    );
-  }
-
-  pickImage(ImageSource imageType) async {
-    try {
-      final photo = await ImagePicker().pickImage(source: imageType);
-      if (photo == null) return;
-      File tempImage = File(photo.path);
-      setState(() {
-        pickedImage = tempImage;
-      });
-    } catch (error) {
-      debugPrint(error.toString());
+  Widget profilePhoto() {
+    if (_viewModel.pickedImage != null) {
+      File file = _viewModel.pickedImage!;
+      Uint8List bytes = file.readAsBytesSync();
+      return CircleAvatar(radius: 75, backgroundColor: AppColors.bgColor, backgroundImage: MemoryImage(bytes));
+    } else {
+      return ProfilePhotoWidget(radius: 75);
     }
   }
 
@@ -135,7 +96,7 @@ class _ProfileEditViewState extends State<ProfileEditView> {
     return InkWell(
       onTap: () {
         if (imageSource != null) {
-          pickImage(imageSource);
+          _viewModel.pickImage(imageSource);
           Navigator.of(context).pop();
         }
       },

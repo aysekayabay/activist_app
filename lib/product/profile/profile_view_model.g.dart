@@ -9,6 +9,38 @@ part of 'profile_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
+  late final _$currentUserAtom =
+      Atom(name: '_ProfileViewModelBase.currentUser', context: context);
+
+  @override
+  UserModel? get currentUser {
+    _$currentUserAtom.reportRead();
+    return super.currentUser;
+  }
+
+  @override
+  set currentUser(UserModel? value) {
+    _$currentUserAtom.reportWrite(value, super.currentUser, () {
+      super.currentUser = value;
+    });
+  }
+
+  late final _$ppicFutureAtom =
+      Atom(name: '_ProfileViewModelBase.ppicFuture', context: context);
+
+  @override
+  Future<Uint8List?>? get ppicFuture {
+    _$ppicFutureAtom.reportRead();
+    return super.ppicFuture;
+  }
+
+  @override
+  set ppicFuture(Future<Uint8List?>? value) {
+    _$ppicFutureAtom.reportWrite(value, super.ppicFuture, () {
+      super.ppicFuture = value;
+    });
+  }
+
   late final _$favEventsGroupsAtom =
       Atom(name: '_ProfileViewModelBase.favEventsGroups', context: context);
 
@@ -39,6 +71,14 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     _$isLoadingAtom.reportWrite(value, super.isLoading, () {
       super.isLoading = value;
     });
+  }
+
+  late final _$initAsyncAction =
+      AsyncAction('_ProfileViewModelBase.init', context: context);
+
+  @override
+  Future init() {
+    return _$initAsyncAction.run(() => super.init());
   }
 
   late final _$_ProfileViewModelBaseActionController =
@@ -91,6 +131,8 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
   @override
   String toString() {
     return '''
+currentUser: ${currentUser},
+ppicFuture: ${ppicFuture},
 favEventsGroups: ${favEventsGroups},
 isLoading: ${isLoading}
     ''';

@@ -1,4 +1,4 @@
-import 'package:akademi_bootcamp/product/edit.dart/profile_edit.dart';
+import 'package:akademi_bootcamp/product/edit.dart/profile_edit_view.dart';
 import 'package:akademi_bootcamp/product/entry/entry_view.dart';
 import 'package:akademi_bootcamp/product/app-base/app_base.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
