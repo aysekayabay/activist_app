@@ -18,7 +18,7 @@ class StorageService {
       final storageRef = _firebaseStorage.ref();
       final imgRef = storageRef.child("ppics/$uid.jpg");
       await imgRef.putFile(file);
-      await FirestoreManager.instance.firestoreUpdate(collectionID: 'users', docID: uid, key: 'photo_url', value: imgRef.fullPath);
+      await FirestoreManager.instance.firestoreUpdateOneField(collectionID: 'users', docID: uid, key: 'photo_url', value: imgRef.fullPath);
       AuthService.instance.currentUser!.photoUrl = imgRef.fullPath;
       AuthService.instance.userData = AuthService.instance.currentUser!.toJson();
       SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, AuthService.instance.userData);

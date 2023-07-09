@@ -59,7 +59,7 @@ class AuthService {
           currentUser!.favEvents = favEvents;
         }
         currentUser!.lastLogin = Timestamp.now().toString();
-        await FirestoreManager.instance.firestoreUpdate(collectionID: "users", docID: user.user!.uid, key: "last_login", value: currentUser!.lastLogin);
+        await FirestoreManager.instance.firestoreUpdateOneField(collectionID: "users", docID: user.user!.uid, key: "last_login", value: currentUser!.lastLogin);
         SharedPrefsManager.instance.setStringValue(SharedPrefsKeys.UID, uid ?? '');
         SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, userData ?? '');
         return 1;
@@ -140,7 +140,7 @@ class AuthService {
           );
         } else {
           currentUser = UserModel.fromJson(userData);
-          await FirestoreManager.instance.firestoreUpdate(collectionID: "users", docID: currentUser!.userID.toString(), key: "last_login", value: currentUser!.lastLogin);
+          await FirestoreManager.instance.firestoreUpdateOneField(collectionID: "users", docID: currentUser!.userID.toString(), key: "last_login", value: currentUser!.lastLogin);
           if (userData['fav_events'] != null) {
             List<Map<String, dynamic>> favEventsData = List<Map<String, dynamic>>.from(userData['fav_events']);
             List<EventModel> favEvents = favEventsData.map<EventModel>((eventJson) => EventModel.fromJson(eventJson)).toList();

@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
@@ -8,8 +8,8 @@ import 'package:akademi_bootcamp/product/edit.dart/profile_edit_view_model.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../core/components/image/profile_photo_widget.dart';
+import '../../core/components/textfield/user_info_edit_item.dart';
 
 class ProfileEditView extends StatefulWidget {
   const ProfileEditView({super.key});
@@ -18,28 +18,39 @@ class ProfileEditView extends StatefulWidget {
   State<ProfileEditView> createState() => _ProfileEditViewState();
 }
 
-class _ProfileEditViewState extends State<ProfileEditView> {
+class _ProfileEditViewState extends BaseState<ProfileEditView> {
   ProfileEditViewModel _viewModel = ProfileEditViewModel();
+  @override
+  void initState() {
+    super.initState();
+    _viewModel.init();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        context: context,
-        centerTitle: "Profili Düzenle",
-        center: AppBarWidgets.TITLE,
-        right: AppBarWidgets.DONE,
-        left: AppBarWidgets.BACK,
-        leftIconColor: AppColors.vanillaShake,
-        onTapLeft: () => Navigator.of(context).pop(),
-        onTapRight: _viewModel.saveChanges,
-      ),
+          context: context,
+          centerTitle: "Profili Düzenle",
+          center: AppBarWidgets.TITLE,
+          right: AppBarWidgets.DONE,
+          left: AppBarWidgets.BACK,
+          leftIconColor: AppColors.vanillaShake,
+          onTapLeft: () => Navigator.of(context).pop(),
+          onTapRight: () async => await _viewModel.saveChanges(context)),
       body: Column(
         children: [
           Observer(builder: (context) {
             return profilePhoto();
           }),
           changePhotoButton(),
+          Column(
+            children: [
+              UserInfoEditItem(tWidth: deviceWidth / 2, label: "Adı", controller: _viewModel.fullnameController, hintText: 'Ad'),
+              UserInfoEditItem(tWidth: deviceWidth / 2, label: "Şehir", controller: _viewModel.cityController, hintText: 'Şehir'),
+              UserInfoEditItem(tWidth: deviceWidth / 2, label: "Cinsiyet", controller: _viewModel.genderController, hintText: 'Cinsiyet'),
+            ],
+          ),
         ],
       ),
     );
@@ -49,8 +60,8 @@ class _ProfileEditViewState extends State<ProfileEditView> {
     return TextButton(
         onPressed: () => imagePickerOption(),
         child: Text(
-          "Fotoğrafı Değiştir",
-          style: TextStyle(color: Colors.green),
+          "Fotoğrafı Düzenle",
+          style: TextStyle(color: Color(0xff32D7E1)),
         ));
   }
 

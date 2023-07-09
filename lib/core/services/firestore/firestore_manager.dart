@@ -23,8 +23,17 @@ class FirestoreManager {
     await _firestore.collection(collectionID).doc(docID).set(data);
   }
 
-  Future<void> firestoreUpdate({required String collectionID, required String docID, required String key, required dynamic value}) async {
+  Future<void> firestoreUpdateOneField({required String collectionID, required String docID, required String key, required dynamic value}) async {
     await _firestore.collection(collectionID).doc(docID).update({key: value});
+  }
+
+  Future<void> firestoreUpdateFields({
+    required String collectionID,
+    required String docID,
+    required Map<String, dynamic> fields,
+  }) async {
+    final docRef = _firestore.collection(collectionID).doc(docID);
+    await docRef.set(fields, SetOptions(merge: true));
   }
 
   Future<List<QueryDocumentSnapshot<dynamic>>> firestoreGetSomeDocuments({required String collectionID, required List<dynamic> whereIn}) async {

@@ -6,6 +6,8 @@ class UserModel {
   String? birthdate;
   String? photoUrl;
   String? email;
+  String? city;
+  String? gender;
   bool? emailVerified;
   String? password;
   String? createdAt;
@@ -13,7 +15,20 @@ class UserModel {
   String? lastLogin;
   List<EventModel>? favEvents;
 
-  UserModel({this.userID, this.fullname, this.birthdate, this.photoUrl, this.email, this.emailVerified, this.password, this.createdAt, this.updatedAt, this.lastLogin, this.favEvents});
+  UserModel(
+      {this.userID,
+      this.fullname,
+      this.birthdate,
+      this.photoUrl,
+      this.email,
+      this.city,
+      this.gender,
+      this.emailVerified,
+      this.password,
+      this.createdAt,
+      this.updatedAt,
+      this.lastLogin,
+      this.favEvents});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     fullname = json['fullname'];
@@ -22,6 +37,8 @@ class UserModel {
     photoUrl = json['photo_url'];
     email = json['email'];
     emailVerified = json['email_verified'];
+    city = json['city'];
+    gender = json['gender'];
     password = json['password'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -35,6 +52,8 @@ class UserModel {
     data['userID'] = this.userID;
     data['birthdate'] = this.birthdate;
     data['photo_url'] = this.photoUrl;
+    data['city'] = this.city;
+    data['gender'] = this.gender;
     data['email'] = this.email;
     data['email_verified'] = this.emailVerified;
     data['password'] = this.password;

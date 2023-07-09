@@ -35,7 +35,7 @@ class EventsService {
       for (final event in favList) {
         docFavList.add(event.toJson());
       }
-      await FirestoreManager.instance.firestoreUpdate(collectionID: USERS, docID: user.userID!, key: FAV_EVENTS, value: docFavList);
+      await FirestoreManager.instance.firestoreUpdateOneField(collectionID: USERS, docID: user.userID!, key: FAV_EVENTS, value: docFavList);
       if (adding && eventModel.id != null && user.userID != null) {
         joinChatGroup(eventModel, user.userID!);
       }
@@ -88,7 +88,7 @@ class EventsService {
       List<SentBy> users = (data[USERS] as List<dynamic>).map((item) => SentBy.fromJson(item)).toList();
       users.removeWhere((user) => user.id == userID);
       List<Map<String, dynamic>> updatedUsers = users.map((user) => user.toJson()).toList();
-      await FirestoreManager.instance.firestoreUpdate(collectionID: GROUPS, docID: eventID, key: USERS, value: updatedUsers);
+      await FirestoreManager.instance.firestoreUpdateOneField(collectionID: GROUPS, docID: eventID, key: USERS, value: updatedUsers);
     }
   }
 
@@ -98,7 +98,7 @@ class EventsService {
     if (groupData != null && groupData.containsKey("messages")) {
       List<dynamic> messages = groupData["messages"];
       messages.add(message.toJson());
-      await FirestoreManager.instance.firestoreUpdate(collectionID: "groups", docID: eventID, key: "messages", value: messages);
+      await FirestoreManager.instance.firestoreUpdateOneField(collectionID: "groups", docID: eventID, key: "messages", value: messages);
     }
   }
 

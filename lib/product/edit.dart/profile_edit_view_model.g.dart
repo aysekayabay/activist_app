@@ -33,6 +33,20 @@ mixin _$ProfileEditViewModel on _ProfileEditViewModelBase, Store {
     return _$pickImageAsyncAction.run(() => super.pickImage(imageType));
   }
 
+  late final _$_ProfileEditViewModelBaseActionController =
+      ActionController(name: '_ProfileEditViewModelBase', context: context);
+
+  @override
+  dynamic init() {
+    final _$actionInfo = _$_ProfileEditViewModelBaseActionController
+        .startAction(name: '_ProfileEditViewModelBase.init');
+    try {
+      return super.init();
+    } finally {
+      _$_ProfileEditViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
