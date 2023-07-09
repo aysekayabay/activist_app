@@ -178,7 +178,7 @@ class _ProfileViewState extends BaseState<ProfileView> {
   Row userHeader() {
     return Row(
       children: [
-        ProfilePhotoWidget(radius: 50),
+        ProfilePhotoWidget(radius: 50, photoUrl: AuthService.instance.currentUser?.photoUrl),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

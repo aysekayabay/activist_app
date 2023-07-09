@@ -46,7 +46,7 @@ abstract class _ProfileViewModelBase with Store {
 
   @action
   init() async {
-    ppicFuture = StorageService.instance.downloadPPic();
+    ppicFuture = StorageService.instance.downloadPPic(AuthService.instance.currentUser?.photoUrl);
   }
 
   @action

@@ -1,3 +1,4 @@
+import 'package:akademi_bootcamp/core/components/image/profile_photo_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme/theme_constants.dart';
@@ -6,7 +7,8 @@ import '../../services/auth/auth_service.dart';
 
 class MessageItem extends StatelessWidget {
   final MessageModel message;
-  const MessageItem({super.key, required this.message});
+  final bool noImage;
+  const MessageItem({super.key, required this.message, required this.noImage});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class MessageItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: sentByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
-            image(sentByMe),
+            noImage ? SizedBox(width: 0, height: 0) : ProfilePhotoWidget(radius: 25, photoUrl: message.sentBy!.photoUrl),
             content(sentByMe, context),
           ],
         ),
@@ -31,7 +33,7 @@ class MessageItem extends StatelessWidget {
     bool hasFullname = message.sentBy != null && message.sentBy!.fullname != null;
     return Flexible(
       child: Container(
-        margin: EdgeInsets.only(left: AppSizes.lowSize, bottom: sentByMe ? AppSizes.lowSize : 0) + EdgeInsets.only(top: !sentByMe ? AppSizes.mediumSize : 0),
+        margin: EdgeInsets.only(left: AppSizes.lowSize, bottom: sentByMe ? 7 : 0) + EdgeInsets.only(top: !sentByMe ? (noImage ? 7 : AppSizes.highSize * 2) : 0),
         padding: EdgeInsets.all(AppSizes.lowSize),
         decoration: BoxDecoration(
             color: AppColors.messageGrey,
@@ -40,7 +42,7 @@ class MessageItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            hasFullname && !sentByMe
+            hasFullname && !sentByMe && !noImage
                 ? Text(
                     "-${message.sentBy?.fullname}",
                     maxLines: 1,
@@ -58,19 +60,5 @@ class MessageItem extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget image(bool sentByMe) {
-    print(message.sentBy!.photoUrl);
-    bool hasPhotoUrl = message.sentBy != null && message.sentBy!.photoUrl != null && message.sentBy!.photoUrl!.isNotEmpty;
-    return !sentByMe && hasPhotoUrl
-        ? ClipOval(
-            child: Image.network(
-            message.sentBy!.photoUrl!,
-            width: 50,
-            height: 50,
-            fit: BoxFit.fill,
-          ))
-        : SizedBox();
   }
 }

@@ -39,12 +39,9 @@ class StorageService {
     SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, AuthService.instance.userData);
   }
 
-  Future<Uint8List?> downloadPPic() async {
-    final String? uid = AuthService.instance.uid;
-    if (uid == null) return null;
-    String? ppicRef = AuthService.instance.currentUser?.photoUrl;
-    if (ppicRef == null) return null;
-    Uint8List? uint8list = await _firebaseStorage.ref(ppicRef).getData();
+  Future<Uint8List?> downloadPPic(String? photoUrl) async {
+    if (photoUrl == null) return null;
+    Uint8List? uint8list = await _firebaseStorage.ref(photoUrl).getData();
     return uint8list;
   }
 }

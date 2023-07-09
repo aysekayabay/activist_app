@@ -50,12 +50,18 @@ class _ChatViewState extends State<ChatView> {
                   child: Padding(
                     padding: EdgeInsets.all(AppSizes.lowSize),
                     child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
                       reverse: true,
+                      physics: BouncingScrollPhysics(),
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         MessageModel message = messages[messages.length - index - 1];
-                        return MessageItem(message: message);
+                        print(index);
+                        bool noImage = (index > 0) && (message.sentBy?.id == messages[messages.length - index].sentBy?.id);
+                        print(noImage);
+                        return MessageItem(
+                          message: message,
+                          noImage: noImage,
+                        );
                       },
                     ),
                   ),

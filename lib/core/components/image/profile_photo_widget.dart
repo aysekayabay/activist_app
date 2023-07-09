@@ -1,13 +1,13 @@
 import 'dart:typed_data';
-
+import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
-
 import '../../constants/theme/theme_constants.dart';
 import '../../services/storage/storage_service.dart';
 
 class ProfilePhotoWidget extends StatefulWidget {
   final double radius;
-  const ProfilePhotoWidget({super.key, required this.radius});
+  final String? photoUrl;
+  const ProfilePhotoWidget({super.key, required this.radius, required this.photoUrl});
 
   @override
   State<ProfilePhotoWidget> createState() => _ProfilePhotoWidgetState();
@@ -17,7 +17,7 @@ class _ProfilePhotoWidgetState extends State<ProfilePhotoWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Uint8List?>(
-      future: StorageService.instance.downloadPPic(),
+      future: StorageService.instance.downloadPPic(AuthService.instance.currentUser?.photoUrl),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
@@ -47,7 +47,7 @@ class _ProfilePhotoWidgetState extends State<ProfilePhotoWidget> {
           }
         } else {
           // situation in progress
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         }
       },
     );
