@@ -97,7 +97,7 @@ class _GroupsViewState extends BaseState<GroupsView> {
                         content: Text("Gruptan ayrıldınız.")),
                   );
                 },
-                backgroundColor: AppColors.red,
+                backgroundColor: AppColors.grey,
                 foregroundColor: Colors.white,
                 icon: Icons.exit_to_app_rounded,
                 label: 'Gruptan Ayrıl')

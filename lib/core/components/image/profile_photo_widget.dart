@@ -30,18 +30,22 @@ class _ProfilePhotoWidgetState extends State<ProfilePhotoWidget> {
           } else if (snapshot.hasError) {
             return CircleAvatar(
               backgroundColor: AppColors.vanillaShake,
+              radius: widget.radius,
               child: Icon(
                 Icons.person,
                 color: AppColors.bgColor,
+                size: widget.radius,
               ),
             );
           } else {
             // situation null
             return CircleAvatar(
+              radius: widget.radius,
               backgroundColor: AppColors.vanillaShake,
               child: Icon(
                 Icons.person,
                 color: AppColors.bgColor,
+                size: widget.radius,
               ),
             );
           }

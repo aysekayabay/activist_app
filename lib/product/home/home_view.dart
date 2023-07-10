@@ -68,11 +68,7 @@ class _HomeViewState extends BaseState<HomeView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _viewModel.isSearched ? SizedBox() : horizontalCategoriesWidget(),
-                Container(
-                    width: deviceWidth,
-                    height: deviceHeight,
-                    decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.transparent, Colors.black], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-                    child: eventBody()),
+                Container(width: deviceWidth, child: eventBody()),
               ],
             );
     });
@@ -84,12 +80,14 @@ class _HomeViewState extends BaseState<HomeView> {
 
   Widget eventBody() {
     return _viewModel.selectedIndex >= 0 && _viewModel.filteredEventList != null
-        ? Column(
-            children: [
-              _viewModel.isSearched ? SizedBox() : activityInfoHeader(),
-              horizontalCards(),
-              verticalCards(),
-            ],
+        ? SingleChildScrollView(
+            child: Column(
+              children: [
+                _viewModel.isSearched ? SizedBox() : activityInfoHeader(),
+                horizontalCards(),
+                Visibility(visible: _viewModel.seeAllIsActive, child: verticalCards()),
+              ],
+            ),
           )
         : SizedBox();
   }
@@ -115,16 +113,15 @@ class _HomeViewState extends BaseState<HomeView> {
     );
   }
 
-  Visibility verticalCards() {
-    return Visibility(
-      visible: _viewModel.seeAllIsActive,
-      child: SingleChildScrollView(
-        child: Column(
-            children: List.generate(_viewModel.filteredEventList?.length ?? 0, (index) {
-          return VerticalEventCard(
-              deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index], onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]));
-        })),
-      ),
+  Widget verticalCards() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: BouncingScrollPhysics(),
+      itemCount: _viewModel.filteredEventList?.length ?? 0,
+      itemBuilder: (context, index) {
+        return VerticalEventCard(
+            deviceWidth: deviceWidth, eventModel: _viewModel.filteredEventList![index], onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]));
+      },
     );
   }
 

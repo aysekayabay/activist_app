@@ -5,7 +5,7 @@ import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
-import 'package:akademi_bootcamp/product/edit.dart/profile_edit_view_model.dart';
+import 'package:akademi_bootcamp/product/profile_edit/profile_edit_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';

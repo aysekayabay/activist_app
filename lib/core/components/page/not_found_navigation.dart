@@ -8,7 +8,7 @@ class NotFoundNavigatonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Page not found"),
+      body: Center(child: Text("Sayfa bulunamadı")),
     );
   }
 }

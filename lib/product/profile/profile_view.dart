@@ -175,19 +175,25 @@ class _ProfileViewState extends BaseState<ProfileView> {
     );
   }
 
-  Row userHeader() {
-    return Row(
-      children: [
-        ProfilePhotoWidget(radius: 50, photoUrl: AuthService.instance.currentUser?.photoUrl),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(_viewModel.currentUser?.fullname ?? ''),
-            Row(children: [Image.asset(ImageConstants.LOCATION), Text("İstanbul")]),
-            CircularProgressIndicator(backgroundColor: Colors.transparent, valueColor: AlwaysStoppedAnimation<Color>(AppColors.vanillaShake), value: 0.2)
-          ],
-        )
-      ],
+  Widget userHeader() {
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Row(
+        children: [
+          ProfilePhotoWidget(radius: 50, photoUrl: AuthService.instance.currentUser?.photoUrl),
+          SizedBox(
+            width: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(_viewModel.currentUser?.fullname ?? ''),
+              Row(children: [Image.asset(ImageConstants.LOCATION), Text("İstanbul")]),
+              CircularProgressIndicator(backgroundColor: Colors.transparent, valueColor: AlwaysStoppedAnimation<Color>(AppColors.vanillaShake), value: 0.2)
+            ],
+          )
+        ],
+      ),
     );
   }
 }
