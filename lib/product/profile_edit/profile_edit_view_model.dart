@@ -36,6 +36,7 @@ abstract class _ProfileEditViewModelBase with Store {
         await StorageService.instance.uploadMedia(pickedImage!);
       }
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: AppColors.green, content: Text("Profil güncellendi")));
+      Navigator.of(context).pop();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: AppColors.red, content: Text("Ad alanı boş bırakılamaz")));
     }
