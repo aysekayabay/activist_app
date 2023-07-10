@@ -15,6 +15,7 @@ abstract class _HomeViewModelBase with Store {
   FocusNode focusNode = FocusNode();
   @observable
   bool isLoading = true;
+
   @observable
   List<EventModel> eventList = [];
 
@@ -25,17 +26,21 @@ abstract class _HomeViewModelBase with Store {
 
   @action
   Future<void> getEventsToLocalFromApi() async {
+    isLoading = true;
     try {
-      eventList = await EtkinlikIOService.instance.fetchEventList() ?? [];
+      List<EventModel?> events = await EtkinlikIOService.instance.fetchEventList() ?? [];
 
       if (HiveManager.instance.eventsBox != null) {
         await HiveManager.instance.eventsBox!.clear();
-        await HiveManager.instance.eventsBox!.addAll(eventList);
+        await HiveManager.instance.eventsBox!.addAll(events);
         await HiveManager.instance.categoriesBox!.clear();
         await HiveManager.instance.categoriesBox!.addAll(EtkinlikIOService.instance.categoryList);
       }
+      await getEventList();
     } catch (e) {
       print('error $e');
+    } finally {
+      isLoading = false;
     }
   }
 
@@ -64,7 +69,7 @@ abstract class _HomeViewModelBase with Store {
     eventList = HiveManager.instance.getAllEvents();
     categoryList = HiveManager.instance.getAllCategories();
     if (categoryList != null && categoryList!.length > 0) {
-      filterEventsByCategory(categoryList!.first);
+      filterEventsByCategory(categoryList![selectedIndex]);
     }
     isLoading = false;
   }
