@@ -2,6 +2,7 @@ import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import '../../core/memory/hive_manager.dart';
+import '../../core/services/api/etkinlikIO_service.dart';
 import '../../core/services/auth/auth_service.dart';
 import '../detail_page/detail_page.dart';
 part 'home_view_model.g.dart';
@@ -20,6 +21,22 @@ abstract class _HomeViewModelBase with Store {
   void openDrawer(BuildContext context) {
     final ScaffoldState? scaffoldState = Scaffold.of(context);
     scaffoldState?.openDrawer();
+  }
+
+  @action
+  Future<void> getEventsToLocalFromApi() async {
+    try {
+      eventList = await EtkinlikIOService.instance.fetchEventList() ?? [];
+
+      if (HiveManager.instance.eventsBox != null) {
+        await HiveManager.instance.eventsBox!.clear();
+        await HiveManager.instance.eventsBox!.addAll(eventList);
+        await HiveManager.instance.categoriesBox!.clear();
+        await HiveManager.instance.categoriesBox!.addAll(EtkinlikIOService.instance.categoryList);
+      }
+    } catch (e) {
+      print('error $e');
+    }
   }
 
   @observable

@@ -121,6 +121,16 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$getEventsToLocalFromApiAsyncAction = AsyncAction(
+      '_HomeViewModelBase.getEventsToLocalFromApi',
+      context: context);
+
+  @override
+  Future<void> getEventsToLocalFromApi() {
+    return _$getEventsToLocalFromApiAsyncAction
+        .run(() => super.getEventsToLocalFromApi());
+  }
+
   late final _$initAsyncAction =
       AsyncAction('_HomeViewModelBase.init', context: context);
 

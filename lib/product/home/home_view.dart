@@ -32,22 +32,29 @@ class _HomeViewState extends BaseState<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION, left: AppBarWidgets.MENU, onTapLeft: () => _viewModel.openDrawer(context)),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
-              child: CustomTextfield(
-                  hintText: "Search",
-                  controller: _viewModel.searchTextEditingController,
-                  onChanged: (value) => _viewModel.searchEventInList(value),
-                  focusNode: _viewModel.focusNode,
-                  keyboardType: TextInputType.name,
-                  textInputAction: TextInputAction.search,
-                  isSearch: true),
-            ),
-            body(),
-          ],
+      body: RefreshIndicator(
+        color: AppColors.white,
+        backgroundColor: AppColors.orange,
+        onRefresh: () async {
+          await _viewModel.getEventsToLocalFromApi();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
+                child: CustomTextfield(
+                    hintText: "Search",
+                    controller: _viewModel.searchTextEditingController,
+                    onChanged: (value) => _viewModel.searchEventInList(value),
+                    focusNode: _viewModel.focusNode,
+                    keyboardType: TextInputType.name,
+                    textInputAction: TextInputAction.search,
+                    isSearch: true),
+              ),
+              body(),
+            ],
+          ),
         ),
       ),
     );
