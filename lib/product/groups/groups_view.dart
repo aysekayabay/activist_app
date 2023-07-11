@@ -103,14 +103,25 @@ class _GroupsViewState extends BaseState<GroupsView> {
                 label: 'Gruptan Ayrıl')
           ],
         ),
-        child: GroupItemCard(
-            group: filteredGroups[index],
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return ChatView(groupModel: filteredGroups[index]);
+        child: FutureBuilder<MessageModel?>(
+          future: EventsService.instance.fetchLastMessage(filteredGroups[index].event!.id.toString()),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              MessageModel? lastMessage = snapshot.data;
+              return GroupItemCard(
+                lastMessage: lastMessage,
+                group: filteredGroups[index],
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return ChatView(groupModel: filteredGroups[index]);
+                    },
+                  ));
                 },
-              ));
-            }));
+              );
+            }
+            return SizedBox.shrink();
+          },
+        ));
   }
 }

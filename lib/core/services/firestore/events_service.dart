@@ -56,6 +56,17 @@ class EventsService {
     return null;
   }
 
+  Future<MessageModel?> fetchLastMessage(String eventID) async {
+    CollectionReference<Map<String, dynamic>> collection = await FirestoreManager.instance.firestoreGetCollectionInCollection(outerID: "groups", innerID: "messages", docID: eventID);
+    final QuerySnapshot snapshot = await collection.orderBy('time', descending: true).limit(1).get();
+    if (snapshot.docs.isNotEmpty) {
+      final messageData = snapshot.docs.first.data() as Map<String, dynamic>;
+      return MessageModel.fromJson(messageData);
+    } else {
+      return null;
+    }
+  }
+
   Future<void> joinChatGroup(EventModel eventModel, String userID) async {
     if (eventModel.id != null) {
       DocumentSnapshot groupSnapshot = await FirestoreManager.instance.firestoreGetDocument(collectionID: GROUPS, docID: eventModel.id.toString());

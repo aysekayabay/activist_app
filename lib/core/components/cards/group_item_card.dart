@@ -1,14 +1,17 @@
 import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/model/group_model.dart';
+import 'package:akademi_bootcamp/core/model/message_model.dart';
+import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/theme/theme_constants.dart';
 
 // ignore: must_be_immutable
 class GroupItemCard extends StatelessWidget {
-  GroupItemCard({super.key, required this.group, this.onTap});
   void Function()? onTap;
   final GroupModel group;
+  final MessageModel? lastMessage;
+  GroupItemCard({super.key, required this.group, this.onTap, this.lastMessage});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,7 @@ class GroupItemCard extends StatelessWidget {
                 children: [
                   Flexible(child: Text(group.event?.name ?? '', style: Theme.of(context).textTheme.bodySmall, overflow: TextOverflow.ellipsis)),
                   Flexible(child: Text(group.event?.venue?.name ?? '', overflow: TextOverflow.ellipsis)),
+                  Flexible(child: Text(message(lastMessage?.sentBy?.fullname ?? '', lastMessage?.content ?? ''), overflow: TextOverflow.ellipsis)),
                 ],
               ),
             ),
@@ -39,5 +43,13 @@ class GroupItemCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String message(String name, String message) {
+    String? uid = AuthService.instance.uid;
+    if (lastMessage?.sentBy?.id == uid) {
+      return "Sen: $message";
+    }
+    return "$name: $message";
   }
 }
