@@ -8,7 +8,8 @@ import '../../services/auth/auth_service.dart';
 class MessageItem extends StatelessWidget {
   final MessageModel message;
   final bool noImage;
-  const MessageItem({super.key, required this.message, required this.noImage});
+  final int index;
+  const MessageItem({super.key, required this.message, required this.noImage, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +17,12 @@ class MessageItem extends StatelessWidget {
     return Align(
       alignment: sentByMe ? Alignment.centerRight : Alignment.centerLeft,
       child: SizedBox(
-        width: MediaQuery.of(context).size.width / 1.5,
         child: Row(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: sentByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
-            noImage ? SizedBox(width: 0, height: 0) : ProfilePhotoWidget(radius: 25, photoUrl: message.sentBy!.photoUrl),
+            !noImage && !sentByMe ? Align(alignment: Alignment.topLeft, child: ProfilePhotoWidget(radius: 20, photoUrl: message.sentBy!.photoUrl)) : SizedBox(width: 40),
             content(sentByMe, context),
           ],
         ),
@@ -33,7 +34,7 @@ class MessageItem extends StatelessWidget {
     bool hasFullname = message.sentBy != null && message.sentBy!.fullname != null;
     return Flexible(
       child: Container(
-        margin: EdgeInsets.only(left: AppSizes.lowSize, bottom: sentByMe ? 7 : 0) + EdgeInsets.only(top: !sentByMe ? (noImage ? 7 : AppSizes.highSize * 2) : 0),
+        margin: EdgeInsets.only(left: AppSizes.lowSize, top: noImage ? 5 : 20),
         padding: EdgeInsets.all(AppSizes.lowSize),
         decoration: BoxDecoration(
             color: AppColors.messageGrey,

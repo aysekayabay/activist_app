@@ -27,6 +27,10 @@ class FirestoreManager {
     await _firestore.collection(collectionID).doc(docID).update({key: value});
   }
 
+  Future<void> firestoreAddDocCollectionInCollection({required String outerID, required String innerID, required String docID, required Map<String, dynamic> data}) async {
+    await _firestore.collection(outerID).doc(docID).collection(innerID).add(data);
+  }
+
   Future<void> firestoreUpdateFields({
     required String collectionID,
     required String docID,
@@ -45,10 +49,26 @@ class FirestoreManager {
     return FirebaseFirestore.instance.collection(collectionID).where(FieldPath.documentId, whereIn: whereIn).snapshots();
   }
 
-  Stream<DocumentSnapshot<Object?>> firestoreStreamDocument({required String collectionID, required String docID}) {
-    StreamController<DocumentSnapshot<Object?>> controller = StreamController<DocumentSnapshot<Object?>>();
+  // Stream<DocumentSnapshot<Object?>> firestoreStreamDocument({required String collectionID, required String docID}) {
+  //   StreamController<DocumentSnapshot<Object?>> controller = StreamController<DocumentSnapshot<Object?>>();
 
-    _firestore.collection(collectionID).doc(docID).snapshots().listen((snapshot) {
+  //   _firestore.collection(collectionID).doc(docID).snapshots().listen((snapshot) {
+  //     controller.add(snapshot);
+  //   }, onError: (error) {
+  //     controller.addError(error);
+  //   });
+
+  //   return controller.stream;
+  // }
+
+  Stream<QuerySnapshot<Object?>> firestoreStreamCollectionInCollection({
+    required String outerID,
+    required String innerID,
+    required String docID,
+  }) {
+    StreamController<QuerySnapshot<Object?>> controller = StreamController<QuerySnapshot<Object?>>();
+
+    _firestore.collection(outerID).doc(docID).collection(innerID).snapshots().listen((snapshot) {
       controller.add(snapshot);
     }, onError: (error) {
       controller.addError(error);

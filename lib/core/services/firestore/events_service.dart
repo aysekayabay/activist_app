@@ -93,29 +93,22 @@ class EventsService {
   }
 
   pushMessage(String eventID, MessageModel message) async {
-    DocumentSnapshot<Object?> firestoreGetDocument = await FirestoreManager.instance.firestoreGetDocument(collectionID: "groups", docID: eventID);
-    Map<String, dynamic>? groupData = firestoreGetDocument.data() as Map<String, dynamic>?;
-    if (groupData != null && groupData.containsKey("messages")) {
-      List<dynamic> messages = groupData["messages"];
-      messages.add(message.toJson());
-      await FirestoreManager.instance.firestoreUpdateOneField(collectionID: "groups", docID: eventID, key: "messages", value: messages);
-    }
+    await FirestoreManager.instance.firestoreAddDocCollectionInCollection(outerID: "groups", innerID: "messages", docID: eventID, data: message.toJson());
   }
 
   Stream<List<MessageModel>> getGroupChatsStream(String eventID) {
     StreamController<List<MessageModel>> controller = StreamController<List<MessageModel>>();
-
-    FirestoreManager.instance.firestoreStreamDocument(collectionID: "groups", docID: eventID).listen((DocumentSnapshot<Object?> snapshot) {
-      Map<String, dynamic>? groupData = snapshot.data() as Map<String, dynamic>?;
-
-      if (groupData != null && groupData.containsKey("messages")) {
-        List<dynamic> messageData = groupData["messages"];
-        List<MessageModel> messages = messageData.map((data) => MessageModel.fromJson(data)).toList();
-
-        controller.add(messages);
-      } else {
-        controller.add([]);
-      }
+    FirestoreManager.instance
+        .firestoreStreamCollectionInCollection(
+      outerID: "groups",
+      innerID: "messages",
+      docID: eventID,
+    )
+        .listen((QuerySnapshot<Object?> snapshot) {
+      List<MessageModel> messages = snapshot.docs.map((doc) => MessageModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
+      controller.add(messages);
+    }, onError: (error) {
+      controller.add([]);
     });
 
     return controller.stream;

@@ -21,8 +21,8 @@ class _ChatViewState extends State<ChatView> {
   void onSendMessage() async {
     UserModel? currentUser = AuthService.instance.currentUser;
     if (controller.text.isNotEmpty && currentUser != null) {
-      MessageModel newMessage = MessageModel(
-          sentBy: SentBy(fullname: currentUser.fullname, id: currentUser.userID, photoUrl: currentUser.photoUrl), type: "text", content: controller.text, time: FieldValue.serverTimestamp());
+      MessageModel newMessage =
+          MessageModel(sentBy: SentBy(fullname: currentUser.fullname, id: currentUser.userID, photoUrl: currentUser.photoUrl), type: "text", content: controller.text, time: Timestamp.now());
       await EventsService.instance.pushMessage(widget.groupModel.event!.id.toString(), newMessage);
       controller.clear();
     }
@@ -44,6 +44,7 @@ class _ChatViewState extends State<ChatView> {
           }
           if (snapshot.hasData) {
             List<MessageModel> messages = snapshot.data!;
+            messages.sort((a, b) => b.time!.compareTo(a.time!));
             return Column(
               children: [
                 Expanded(
@@ -54,14 +55,10 @@ class _ChatViewState extends State<ChatView> {
                       physics: BouncingScrollPhysics(),
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
-                        MessageModel message = messages[messages.length - index - 1];
-                        print(index);
-                        bool noImage = (index > 0) && (message.sentBy?.id == messages[messages.length - index].sentBy?.id);
-                        print(noImage);
-                        return MessageItem(
-                          message: message,
-                          noImage: noImage,
-                        );
+                        MessageModel message = messages[index];
+                        print(" $index :  ${message.sentBy?.fullname} - ${message.content}");
+                        bool noImage = (index < messages.length - 1) && (message.sentBy?.id == messages[index + 1].sentBy?.id);
+                        return MessageItem(message: message, noImage: noImage, index: index);
                       },
                     ),
                   ),
