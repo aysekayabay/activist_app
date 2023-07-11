@@ -98,7 +98,7 @@ class _HomeViewState extends BaseState<HomeView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("${_viewModel.categoryList?[_viewModel.selectedIndex].name} Aktiviteleri", style: TextStyle().copyWith(color: Colors.white)),
+          Text("${_viewModel.categoryList?[_viewModel.selectedIndex].name} Aktiviteleri", style: Theme.of(context).textTheme.displayMedium),
           InkWell(
             onTap: () => _viewModel.seeAll(),
             child: Column(

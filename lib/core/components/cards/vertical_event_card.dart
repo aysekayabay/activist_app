@@ -17,7 +17,7 @@ class VerticalEventCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.only(bottom: AppSizes.lowSize),
+        margin: EdgeInsets.only(bottom: AppSizes.lowSize) + EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           children: [
             cachedNetworkImageWidget(
@@ -25,6 +25,7 @@ class VerticalEventCard extends StatelessWidget {
               width: deviceWidth / 3,
               height: deviceWidth / 4,
             ),
+            SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

@@ -42,7 +42,7 @@ class HorizontalEventCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               cachedNetworkImageWidget(posterUrl: eventModel.posterUrl, height: deviceHeight / 4, borderRadius: AppRadius.primaryRadius),
-              Text(eventModel.name!, maxLines: 1, style: TextStyle().copyWith(color: Colors.white)),
+              Text(eventModel.name!, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle().copyWith(color: Colors.white)),
               Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
               dateWidget(),
               timeWidget(),
