@@ -56,7 +56,7 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
       top: AppSizes.highSize * 2,
       left: 0,
       right: 0,
-      height: deviceHeight * 0.3,
+      height: deviceHeight * 0.4,
       child: PageView.builder(
         controller: _viewModel.pageController,
         physics: NeverScrollableScrollPhysics(),
