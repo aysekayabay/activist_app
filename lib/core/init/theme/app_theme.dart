@@ -10,22 +10,46 @@ class AppThemeDark {
       textSelectionTheme: TextSelectionThemeData(selectionColor: Colors.red),
       colorScheme: appColorSheme(),
       scaffoldBackgroundColor: AppColors.bgColor,
-      snackBarTheme: SnackBarThemeData(backgroundColor: Colors.deepOrangeAccent),
+      snackBarTheme:
+          SnackBarThemeData(backgroundColor: Colors.deepOrangeAccent),
       textTheme: appTextTheme(),
-      appBarTheme: appBarTheme().appBarTheme.copyWith(iconTheme: IconThemeData(color: AppColors.vanillaShake)),
+      appBarTheme: appBarTheme()
+          .appBarTheme
+          .copyWith(iconTheme: IconThemeData(color: AppColors.vanillaShake)),
       inputDecorationTheme: appInputDecorationTheme());
 
   TextTheme appTextTheme() {
     return TextTheme(
-      headlineLarge: GoogleFonts.poppins(fontSize: 55.0, fontWeight: FontWeight.w700, color: AppColors.white),
-      headlineMedium: GoogleFonts.poppins(fontSize: 25.0, fontWeight: FontWeight.w700, color: AppColors.black),
-      headlineSmall: GoogleFonts.poppins(fontSize: 35.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
-      displayLarge: GoogleFonts.poppins(fontSize: 50.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
-      displayMedium: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
-      displaySmall: GoogleFonts.poppins(fontSize: 20.0, fontWeight: FontWeight.w700, color: AppColors.darkGrey),
-      bodyLarge: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w400, color: AppColors.black),
-      bodySmall: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
-      bodyMedium: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w500, color: AppColors.vanillaShake),
+      headlineLarge: GoogleFonts.poppins(
+          fontSize: 55.0, fontWeight: FontWeight.w700, color: AppColors.white),
+      headlineMedium: GoogleFonts.poppins(
+          fontSize: 25.0, fontWeight: FontWeight.w700, color: AppColors.black),
+      headlineSmall: GoogleFonts.poppins(
+          fontSize: 35.0,
+          fontWeight: FontWeight.w700,
+          color: AppColors.vanillaShake),
+      displayLarge: GoogleFonts.poppins(
+          fontSize: 50.0,
+          fontWeight: FontWeight.w700,
+          color: AppColors.vanillaShake),
+      displayMedium: GoogleFonts.poppins(
+          fontSize: 15.0,
+          fontWeight: FontWeight.w700,
+          color: AppColors.vanillaShake),
+      displaySmall: GoogleFonts.poppins(
+          fontSize: 20.0,
+          fontWeight: FontWeight.w700,
+          color: AppColors.darkGrey),
+      bodyLarge: GoogleFonts.poppins(
+          fontSize: 16.0, fontWeight: FontWeight.w400, color: AppColors.black),
+      bodySmall: GoogleFonts.poppins(
+          fontSize: 15.0,
+          fontWeight: FontWeight.w700,
+          color: AppColors.vanillaShake),
+      bodyMedium: GoogleFonts.poppins(
+          fontSize: 15.0,
+          fontWeight: FontWeight.w500,
+          color: AppColors.vanillaShake),
     );
   }
 
@@ -35,7 +59,9 @@ class AppThemeDark {
     return InputDecorationTheme(
       focusColor: AppColors.vanillaShake,
       hintStyle: TextStyle(color: Colors.grey),
-      border: OutlineInputBorder(borderSide: BorderSide(width: 10, color: AppColors.vanillaShake), borderRadius: BorderRadius.all(Radius.circular(15))),
+      border: OutlineInputBorder(
+          borderSide: BorderSide(width: 10, color: AppColors.vanillaShake),
+          borderRadius: BorderRadius.all(Radius.circular(15))),
     );
   }
 
