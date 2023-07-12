@@ -9,6 +9,7 @@ import 'package:akademi_bootcamp/product/profile_edit/profile_edit_view_model.da
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../core/components/dialogs/custom_alert_dialog.dart';
 import '../../core/components/image/profile_photo_widget.dart';
 import '../../core/components/textfield/user_info_edit_item.dart';
 
@@ -72,7 +73,7 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
       Uint8List bytes = file.readAsBytesSync();
       return CircleAvatar(radius: 75, backgroundColor: AppColors.bgColor, backgroundImage: MemoryImage(bytes));
     } else {
-      return ProfilePhotoWidget(radius: 75, photoUrl: AuthService.instance.currentUser?.photoUrl);
+      return ProfilePhotoWidget(radius: 75, photoUrl: _viewModel.imageRemoved ? null : AuthService.instance.currentUser?.photoUrl);
     }
   }
 
@@ -110,6 +111,26 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
         if (imageSource != null) {
           _viewModel.pickImage(imageSource);
           Navigator.of(context).pop();
+        } else {
+          showDialog(
+            barrierColor: Colors.black26,
+            context: context,
+            builder: (context) {
+              return CustomAlertDialog(
+                title: "Mevcut Fotoğrafı Kaldır",
+                description: "Fotoğrafı kaldırmak istediğine emin misin?",
+                approveButtonTitle: "Kaldır",
+                cancelButtonTitle: "Vazgeç",
+                approveOnTap: () {
+                  _viewModel.removeImage(context);
+                },
+                cancelOnTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+              );
+            },
+          );
         }
       },
       child: Padding(

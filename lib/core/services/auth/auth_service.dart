@@ -156,4 +156,10 @@ class AuthService {
     }
     return 0;
   }
+
+  Future<void> syncChangesAfterEdit() async {
+    userData = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: "users", docID: uid!);
+    currentUser = UserModel.fromJson(userData);
+    SharedPrefsManager.instance.setMapValue(SharedPrefsKeys.USER_DATA, userData ?? '');
+  }
 }

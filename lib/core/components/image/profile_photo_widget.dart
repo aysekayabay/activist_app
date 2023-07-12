@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../../constants/theme/theme_constants.dart';
 import '../../services/storage/storage_service.dart';
@@ -17,7 +16,7 @@ class _ProfilePhotoWidgetState extends State<ProfilePhotoWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Uint8List?>(
-      future: StorageService.instance.downloadPPic(AuthService.instance.currentUser?.photoUrl),
+      future: StorageService.instance.downloadPPic(widget.photoUrl),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {

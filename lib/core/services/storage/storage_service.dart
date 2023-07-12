@@ -44,4 +44,9 @@ class StorageService {
     Uint8List? uint8list = await _firebaseStorage.ref(photoUrl).getData();
     return uint8list;
   }
+
+  Future<void> deleteMedia(String mediaPath) async {
+    final reference = FirebaseStorage.instance.ref().child(mediaPath);
+    await reference.delete();
+  }
 }

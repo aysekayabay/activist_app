@@ -47,9 +47,9 @@ class GroupItemCard extends StatelessWidget {
 
   String message(String name, String message) {
     String? uid = AuthService.instance.uid;
-    if (lastMessage?.sentBy?.id == uid) {
+    if (lastMessage?.sentBy?.id == uid)
       return "Sen: $message";
-    }
+    else if (name.isEmpty && message.isEmpty) return "";
     return "$name: $message";
   }
 }

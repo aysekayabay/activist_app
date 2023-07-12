@@ -25,12 +25,36 @@ mixin _$ProfileEditViewModel on _ProfileEditViewModelBase, Store {
     });
   }
 
+  late final _$imageRemovedAtom =
+      Atom(name: '_ProfileEditViewModelBase.imageRemoved', context: context);
+
+  @override
+  bool get imageRemoved {
+    _$imageRemovedAtom.reportRead();
+    return super.imageRemoved;
+  }
+
+  @override
+  set imageRemoved(bool value) {
+    _$imageRemovedAtom.reportWrite(value, super.imageRemoved, () {
+      super.imageRemoved = value;
+    });
+  }
+
   late final _$pickImageAsyncAction =
       AsyncAction('_ProfileEditViewModelBase.pickImage', context: context);
 
   @override
   Future pickImage(ImageSource imageType) {
     return _$pickImageAsyncAction.run(() => super.pickImage(imageType));
+  }
+
+  late final _$removeImageAsyncAction =
+      AsyncAction('_ProfileEditViewModelBase.removeImage', context: context);
+
+  @override
+  Future removeImage(BuildContext context) {
+    return _$removeImageAsyncAction.run(() => super.removeImage(context));
   }
 
   late final _$_ProfileEditViewModelBaseActionController =
@@ -50,7 +74,8 @@ mixin _$ProfileEditViewModel on _ProfileEditViewModelBase, Store {
   @override
   String toString() {
     return '''
-pickedImage: ${pickedImage}
+pickedImage: ${pickedImage},
+imageRemoved: ${imageRemoved}
     ''';
   }
 }

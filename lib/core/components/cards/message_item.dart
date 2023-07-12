@@ -22,7 +22,7 @@ class MessageItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: sentByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
-            !noImage && !sentByMe ? Align(alignment: Alignment.topLeft, child: ProfilePhotoWidget(radius: 20, photoUrl: message.sentBy!.photoUrl)) : SizedBox(width: 40),
+            !noImage && !sentByMe ? Align(alignment: Alignment.topLeft, child: ProfilePhotoWidget(radius: 20, photoUrl: "ppics/${message.sentBy!.id}.jpg")) : SizedBox(width: 40),
             content(sentByMe, context),
           ],
         ),

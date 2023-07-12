@@ -188,7 +188,7 @@ class _ProfileViewState extends BaseState<ProfileView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(_viewModel.currentUser?.fullname ?? ''),
-              Row(children: [Image.asset(ImageConstants.LOCATION), Text("İstanbul")]),
+              Row(children: [Image.asset(ImageConstants.LOCATION), Text(_viewModel.currentUser?.city ?? 'Şehir seçilmedi')]),
               CircularProgressIndicator(backgroundColor: Colors.transparent, valueColor: AlwaysStoppedAnimation<Color>(AppColors.vanillaShake), value: 0.2)
             ],
           )
