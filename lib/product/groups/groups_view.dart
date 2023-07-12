@@ -106,7 +106,7 @@ class _GroupsViewState extends BaseState<GroupsView> {
         child: FutureBuilder<MessageModel?>(
           future: EventsService.instance.fetchLastMessage(filteredGroups[index].event!.id.toString()),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            if ((snapshot.connectionState == ConnectionState.done) && (snapshot.hasData || snapshot.data == null)) {
               MessageModel? lastMessage = snapshot.data;
               return GroupItemCard(
                 lastMessage: lastMessage,
