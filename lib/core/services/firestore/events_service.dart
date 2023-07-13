@@ -53,7 +53,6 @@ class EventsService {
     DateTime parsedDate = DateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(eventModel.start!);
     DateTime notificationDateOneDayBefore = parsedDate.subtract(Duration(days: 1));
     DateTime notificationDateSixHoursBefore = parsedDate.subtract(Duration(hours: 6));
-    DateTime test = parsedDate.subtract(Duration(days: 2, hours: 2, minutes: 48));
 
     if (notificationDateOneDayBefore.isAfter(DateTime.now())) {
       NotificationService.instance.scheduleNotification(
@@ -66,13 +65,6 @@ class EventsService {
       NotificationService.instance.scheduleNotification(
         scheduledNotificationDateTime: notificationDateSixHoursBefore,
         title: "Favori etkinliğine son 6 saat!",
-        body: "${eventModel.name} etkinliğine hazır mısın? Grupta neler konuşuluyor acaba?",
-      );
-    }
-    if (test.isAfter(DateTime.now())) {
-      NotificationService.instance.scheduleNotification(
-        scheduledNotificationDateTime: test,
-        title: "Favori etkinliğine son 3 saat!",
         body: "${eventModel.name} etkinliğine hazır mısın? Grupta neler konuşuluyor acaba?",
       );
     }
