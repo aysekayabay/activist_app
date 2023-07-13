@@ -9,22 +9,6 @@ part of 'mapbox_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
-  late final _$cardVisibleAtom =
-      Atom(name: '_MapBoxViewModelBase.cardVisible', context: context);
-
-  @override
-  bool get cardVisible {
-    _$cardVisibleAtom.reportRead();
-    return super.cardVisible;
-  }
-
-  @override
-  set cardVisible(bool value) {
-    _$cardVisibleAtom.reportWrite(value, super.cardVisible, () {
-      super.cardVisible = value;
-    });
-  }
-
   late final _$eventListAtom =
       Atom(name: '_MapBoxViewModelBase.eventList', context: context);
 
@@ -149,7 +133,6 @@ mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
   @override
   String toString() {
     return '''
-cardVisible: ${cardVisible},
 eventList: ${eventList},
 markerList: ${markerList},
 pageController: ${pageController},

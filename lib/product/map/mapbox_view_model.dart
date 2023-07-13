@@ -18,8 +18,6 @@ abstract class _MapBoxViewModelBase with Store {
   Position? currentPosition;
 
   @observable
-  bool cardVisible = false;
-  @observable
   List<EventModel> eventList = [];
   @observable
   List<Marker> markerList = [];
@@ -44,7 +42,7 @@ abstract class _MapBoxViewModelBase with Store {
         width: MARKER_SIZE_SHRINK,
         point: LatLng(double.parse(mapItem.venue?.lat ?? '0'), double.parse(mapItem.venue?.lng ?? '0')),
         builder: (context) {
-          return GestureDetector(onTap: () => onTap(i), child: LocationMarker(isSelected: cardVisible && i == selectedIndex, eventModel: mapItem));
+          return GestureDetector(onTap: () => onTap(i), child: LocationMarker(isSelected: i == selectedIndex, eventModel: mapItem));
         },
       ));
     }
@@ -53,16 +51,14 @@ abstract class _MapBoxViewModelBase with Store {
 
   @action
   Future<void> onTap(int index) async {
-    cardVisible = true;
-    if (pageController.hasClients) {
-      selectedIndex = index;
-      pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
-    }
+    selectedIndex = index;
+    pageController.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.ease);
   }
 
   @action
   Future<void> getEventList() async {
-    eventList = HiveManager.instance.getAllEvents();
+    List<EventModel> allEvents = HiveManager.instance.getAllEvents();
+    eventList = allEvents.where((event) => event.venue?.lat != null && event.venue?.lng != null).toList();
   }
 
   @action

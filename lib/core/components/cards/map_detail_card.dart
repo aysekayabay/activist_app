@@ -11,12 +11,13 @@ class MapDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 250,
       margin: EdgeInsets.symmetric(horizontal: 50),
       decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          cachedNetworkImageWidget(posterUrl: event.posterUrl, height: 120, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+          cachedNetworkImageWidget(posterUrl: event.posterUrl, height: 120, width: 250, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
           SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.all(8.0),

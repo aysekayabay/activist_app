@@ -1,7 +1,6 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/cards/map_detail_card.dart';
 import 'package:akademi_bootcamp/core/constants/api/api_constants.dart';
-import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/product/map/mapbox_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -33,7 +32,7 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
           FlutterMap(
             options: MapOptions(
                 maxZoom: 18,
-                minZoom: 11,
+                minZoom: 9,
                 zoom: 11,
                 center: _viewModel.currentPosition != null ? LatLng(_viewModel.currentPosition!.latitude, _viewModel.currentPosition!.longitude) : _viewModel.mapCenter),
             nonRotatedChildren: [
@@ -47,7 +46,7 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
               MarkerLayer(markers: _viewModel.markerList)
             ],
           ),
-          Visibility(visible: _viewModel.cardVisible, child: detailCardPageView(_viewModel.markerList))
+          detailCardPageView(_viewModel.markerList)
         ],
       );
     }));
@@ -55,18 +54,22 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
 
   Positioned detailCardPageView(List<Marker> _markers) {
     return Positioned(
-      top: AppSizes.highSize * 2,
+      top: 40,
       left: 0,
       right: 0,
       height: deviceHeight * 0.4,
-      child: PageView.builder(
-        controller: _viewModel.pageController,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: _markers.length,
-        itemBuilder: (context, index) {
-          final item = _viewModel.eventList[index];
-          return MapDetailCard(event: item);
-        },
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          controller: _viewModel.pageController,
+          itemCount: _markers.length,
+          itemBuilder: (context, index) {
+            final item = _viewModel.eventList[index];
+            return MapDetailCard(event: item);
+          },
+        ),
       ),
     );
   }
@@ -95,10 +98,10 @@ class LocationMarker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedContainer(
-        height: 30,
-        width: 30,
         // height: isSelected ? 60.0 : 30.0,
         // width: isSelected ? 60.0 : 30.0,
+        height: 30,
+        width: 30,
         duration: Duration(milliseconds: 400),
         child: Image.asset(eventModel.markerIcon ?? ImageConstants.HOME),
       ),

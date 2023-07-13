@@ -88,13 +88,15 @@ class _DetailPageState extends State<DetailPage> {
                 verticalPadding: AppSizes.mediumSize,
                 marginPadding: EdgeInsets.all(AppSizes.mediumSize),
                 onTap: () => _viewModel.goToTicketSelling(widget.eventModel.ticketUrl))),
-        Padding(
-          padding: EdgeInsets.only(right: AppSizes.mediumSize),
-          child: Observer(builder: (context) {
-            return GestureDetector(
-                onTap: () => _viewModel.favButton(widget.eventModel), child: Icon(_viewModel.isFav ? Icons.favorite_rounded : Icons.favorite_outline_rounded, color: AppColors.red, size: 32));
-          }),
-        ),
+        _viewModel.anon
+            ? SizedBox()
+            : Padding(
+                padding: EdgeInsets.only(right: AppSizes.mediumSize),
+                child: Observer(builder: (context) {
+                  return GestureDetector(
+                      onTap: () => _viewModel.favButton(widget.eventModel), child: Icon(_viewModel.isFav ? Icons.favorite_rounded : Icons.favorite_outline_rounded, color: AppColors.red, size: 32));
+                }),
+              ),
       ],
     );
   }
@@ -183,7 +185,7 @@ class _DetailPageState extends State<DetailPage> {
       children: [
         Icon(Icons.location_on, size: AppSizes.mediumSize, color: AppColors.vanillaShake),
         SizedBox(width: AppSizes.lowSize),
-        Text(location, style: TextStyle(color: AppColors.vanillaShake, fontSize: 15)),
+        Flexible(child: Text(location, overflow: TextOverflow.ellipsis, maxLines: 3, style: TextStyle(color: AppColors.vanillaShake, fontSize: 15))),
       ],
     );
   }

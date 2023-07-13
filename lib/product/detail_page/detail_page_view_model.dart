@@ -14,7 +14,7 @@ abstract class _DetailPageViewModelBase with Store {
   List<EventModel> favList = [];
   @observable
   bool isFav = false;
-
+  bool anon = AuthService.instance.uid == null;
   @action
   Future<void> favButton(EventModel event) async {
     if (!isFav) {
