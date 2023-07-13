@@ -81,7 +81,5 @@ abstract class _MapBoxViewModelBase with Store {
     await Geolocator.checkPermission();
     await Geolocator.requestPermission();
     currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-
-    print(currentPosition);
   }
 }

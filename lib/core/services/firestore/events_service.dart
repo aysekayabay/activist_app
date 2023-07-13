@@ -4,7 +4,9 @@ import 'package:akademi_bootcamp/core/model/message_model.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:akademi_bootcamp/core/services/firestore/firestore_manager.dart';
+import 'package:akademi_bootcamp/core/services/notification/notification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 import '../../model/event_model.dart';
 import '../../model/group_model.dart';
 
@@ -22,9 +24,11 @@ class EventsService {
       if (user.favEvents == null && adding) {
         favList.add(eventModel);
         user.favEvents = favList;
+        scheduleNotificationForEvent(eventModel);
       } else if (user.favEvents != null && adding) {
         favList = user.favEvents!;
         favList.add(eventModel);
+        scheduleNotificationForEvent(eventModel);
       } else {
         //removing
         favList = user.favEvents!;
@@ -43,6 +47,35 @@ class EventsService {
       return 1;
     }
     return 0;
+  }
+
+  void scheduleNotificationForEvent(EventModel eventModel) {
+    DateTime parsedDate = DateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(eventModel.start!);
+    DateTime notificationDateOneDayBefore = parsedDate.subtract(Duration(days: 1));
+    DateTime notificationDateSixHoursBefore = parsedDate.subtract(Duration(hours: 6));
+    DateTime test = parsedDate.subtract(Duration(days: 2, hours: 2, minutes: 48));
+
+    if (notificationDateOneDayBefore.isAfter(DateTime.now())) {
+      NotificationService.instance.scheduleNotification(
+        scheduledNotificationDateTime: notificationDateOneDayBefore,
+        title: "Favori etkinliğin yarın!",
+        body: "${eventModel.name} etkinliğine hazır mısın? Grupta neler konuşuluyor acaba?",
+      );
+    }
+    if (notificationDateSixHoursBefore.isAfter(DateTime.now())) {
+      NotificationService.instance.scheduleNotification(
+        scheduledNotificationDateTime: notificationDateSixHoursBefore,
+        title: "Favori etkinliğine son 6 saat!",
+        body: "${eventModel.name} etkinliğine hazır mısın? Grupta neler konuşuluyor acaba?",
+      );
+    }
+    if (test.isAfter(DateTime.now())) {
+      NotificationService.instance.scheduleNotification(
+        scheduledNotificationDateTime: test,
+        title: "Favori etkinliğine son 3 saat!",
+        body: "${eventModel.name} etkinliğine hazır mısın? Grupta neler konuşuluyor acaba?",
+      );
+    }
   }
 
   Stream<QuerySnapshot<Object?>>? fetchUserGroups() {

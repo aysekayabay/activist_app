@@ -41,7 +41,9 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
                 urlTemplate: "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
                 additionalOptions: {'accessToken': ApiConstants.MAPBOX_ACCESS_TOKEN, 'id': _viewModel.MAPBOX_STYLE},
               ),
-              _viewModel.currentPosition != null ? MarkerLayer(markers: [Marker(point: _viewModel.mapCenter, builder: (context) => userLocationMarker())]) : MarkerLayer(),
+              _viewModel.currentPosition != null
+                  ? MarkerLayer(markers: [Marker(point: LatLng(_viewModel.currentPosition!.latitude, _viewModel.currentPosition!.longitude), builder: (context) => userLocationMarker())])
+                  : MarkerLayer(),
               MarkerLayer(markers: _viewModel.markerList)
             ],
           ),
@@ -71,9 +73,11 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
 
   Container userLocationMarker() {
     return Container(
-      height: AppSizes.highSize,
-      width: AppSizes.highSize,
-      decoration: BoxDecoration(color: Color.fromARGB(255, 18, 155, 141), shape: BoxShape.circle),
+      child: Icon(
+        Icons.location_pin,
+        size: 30,
+        color: Color.fromARGB(255, 18, 155, 141),
+      ),
     );
   }
 
