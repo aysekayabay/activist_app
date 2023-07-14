@@ -54,18 +54,18 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                 onChanged: widget.onChanged,
                 controller: widget.controller,
                 obscureText: widget.isPassword ? obsecure : false,
-                style: TextStyle(color: AppColors.vanillaShake),
+                style: TextStyle(color: AppColors.vanillaShake, ),
                 focusNode: widget.focusNode,
                 maxLines: 1,
                 minLines: 1,
                 decoration: InputDecoration(
                   border: widget.isSearch ? InputBorder.none : null,
-                  hintStyle: Theme.of(context).textTheme.displayMedium,
+                  hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.darkGrey),
                   hintText: widget.hintText,
                   suffixIcon: Visibility(
                     visible: widget.isPassword,
                     child: IconButton(
-                      icon: Icon(obsecure ? Icons.visibility : Icons.visibility_off),
+                      icon: Icon(obsecure ? Icons.visibility : Icons.visibility_off, color: AppColors.darkGrey,),
                       onPressed: () {
                         setState(
                           () {

@@ -30,9 +30,9 @@ class VerticalEventCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(eventModel.name!, overflow: TextOverflow.ellipsis, style: TextStyle().copyWith(color: AppColors.vanillaShake)),
-                  Text(eventModel.start!.formattedDay + ', ' + eventModel.start!.formattedTime, style: TextStyle().copyWith(color: AppColors.vanillaShake)),
-                  Text(eventModel.venue!.name!, overflow: TextOverflow.ellipsis, style: TextStyle().copyWith(color: AppColors.vanillaShake))
+                  Text(eventModel.name!, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.vanillaShake, )),
+                  Text(eventModel.start!.formattedDay + ', ' + eventModel.start!.formattedTime, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.vanillaShake, )),
+                  Text(eventModel.venue!.name!, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.vanillaShake, ))
                 ],
               ),
             ),
