@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'detail_page_view_model.dart';
+part of 'detail_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'detail_page_view_model.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$DetailPageViewModel on _DetailPageViewModelBase, Store {
+mixin _$DetailViewModel on _DetailViewModelBase, Store {
   late final _$favListAtom =
-      Atom(name: '_DetailPageViewModelBase.favList', context: context);
+      Atom(name: '_DetailViewModelBase.favList', context: context);
 
   @override
   List<EventModel> get favList {
@@ -26,7 +26,7 @@ mixin _$DetailPageViewModel on _DetailPageViewModelBase, Store {
   }
 
   late final _$isFavAtom =
-      Atom(name: '_DetailPageViewModelBase.isFav', context: context);
+      Atom(name: '_DetailViewModelBase.isFav', context: context);
 
   @override
   bool get isFav {
@@ -42,51 +42,51 @@ mixin _$DetailPageViewModel on _DetailPageViewModelBase, Store {
   }
 
   late final _$itemsAtom =
-      Atom(name: '_DetailPageViewModelBase.items', context: context);
+      Atom(name: '_DetailViewModelBase.items', context: context);
 
   @override
-  List<Item> get items {
+  List<EventExpandedItem> get items {
     _$itemsAtom.reportRead();
     return super.items;
   }
 
   @override
-  set items(List<Item> value) {
+  set items(List<EventExpandedItem> value) {
     _$itemsAtom.reportWrite(value, super.items, () {
       super.items = value;
     });
   }
 
   late final _$favButtonAsyncAction =
-      AsyncAction('_DetailPageViewModelBase.favButton', context: context);
+      AsyncAction('_DetailViewModelBase.favButton', context: context);
 
   @override
   Future<void> favButton(EventModel event) {
     return _$favButtonAsyncAction.run(() => super.favButton(event));
   }
 
-  late final _$_DetailPageViewModelBaseActionController =
-      ActionController(name: '_DetailPageViewModelBase', context: context);
+  late final _$_DetailViewModelBaseActionController =
+      ActionController(name: '_DetailViewModelBase', context: context);
 
   @override
   dynamic changeExpansion(int index, bool isExpanded) {
-    final _$actionInfo = _$_DetailPageViewModelBaseActionController.startAction(
-        name: '_DetailPageViewModelBase.changeExpansion');
+    final _$actionInfo = _$_DetailViewModelBaseActionController.startAction(
+        name: '_DetailViewModelBase.changeExpansion');
     try {
       return super.changeExpansion(index, isExpanded);
     } finally {
-      _$_DetailPageViewModelBaseActionController.endAction(_$actionInfo);
+      _$_DetailViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic init(EventModel eventModel) {
-    final _$actionInfo = _$_DetailPageViewModelBaseActionController.startAction(
-        name: '_DetailPageViewModelBase.init');
+    final _$actionInfo = _$_DetailViewModelBaseActionController.startAction(
+        name: '_DetailViewModelBase.init');
     try {
       return super.init(eventModel);
     } finally {
-      _$_DetailPageViewModelBaseActionController.endAction(_$actionInfo);
+      _$_DetailViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 

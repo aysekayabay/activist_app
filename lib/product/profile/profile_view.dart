@@ -2,13 +2,15 @@ import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
-import 'package:akademi_bootcamp/product/detail_page/detail_page.dart';
+import 'package:akademi_bootcamp/product/detail_page/detail_view.dart';
 import 'package:akademi_bootcamp/product/profile/profile_view_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import '../../core/components/app_bar/custom_app_bar.dart';
 import '../../core/components/cards/group_item_card.dart';
+import '../../core/components/circular_progress/event_rate_widget.dart';
 import '../../core/components/image/profile_photo_widget.dart';
 import '../../core/constants/image/image_constants.dart';
 import '../../core/constants/theme/theme_constants.dart';
@@ -66,6 +68,7 @@ class _ProfileViewState extends BaseState<ProfileView> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<GroupModel> groupList = snapshot.data!.docs.map((doc) => GroupModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
+              _viewModel.countFavEventCategories(groupList);
               return Container(
                 width: deviceWidth,
                 height: deviceHeight,
@@ -73,16 +76,15 @@ class _ProfileViewState extends BaseState<ProfileView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      child: ListView.builder(
-                          physics: BouncingScrollPhysics(),
-                          itemCount: groupList.isNotEmpty ? groupList.length : 0,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: slidableItem(groupList[index], context),
-                            );
-                          }),
-                    ),
+                        child: ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: groupList.isNotEmpty ? groupList.length : 0,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 10.0),
+                                child: slidableItem(groupList[index], context),
+                              );
+                            })),
                   ],
                 ),
               );
@@ -105,7 +107,7 @@ class _ProfileViewState extends BaseState<ProfileView> {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   if (groupModel.event != null) {
-                    return DetailPage(eventModel: groupModel.event!);
+                    return DetailView(eventModel: groupModel.event!);
                   }
                   return SizedBox();
                 },
@@ -171,9 +173,7 @@ class _ProfileViewState extends BaseState<ProfileView> {
 
   Padding label() {
     return Padding(
-      padding: EdgeInsets.only(
-        left: AppSizes.mediumSize,
-      ),
+      padding: EdgeInsets.only(left: AppSizes.mediumSize, bottom: AppSizes.mediumSize),
       child: Text("Favorilerim", style: themeData.textTheme.headlineSmall),
     );
   }
@@ -182,19 +182,41 @@ class _ProfileViewState extends BaseState<ProfileView> {
     return Padding(
       padding: EdgeInsets.all(20),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ProfilePhotoWidget(radius: 50, photoUrl: AuthService.instance.currentUser?.photoUrl),
-          SizedBox(
-            width: 20,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(_viewModel.currentUser?.fullname ?? ''),
-              Row(children: [Image.asset(ImageConstants.LOCATION), Text(_viewModel.currentUser?.city ?? 'Şehir seçilmedi')]),
-              CircularProgressIndicator(backgroundColor: Colors.transparent, valueColor: AlwaysStoppedAnimation<Color>(AppColors.vanillaShake), value: 0.2)
-            ],
-          )
+          SizedBox(width: AppSizes.mediumSize),
+          Observer(builder: (_) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(_viewModel.currentUser?.fullname ?? '', style: themeData.textTheme.displayMedium!.copyWith(fontSize: 16)),
+                SizedBox(height: 5),
+                Row(children: [Image.asset(ImageConstants.LOCATION), SizedBox(width: 5), Text(_viewModel.currentUser?.city ?? 'Şehir seçilmedi', style: themeData.textTheme.bodyMedium)]),
+                SizedBox(height: 10),
+                _viewModel.isLoading
+                    ? SizedBox()
+                    : SizedBox(
+                        width: deviceWidth - AppSizes.mediumSize - 100 - 40,
+                        height: 80,
+                        child: ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: _viewModel.categoryCountMap.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            String key = _viewModel.categoryCountMap.keys.toList()[index];
+                            int? count = _viewModel.categoryCountMap[key];
+                            return EventRateWidget(
+                              number: count ?? 0,
+                              size: 40,
+                              eventCategory: key,
+                            );
+                          },
+                        ),
+                      )
+              ],
+            );
+          })
         ],
       ),
     );

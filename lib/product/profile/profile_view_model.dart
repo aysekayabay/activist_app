@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../core/model/group_model.dart';
-import '../../core/services/storage/storage_service.dart';
 part 'profile_view_model.g.dart';
 
 class ProfileViewModel = _ProfileViewModelBase with _$ProfileViewModel;
@@ -21,9 +20,6 @@ abstract class _ProfileViewModelBase with Store {
   Future<Uint8List?>? ppicFuture;
 
   @observable
-  List<GroupModel> favEventsGroups = [];
-
-  @observable
   bool isLoading = true;
 
   @action
@@ -33,8 +29,26 @@ abstract class _ProfileViewModelBase with Store {
   leaveGroup(BuildContext context, EventModel? eventModel) {
     if (currentUser != null && currentUser!.userID != null && eventModel != null) {
       EventsService.instance.leaveChatGroup(eventModel.id.toString(), currentUser!.userID!);
-      favEventsGroups.removeWhere((group) => group.event?.id == eventModel.id);
     }
+  }
+
+  @observable
+  Map<String, int> categoryCountMap = {};
+
+  @action
+  countFavEventCategories(List<GroupModel> favEventsGroups) {
+    categoryCountMap.clear();
+    for (GroupModel group in favEventsGroups) {
+      String? category = group.event?.category?.name;
+      if (category != null) {
+        if (categoryCountMap.containsKey(category)) {
+          categoryCountMap[category.toString()] = categoryCountMap[category]! + 1;
+        } else {
+          categoryCountMap[category.toString()] = 1;
+        }
+      }
+    }
+    isLoading = false;
   }
 
   @action
@@ -45,12 +59,17 @@ abstract class _ProfileViewModelBase with Store {
   }
 
   @action
-  init() async {
-    ppicFuture = StorageService.instance.downloadPPic(AuthService.instance.currentUser?.photoUrl);
-  }
-
-  @action
   removeFav(EventModel eventModel) {
     EventsService.instance.updateUserFavList(eventModel, false);
+    String? category = eventModel.category?.name;
+    if (category != null && categoryCountMap.containsKey(category)) {
+      int count = categoryCountMap[category] ?? 0;
+      if (count > 0) {
+        categoryCountMap[category] = count - 1;
+      }
+      // if (count == 1) {
+      //   categoryCountMap.remove(category);
+      // }
+    }
   }
 }

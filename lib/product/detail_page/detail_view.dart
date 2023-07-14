@@ -5,20 +5,21 @@ import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
-import 'package:akademi_bootcamp/product/detail_page/detail_page_view_model.dart';
+import 'package:akademi_bootcamp/core/model/expanded_item.dart';
+import 'package:akademi_bootcamp/product/detail_page/detail_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class DetailPage extends StatefulWidget {
+class DetailView extends StatefulWidget {
   final EventModel eventModel;
-  const DetailPage({super.key, required this.eventModel});
+  const DetailView({super.key, required this.eventModel});
 
   @override
-  State<DetailPage> createState() => _DetailPageState();
+  State<DetailView> createState() => _DetailViewState();
 }
 
-class _DetailPageState extends BaseState<DetailPage> {
-  DetailPageViewModel _viewModel = DetailPageViewModel();
+class _DetailViewState extends BaseState<DetailView> {
+  DetailViewModel _viewModel = DetailViewModel();
   @override
   void initState() {
     super.initState();
@@ -53,7 +54,7 @@ class _DetailPageState extends BaseState<DetailPage> {
         expandedHeaderPadding: EdgeInsets.zero,
         elevation: 1,
         animationDuration: Duration(milliseconds: 300),
-        children: _viewModel.items.map<ExpansionPanel>((Item item) {
+        children: _viewModel.items.map<ExpansionPanel>((EventExpandedItem item) {
           return ExpansionPanel(
             backgroundColor: AppColors.vanillaShake,
             headerBuilder: (BuildContext context, bool isExpanded) {

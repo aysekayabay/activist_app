@@ -4,7 +4,7 @@ import 'package:mobx/mobx.dart';
 import '../../core/memory/hive_manager.dart';
 import '../../core/services/api/etkinlikIO_service.dart';
 import '../../core/services/auth/auth_service.dart';
-import '../detail_page/detail_page.dart';
+import '../detail_page/detail_view.dart';
 part 'home_view_model.g.dart';
 
 class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
@@ -110,7 +110,7 @@ abstract class _HomeViewModelBase with Store {
     focusNode.unfocus();
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return DetailPage(eventModel: eventModel);
+        return DetailView(eventModel: eventModel);
       },
     ));
   }

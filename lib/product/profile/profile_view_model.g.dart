@@ -41,22 +41,6 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     });
   }
 
-  late final _$favEventsGroupsAtom =
-      Atom(name: '_ProfileViewModelBase.favEventsGroups', context: context);
-
-  @override
-  List<GroupModel> get favEventsGroups {
-    _$favEventsGroupsAtom.reportRead();
-    return super.favEventsGroups;
-  }
-
-  @override
-  set favEventsGroups(List<GroupModel> value) {
-    _$favEventsGroupsAtom.reportWrite(value, super.favEventsGroups, () {
-      super.favEventsGroups = value;
-    });
-  }
-
   late final _$isLoadingAtom =
       Atom(name: '_ProfileViewModelBase.isLoading', context: context);
 
@@ -73,12 +57,20 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     });
   }
 
-  late final _$initAsyncAction =
-      AsyncAction('_ProfileViewModelBase.init', context: context);
+  late final _$categoryCountMapAtom =
+      Atom(name: '_ProfileViewModelBase.categoryCountMap', context: context);
 
   @override
-  Future init() {
-    return _$initAsyncAction.run(() => super.init());
+  Map<String, int> get categoryCountMap {
+    _$categoryCountMapAtom.reportRead();
+    return super.categoryCountMap;
+  }
+
+  @override
+  set categoryCountMap(Map<String, int> value) {
+    _$categoryCountMapAtom.reportWrite(value, super.categoryCountMap, () {
+      super.categoryCountMap = value;
+    });
   }
 
   late final _$_ProfileViewModelBaseActionController =
@@ -101,6 +93,17 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
         name: '_ProfileViewModelBase.leaveGroup');
     try {
       return super.leaveGroup(context, eventModel);
+    } finally {
+      _$_ProfileViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic countFavEventCategories(List<GroupModel> favEventsGroups) {
+    final _$actionInfo = _$_ProfileViewModelBaseActionController.startAction(
+        name: '_ProfileViewModelBase.countFavEventCategories');
+    try {
+      return super.countFavEventCategories(favEventsGroups);
     } finally {
       _$_ProfileViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -133,8 +136,8 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     return '''
 currentUser: ${currentUser},
 ppicFuture: ${ppicFuture},
-favEventsGroups: ${favEventsGroups},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+categoryCountMap: ${categoryCountMap}
     ''';
   }
 }

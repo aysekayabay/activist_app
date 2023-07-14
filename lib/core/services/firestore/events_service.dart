@@ -43,7 +43,9 @@ class EventsService {
       if (adding && eventModel.id != null && user.userID != null) {
         joinChatGroup(eventModel, user.userID!);
       }
-      print(user.favEvents?.length ?? '');
+      if (favList.isEmpty) {
+        return -1; // there is no fav
+      }
       return 1;
     }
     return 0;

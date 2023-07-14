@@ -1,4 +1,5 @@
 import 'package:akademi_bootcamp/core/base/extensions/html_parser.dart';
+import 'package:akademi_bootcamp/core/model/expanded_item.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:akademi_bootcamp/core/services/firestore/events_service.dart';
@@ -6,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/model/event_model.dart';
-part 'detail_page_view_model.g.dart';
+part 'detail_view_model.g.dart';
 
-class DetailPageViewModel = _DetailPageViewModelBase with _$DetailPageViewModel;
+class DetailViewModel = _DetailViewModelBase with _$DetailViewModel;
 
-abstract class _DetailPageViewModelBase with Store {
+abstract class _DetailViewModelBase with Store {
   List<Color> gradientColors = [
     Color(0xff323232),
     Color(0xff323232),
@@ -54,7 +55,7 @@ abstract class _DetailPageViewModelBase with Store {
   bool anon = AuthService.instance.uid == null;
 
   @observable
-  List<Item> items = ObservableList<Item>();
+  List<EventExpandedItem> items = ObservableList<EventExpandedItem>();
 
   @action
   changeExpansion(int index, bool isExpanded) {
@@ -80,8 +81,8 @@ abstract class _DetailPageViewModelBase with Store {
     }
     isFav = favList.any((event) => event.id == eventModel.id);
     items = [
-      Item(headerValue: 'Etkinlik Bilgisi', expandedValue: eventModel.content != null ? eventModel.content.toString().parseHtml() : ""),
-      Item(
+      EventExpandedItem(headerValue: 'Etkinlik Bilgisi', expandedValue: eventModel.content != null ? eventModel.content.toString().parseHtml() : ""),
+      EventExpandedItem(
           headerValue: 'Mekan Bilgisi',
           expandedValue: (eventModel.venue != null && eventModel.venue!.about != null ? eventModel.venue!.about.toString() : "") +
               (eventModel.venue != null && eventModel.venue!.address != null ? eventModel.venue!.address.toString() : "")),
@@ -99,12 +100,4 @@ abstract class _DetailPageViewModelBase with Store {
       }
     }
   }
-}
-
-class Item {
-  Item({required this.headerValue, required this.expandedValue, this.isExpanded = false});
-
-  String headerValue;
-  String expandedValue;
-  bool isExpanded;
 }
