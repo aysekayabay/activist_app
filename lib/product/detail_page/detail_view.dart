@@ -86,6 +86,7 @@ class _DetailViewState extends BaseState<DetailView> {
                 isFilled: true,
                 verticalPadding: AppSizes.mediumSize,
                 marginPadding: EdgeInsets.all(AppSizes.mediumSize),
+                textStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.black, fontSize: 16),
                 onTap: () => _viewModel.goToTicketSelling(widget.eventModel.ticketUrl))),
         _viewModel.anon
             ? SizedBox()

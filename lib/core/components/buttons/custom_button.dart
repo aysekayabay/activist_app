@@ -10,8 +10,9 @@ class CustomButton extends StatefulWidget {
   final double? horizontalPadding;
   final double? verticalPadding;
   final String? iconPath;
+  final TextStyle? textStyle;
   final EdgeInsetsGeometry? marginPadding;
-  CustomButton({super.key, required this.title, required this.isFilled, this.marginPadding, this.onTap, this.iconPath, this.horizontalPadding, this.verticalPadding});
+  CustomButton({super.key, required this.title, required this.isFilled, this.marginPadding, this.onTap, this.iconPath, this.horizontalPadding, this.verticalPadding, this.textStyle});
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -31,7 +32,7 @@ class _CustomButtonState extends State<CustomButton> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 widget.iconPath != null ? Image.asset(widget.iconPath.toString()) : SizedBox(),
-                Text(widget.title, style: Theme.of(context).textTheme.displayLarge!.copyWith(color: widget.isFilled ? AppColors.black : AppColors.vanillaShake, fontSize: 16)),
+                Text(widget.title, style: widget.textStyle ?? Theme.of(context).textTheme.displayMedium!.copyWith(color: widget.isFilled ? AppColors.black : AppColors.vanillaShake)),
               ],
             ),
           ),
