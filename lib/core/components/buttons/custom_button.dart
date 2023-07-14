@@ -31,7 +31,7 @@ class _CustomButtonState extends State<CustomButton> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 widget.iconPath != null ? Image.asset(widget.iconPath.toString()) : SizedBox(),
-                Text(widget.title, style: Theme.of(context).textTheme.displayMedium!.copyWith(color: widget.isFilled ? AppColors.black : AppColors.vanillaShake)),
+                Text(widget.title, style: Theme.of(context).textTheme.displayLarge!.copyWith(color: widget.isFilled ? AppColors.black : AppColors.vanillaShake, fontSize: 16)),
               ],
             ),
           ),

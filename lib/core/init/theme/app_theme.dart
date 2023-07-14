@@ -9,7 +9,6 @@ class AppThemeDark {
       fontFamily: 'Poppins',
       textSelectionTheme: TextSelectionThemeData(selectionColor: Colors.red),
       colorScheme: appColorSheme(),
-      expansionTileTheme: ExpansionTileThemeData(iconColor: Colors.red, textColor: Colors.red, collapsedTextColor: Colors.red, backgroundColor: Colors.red,),
       scaffoldBackgroundColor: AppColors.bgColor,
       snackBarTheme: SnackBarThemeData(backgroundColor: Colors.deepOrangeAccent),
       textTheme: appTextTheme(),

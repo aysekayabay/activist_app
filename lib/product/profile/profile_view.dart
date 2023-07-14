@@ -26,6 +26,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends BaseState<ProfileView> {
   ProfileViewModel _viewModel = ProfileViewModel();
+  late List<GroupModel> groupList;
 
   @override
   Widget build(BuildContext context) {
@@ -61,40 +62,46 @@ class _ProfileViewState extends BaseState<ProfileView> {
               ));
   }
 
-  Expanded events() {
-    return Expanded(
-      child: StreamBuilder<QuerySnapshot>(
-          stream: EventsService.instance.fetchUserGroups(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<GroupModel> groupList = snapshot.data!.docs.map((doc) => GroupModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
-              _viewModel.countFavEventCategories(groupList);
-              return Container(
-                width: deviceWidth,
-                height: deviceHeight,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                        child: ListView.builder(
-                            physics: BouncingScrollPhysics(),
-                            itemCount: groupList.isNotEmpty ? groupList.length : 0,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: slidableItem(groupList[index], context),
-                              );
-                            })),
-                  ],
-                ),
-              );
-            } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return SizedBox(height: deviceHeight, child: Center(child: CircularProgressIndicator()));
-            } else {
-              return SizedBox(height: deviceHeight, child: Center(child: Text("Henüz bir etkinliği favoriye almadın..")));
-            }
-          }),
-    );
+  Widget events() {
+    return Observer(builder: (_) {
+      return Visibility(
+        visible: !_viewModel.noEvent,
+        child: Expanded(
+          child: StreamBuilder<QuerySnapshot>(
+              stream: EventsService.instance.fetchUserGroups(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  groupList = snapshot.data!.docs.map((doc) => GroupModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
+                  _viewModel.countFavEventCategories(groupList);
+                  return Container(
+                    width: deviceWidth,
+                    height: deviceHeight,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                              physics: BouncingScrollPhysics(),
+                              itemCount: groupList.isNotEmpty ? groupList.length : 0,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: slidableItem(groupList[index], context),
+                                );
+                              }),
+                        ),
+                      ],
+                    ),
+                  );
+                } else if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SizedBox(height: deviceHeight, child: Center(child: CircularProgressIndicator()));
+                } else {
+                  return SizedBox(height: deviceHeight, child: Center(child: Text("Henüz bir etkinliği favoriye almadın..")));
+                }
+              }),
+        ),
+      );
+    });
   }
 
   Slidable slidableItem(GroupModel groupModel, BuildContext context) {
@@ -121,9 +128,9 @@ class _ProfileViewState extends BaseState<ProfileView> {
       children: [
         SlidableAction(
           padding: EdgeInsets.zero,
-          onPressed: (context) {
+          onPressed: (context) async {
             if (groupModel.event != null) {
-              _viewModel.removeFav(groupModel.event!);
+              await _viewModel.removeFav(groupModel.event!);
               setState(() {});
             }
           },
@@ -206,10 +213,13 @@ class _ProfileViewState extends BaseState<ProfileView> {
                           itemBuilder: (context, index) {
                             String key = _viewModel.categoryCountMap.keys.toList()[index];
                             int? count = _viewModel.categoryCountMap[key];
-                            return EventRateWidget(
-                              number: count ?? 0,
-                              size: 40,
-                              eventCategory: key,
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 10.0),
+                              child: EventRateWidget(
+                                number: count ?? 0,
+                                size: 40,
+                                eventCategory: key,
+                              ),
                             );
                           },
                         ),

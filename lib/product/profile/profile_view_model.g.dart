@@ -57,6 +57,22 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     });
   }
 
+  late final _$noEventAtom =
+      Atom(name: '_ProfileViewModelBase.noEvent', context: context);
+
+  @override
+  bool get noEvent {
+    _$noEventAtom.reportRead();
+    return super.noEvent;
+  }
+
+  @override
+  set noEvent(bool value) {
+    _$noEventAtom.reportWrite(value, super.noEvent, () {
+      super.noEvent = value;
+    });
+  }
+
   late final _$categoryCountMapAtom =
       Atom(name: '_ProfileViewModelBase.categoryCountMap', context: context);
 
@@ -71,6 +87,14 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     _$categoryCountMapAtom.reportWrite(value, super.categoryCountMap, () {
       super.categoryCountMap = value;
     });
+  }
+
+  late final _$removeFavAsyncAction =
+      AsyncAction('_ProfileViewModelBase.removeFav', context: context);
+
+  @override
+  Future removeFav(EventModel eventModel) {
+    return _$removeFavAsyncAction.run(() => super.removeFav(eventModel));
   }
 
   late final _$_ProfileViewModelBaseActionController =
@@ -99,17 +123,6 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
   }
 
   @override
-  dynamic countFavEventCategories(List<GroupModel> favEventsGroups) {
-    final _$actionInfo = _$_ProfileViewModelBaseActionController.startAction(
-        name: '_ProfileViewModelBase.countFavEventCategories');
-    try {
-      return super.countFavEventCategories(favEventsGroups);
-    } finally {
-      _$_ProfileViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   dynamic joinGroup(BuildContext context, EventModel? eventModel) {
     final _$actionInfo = _$_ProfileViewModelBaseActionController.startAction(
         name: '_ProfileViewModelBase.joinGroup');
@@ -121,11 +134,11 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
   }
 
   @override
-  dynamic removeFav(EventModel eventModel) {
+  dynamic countFavEventCategories(List<GroupModel> favEventsGroups) {
     final _$actionInfo = _$_ProfileViewModelBaseActionController.startAction(
-        name: '_ProfileViewModelBase.removeFav');
+        name: '_ProfileViewModelBase.countFavEventCategories');
     try {
-      return super.removeFav(eventModel);
+      return super.countFavEventCategories(favEventsGroups);
     } finally {
       _$_ProfileViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -137,6 +150,7 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
 currentUser: ${currentUser},
 ppicFuture: ${ppicFuture},
 isLoading: ${isLoading},
+noEvent: ${noEvent},
 categoryCountMap: ${categoryCountMap}
     ''';
   }
