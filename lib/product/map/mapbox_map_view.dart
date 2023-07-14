@@ -57,7 +57,7 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
       top: 40,
       left: 0,
       right: 0,
-      height: deviceHeight * 0.4,
+      height: deviceHeight * 0.5,
       child: Container(
         padding: EdgeInsets.all(10),
         child: ListView.builder(

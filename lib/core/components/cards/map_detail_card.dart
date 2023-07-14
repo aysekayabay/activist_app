@@ -11,21 +11,18 @@ class MapDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 250,
       margin: EdgeInsets.symmetric(horizontal: 50),
-      decoration: BoxDecoration(
-          color: Colors.blueGrey[300],
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+      decoration: BoxDecoration(color: Colors.blueGrey[300], borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          cachedNetworkImageWidget(
-              posterUrl: event.posterUrl,
-              height: 150,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+          cachedNetworkImageWidget(posterUrl: event.posterUrl, height: 150, borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
           SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(padding: EdgeInsets.symmetric(horizontal: 8)),
@@ -36,10 +33,7 @@ class MapDetailCard extends StatelessWidget {
                   maxLines: 1,
                 ),
                 SizedBox(height: 5),
-                Text(event.venue?.name ?? '',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium),
+                Text(event.venue?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.bodyMedium),
                 SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,8 +41,7 @@ class MapDetailCard extends StatelessWidget {
                     dateWidget(event.start.toString().formattedDate),
                     Column(
                       children: [
-                        Icon(Icons.favorite,
-                            size: AppSizes.mediumSize, color: AppColors.red),
+                        Icon(Icons.favorite, size: AppSizes.mediumSize, color: AppColors.red),
                         Text(
                           '123',
                           style: TextStyle(fontSize: 10),
@@ -58,9 +51,7 @@ class MapDetailCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 5),
-                timeWidget(event.start.toString().formattedTime +
-                    "-" +
-                    event.end.toString().formattedTime),
+                timeWidget(event.start.toString().formattedTime + "-" + event.end.toString().formattedTime),
               ],
             ),
           ),
@@ -92,14 +83,9 @@ class MapDetailCard extends StatelessWidget {
     return Row(
       children: [
         Padding(padding: EdgeInsets.all(8)),
-        Icon(Icons.access_time,
-            size: AppSizes.mediumSize, color: AppColors.vanillaShake),
+        Icon(Icons.access_time, size: AppSizes.mediumSize, color: AppColors.vanillaShake),
         SizedBox(width: AppSizes.lowSize),
-        Text(time,
-            style: TextStyle(
-                color: AppColors.vanillaShake,
-                fontSize: 14,
-                fontWeight: FontWeight.w400)),
+        Text(time, style: TextStyle(color: AppColors.vanillaShake, fontSize: 14, fontWeight: FontWeight.w400)),
       ],
     );
   }
@@ -108,14 +94,9 @@ class MapDetailCard extends StatelessWidget {
     return Row(
       children: [
         Padding(padding: EdgeInsets.all(8)),
-        Icon(Icons.calendar_month,
-            size: AppSizes.mediumSize, color: AppColors.vanillaShake),
+        Icon(Icons.calendar_month, size: AppSizes.mediumSize, color: AppColors.vanillaShake),
         SizedBox(width: AppSizes.lowSize),
-        Text(date,
-            style: TextStyle(
-                color: AppColors.vanillaShake,
-                fontSize: 14,
-                fontWeight: FontWeight.w400)),
+        Text(date, style: TextStyle(color: AppColors.vanillaShake, fontSize: 14, fontWeight: FontWeight.w400)),
       ],
     );
   }

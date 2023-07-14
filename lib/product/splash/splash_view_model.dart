@@ -47,7 +47,7 @@ class SplashViewmodel {
     bool openedBefore = SharedPrefsManager.instance.getBoolValue(SharedPrefsKeys.OPENED_BEFORE);
     if (!openedBefore) {
       SharedPrefsManager.instance.setBoolValue(SharedPrefsKeys.OPENED_BEFORE, true);
-      return NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.ONBOARD);
+      return NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.WELCOME);
     } else {
       var uid = SharedPrefsManager.instance.getStringValue(SharedPrefsKeys.UID);
       if (uid != '') {

@@ -42,7 +42,12 @@ class HorizontalEventCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               cachedNetworkImageWidget(posterUrl: eventModel.posterUrl, height: deviceHeight / 4, borderRadius: AppRadius.primaryRadius),
-              Text(eventModel.name!, maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.displaySmall!.copyWith(color: AppColors.white, )),
+              Text(eventModel.name!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                        color: AppColors.white,
+                      )),
               Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
               dateWidget(context),
               timeWidget(context),
@@ -59,7 +64,12 @@ class HorizontalEventCard extends StatelessWidget {
       children: [
         Image.asset(ImageConstants.LOCATION),
         SizedBox(width: AppSizes.lowSize / 2),
-        Flexible(child: Text(eventModel.venue!.name.toString(), overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.white, ))),
+        Flexible(
+            child: Text(eventModel.venue!.name.toString(),
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: AppColors.white,
+                    ))),
       ],
     );
   }
@@ -69,7 +79,10 @@ class HorizontalEventCard extends StatelessWidget {
       children: [
         Icon(Icons.access_time_filled_rounded, color: AppColors.vanillaShake, size: 18),
         SizedBox(width: AppSizes.lowSize / 2),
-        Text(eventModel.start!.formattedTime + '-' + eventModel.end!.formattedTime, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.white, )),
+        Text(eventModel.start!.formattedTime + '-' + eventModel.end!.formattedTime,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: AppColors.white,
+                )),
       ],
     );
   }
@@ -79,7 +92,10 @@ class HorizontalEventCard extends StatelessWidget {
       children: [
         Icon(Icons.calendar_month_rounded, color: AppColors.vanillaShake, size: 18),
         SizedBox(width: AppSizes.lowSize / 2),
-        Text(eventModel.start!.formattedDate, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppColors.white, )),
+        Text(eventModel.start!.formattedDate,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: AppColors.white,
+                )),
       ],
     );
   }

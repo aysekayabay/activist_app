@@ -75,7 +75,7 @@ class _AuthViewState extends State<AuthView> {
           Positioned(
               left: 20,
               top: 150,
-              child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: Theme.of(context).textTheme.displayLarge!.copyWith(color: AppColors.vanillaShake))),
+              child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.vanillaShake))),
           Positioned(
               bottom: 0,
               left: 0,

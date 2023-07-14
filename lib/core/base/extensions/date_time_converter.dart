@@ -8,7 +8,7 @@ extension DateConverter on String {
 
   String get formattedTime {
     DateTime _inputDate = DateTime.parse(this).toLocal();
-    return DateFormat.Hm("en_EN").format(_inputDate);
+    return DateFormat.Hm("tr_TR").format(_inputDate);
   }
 
   String get formattedDay {
