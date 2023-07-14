@@ -1,4 +1,5 @@
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
+import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
@@ -16,7 +17,7 @@ class DetailPage extends StatefulWidget {
   State<DetailPage> createState() => _DetailPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPageState extends BaseState<DetailPage> {
   DetailPageViewModel _viewModel = DetailPageViewModel();
   @override
   void initState() {
@@ -27,53 +28,50 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     String buyText = 'Bilet Satın Al';
-    int peopleCount = 8;
-    List<Color> gradientColors = [
-      Color(0xff323232),
-      Color(0xff323232),
-      Color(0xff323232),
-      Color(0xff323232),
-      Color(0xff323232).withOpacity(0.99),
-      Color(0xff323232).withOpacity(0.95),
-      Color(0xff323232).withOpacity(0.89),
-      Color(0xff323232).withOpacity(0.82),
-      Color(0xff323232).withOpacity(0.74),
-      Color(0xff323232).withOpacity(0.65),
-      Color(0xff323232).withOpacity(0.55),
-      Color(0xff323232).withOpacity(0.44),
-      Color(0xff323232).withOpacity(0.32),
-      Color(0xff323232).withOpacity(0.19),
-      Color(0xff323232).withOpacity(0.05),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-      Color(0xff323232).withOpacity(0),
-    ];
+    // int peopleCount = 8;
+
     return Scaffold(
       backgroundColor: Color(0xff323232),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          detailHeader(context, gradientColors),
-          eventPeopleLiked(peopleCount),
-          buttons(buyText),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            detailHeader(context, _viewModel.gradientColors),
+            drawers(),
+            buttons(buyText),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container drawers() {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: ExpansionPanelList(
+        expandedHeaderPadding: EdgeInsets.zero,
+        elevation: 1,
+        animationDuration: Duration(milliseconds: 300),
+        children: _viewModel.items.map<ExpansionPanel>((Item item) {
+          return ExpansionPanel(
+            backgroundColor: AppColors.vanillaShake,
+            headerBuilder: (BuildContext context, bool isExpanded) {
+              return ListTile(
+                title: Text(item.headerValue, style: themeData.textTheme.displaySmall!.copyWith(color: AppColors.black)),
+              );
+            },
+            body: ListTile(
+              title: Text(item.expandedValue, style: themeData.textTheme.bodyMedium!.copyWith(color: AppColors.black)),
+            ),
+            isExpanded: item.isExpanded,
+          );
+        }).toList(),
+        expansionCallback: (int index, bool isExpanded) {
+          setState(() {
+            _viewModel.items[index].isExpanded = !isExpanded;
+          });
+        },
       ),
     );
   }
@@ -167,6 +165,7 @@ class _DetailPageState extends State<DetailPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(name, style: Theme.of(context).textTheme.displayLarge),
+        SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -195,7 +194,7 @@ class _DetailPageState extends State<DetailPage> {
       children: [
         Icon(Icons.access_time, size: AppSizes.mediumSize, color: AppColors.vanillaShake),
         SizedBox(width: AppSizes.lowSize),
-        Text(time, style: TextStyle(color: AppColors.vanillaShake, fontSize: 15)),
+        Text(time, style: Theme.of(context).textTheme.displaySmall),
       ],
     );
   }
@@ -205,7 +204,7 @@ class _DetailPageState extends State<DetailPage> {
       children: [
         Icon(Icons.calendar_month, size: AppSizes.mediumSize, color: AppColors.vanillaShake),
         SizedBox(width: AppSizes.lowSize),
-        Text(date, style: TextStyle(color: AppColors.vanillaShake, fontSize: 15)),
+        Text(date, style: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.w400)),
       ],
     );
   }

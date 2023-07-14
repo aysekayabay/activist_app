@@ -41,6 +41,22 @@ mixin _$DetailPageViewModel on _DetailPageViewModelBase, Store {
     });
   }
 
+  late final _$itemsAtom =
+      Atom(name: '_DetailPageViewModelBase.items', context: context);
+
+  @override
+  List<Item> get items {
+    _$itemsAtom.reportRead();
+    return super.items;
+  }
+
+  @override
+  set items(List<Item> value) {
+    _$itemsAtom.reportWrite(value, super.items, () {
+      super.items = value;
+    });
+  }
+
   late final _$favButtonAsyncAction =
       AsyncAction('_DetailPageViewModelBase.favButton', context: context);
 
@@ -51,6 +67,17 @@ mixin _$DetailPageViewModel on _DetailPageViewModelBase, Store {
 
   late final _$_DetailPageViewModelBaseActionController =
       ActionController(name: '_DetailPageViewModelBase', context: context);
+
+  @override
+  dynamic changeExpansion(int index, bool isExpanded) {
+    final _$actionInfo = _$_DetailPageViewModelBaseActionController.startAction(
+        name: '_DetailPageViewModelBase.changeExpansion');
+    try {
+      return super.changeExpansion(index, isExpanded);
+    } finally {
+      _$_DetailPageViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic init(EventModel eventModel) {
@@ -67,7 +94,8 @@ mixin _$DetailPageViewModel on _DetailPageViewModelBase, Store {
   String toString() {
     return '''
 favList: ${favList},
-isFav: ${isFav}
+isFav: ${isFav},
+items: ${items}
     ''';
   }
 }

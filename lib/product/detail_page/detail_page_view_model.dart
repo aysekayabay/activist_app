@@ -1,20 +1,66 @@
+import 'package:akademi_bootcamp/core/base/extensions/html_parser.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:akademi_bootcamp/core/services/firestore/events_service.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../core/model/event_model.dart';
 part 'detail_page_view_model.g.dart';
 
 class DetailPageViewModel = _DetailPageViewModelBase with _$DetailPageViewModel;
 
 abstract class _DetailPageViewModelBase with Store {
+  List<Color> gradientColors = [
+    Color(0xff323232),
+    Color(0xff323232),
+    Color(0xff323232),
+    Color(0xff323232),
+    Color(0xff323232).withOpacity(0.99),
+    Color(0xff323232).withOpacity(0.95),
+    Color(0xff323232).withOpacity(0.89),
+    Color(0xff323232).withOpacity(0.82),
+    Color(0xff323232).withOpacity(0.74),
+    Color(0xff323232).withOpacity(0.65),
+    Color(0xff323232).withOpacity(0.55),
+    Color(0xff323232).withOpacity(0.44),
+    Color(0xff323232).withOpacity(0.32),
+    Color(0xff323232).withOpacity(0.19),
+    Color(0xff323232).withOpacity(0.05),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+    Color(0xff323232).withOpacity(0),
+  ];
   @observable
   List<EventModel> favList = [];
   @observable
   bool isFav = false;
   bool anon = AuthService.instance.uid == null;
+
+  @observable
+  List<Item> items = ObservableList<Item>();
+
+  @action
+  changeExpansion(int index, bool isExpanded) {
+    items[index].isExpanded = !isExpanded;
+  }
+
   @action
   Future<void> favButton(EventModel event) async {
     if (!isFav) {
@@ -33,6 +79,13 @@ abstract class _DetailPageViewModelBase with Store {
       favList = currentUser.favEvents ?? [];
     }
     isFav = favList.any((event) => event.id == eventModel.id);
+    items = [
+      Item(headerValue: 'Etkinlik Bilgisi', expandedValue: eventModel.content != null ? eventModel.content.toString().parseHtml() : ""),
+      Item(
+          headerValue: 'Mekan Bilgisi',
+          expandedValue: (eventModel.venue != null && eventModel.venue!.about != null ? eventModel.venue!.about.toString() : "") +
+              (eventModel.venue != null && eventModel.venue!.address != null ? eventModel.venue!.address.toString() : "")),
+    ];
   }
 
   Future<void> goToTicketSelling(String? eventUrl) async {
@@ -46,4 +99,12 @@ abstract class _DetailPageViewModelBase with Store {
       }
     }
   }
+}
+
+class Item {
+  Item({required this.headerValue, required this.expandedValue, this.isExpanded = false});
+
+  String headerValue;
+  String expandedValue;
+  bool isExpanded;
 }

@@ -9,6 +9,7 @@ class AppThemeDark {
       fontFamily: 'Poppins',
       textSelectionTheme: TextSelectionThemeData(selectionColor: Colors.red),
       colorScheme: appColorSheme(),
+      expansionTileTheme: ExpansionTileThemeData(iconColor: Colors.red, textColor: Colors.red, collapsedTextColor: Colors.red, backgroundColor: Colors.red,),
       scaffoldBackgroundColor: AppColors.bgColor,
       snackBarTheme: SnackBarThemeData(backgroundColor: Colors.deepOrangeAccent),
       textTheme: appTextTheme(),
@@ -22,8 +23,8 @@ class AppThemeDark {
       headlineSmall: GoogleFonts.poppins(fontSize: 24.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
       displayLarge: GoogleFonts.poppins(fontSize: 20.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
       displayMedium: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
-      displaySmall: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w700, color: AppColors.darkGrey),
-      bodyLarge: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w400, color: AppColors.black),
+      displaySmall: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w400, color: AppColors.vanillaShake),
+      bodyLarge: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w400, color: AppColors.vanillaShake),
       bodySmall: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
       bodyMedium: GoogleFonts.poppins(fontSize: 12.0, fontWeight: FontWeight.w500, color: AppColors.vanillaShake),
     );
