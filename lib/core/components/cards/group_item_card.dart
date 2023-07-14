@@ -1,10 +1,9 @@
 import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
+import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/model/group_model.dart';
 import 'package:akademi_bootcamp/core/model/message_model.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
-
-import '../../constants/theme/theme_constants.dart';
 
 // ignore: must_be_immutable
 class GroupItemCard extends StatelessWidget {
@@ -18,6 +17,7 @@ class GroupItemCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        decoration: BoxDecoration(color: Colors.white.withOpacity(0.1)),
         padding: EdgeInsets.all(20),
         child: Row(
           children: [
@@ -27,16 +27,26 @@ class GroupItemCard extends StatelessWidget {
               height: 80,
               shape: BoxShape.circle,
             ),
-            SizedBox(
-              height: 80,
-              width: MediaQuery.of(context).size.width - AppSizes.highSize * 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(child: Text(group.event?.name ?? '', style: Theme.of(context).textTheme.bodySmall, overflow: TextOverflow.ellipsis)),
-                  Flexible(child: Text(group.event?.venue?.name ?? '', overflow: TextOverflow.ellipsis)),
-                  Flexible(child: Text(message(lastMessage?.sentBy?.fullname ?? '', lastMessage?.content ?? ''), overflow: TextOverflow.ellipsis)),
-                ],
+            SizedBox(width: 10),
+            Expanded(
+              child: SizedBox(
+                height: 80,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(child: Text(group.event?.name ?? '', maxLines: 1, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 14), overflow: TextOverflow.ellipsis)),
+                    Flexible(child: Text(group.event?.venue?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis)),
+                    Row(children: [
+                      Image.asset(ImageConstants.WHITE_FAV),
+                      Text("25"),
+                      SizedBox(width: 40),
+                      Image.asset(ImageConstants.COMMUNITY),
+                      Text("185"),
+                    ]),
+                    SizedBox(height: 5),
+                    Flexible(child: Text(message(lastMessage?.sentBy?.fullname ?? '', lastMessage?.content ?? ''), overflow: TextOverflow.ellipsis)),
+                  ],
+                ),
               ),
             ),
           ],

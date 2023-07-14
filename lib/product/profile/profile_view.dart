@@ -77,7 +77,10 @@ class _ProfileViewState extends BaseState<ProfileView> {
                           physics: BouncingScrollPhysics(),
                           itemCount: groupList.isNotEmpty ? groupList.length : 0,
                           itemBuilder: (context, index) {
-                            return slidableItem(groupList[index], context);
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: slidableItem(groupList[index], context),
+                            );
                           }),
                     ),
                   ],

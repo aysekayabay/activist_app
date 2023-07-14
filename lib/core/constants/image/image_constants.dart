@@ -38,6 +38,8 @@ class ImageConstants {
   static final String GALLERY = 'gallery'.toPngFromIconAsset();
   static final String CAMERA = 'camera'.toPngFromIconAsset();
   static final String DONE = 'done'.toPngFromIconAsset();
+  static final String COMMUNITY = 'community'.toPngFromIconAsset();
+  static final String WHITE_FAV = 'white_fav'.toPngFromIconAsset();
 }
 
 extension ImageExtensions on String {

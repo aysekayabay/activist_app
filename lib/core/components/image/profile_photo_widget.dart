@@ -50,7 +50,7 @@ class _ProfilePhotoWidgetState extends State<ProfilePhotoWidget> {
           }
         } else {
           // situation in progress
-          return Center(child: CircularProgressIndicator());
+          return SizedBox(width: widget.radius * 2, height: widget.radius * 2, child: Center(child: CircularProgressIndicator()));
         }
       },
     );
