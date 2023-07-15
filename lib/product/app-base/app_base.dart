@@ -1,12 +1,14 @@
+import 'package:akademi_bootcamp/core/components/image/profile_photo_widget.dart';
 import 'package:akademi_bootcamp/core/components/navigation_bar/custom_navigation_bar.dart';
+import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
+import 'package:akademi_bootcamp/core/model/user_model.dart';
 import 'package:akademi_bootcamp/product/groups/groups_view.dart';
 import 'package:akademi_bootcamp/product/home/home_view.dart';
 import 'package:akademi_bootcamp/product/map/mapbox_map_view.dart';
 import 'package:akademi_bootcamp/product/profile/profile_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/services/auth/auth_service.dart';
@@ -30,48 +32,64 @@ class _AppBaseViewState extends State<AppBaseView> {
 
   @override
   Widget build(BuildContext context) {
+    UserModel? currentUser = AuthService.instance.currentUser;
     return Scaffold(
       drawer: Drawer(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.bgColor,
         key: _scaffoldKey,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: AppColors.grey),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(FirebaseAuth.instance.currentUser?.displayName ?? ''),
-                  Text(FirebaseAuth.instance.currentUser?.email ?? ''),
-                ],
-              ),
-            ),
-            // ListTile(
-            //   title: const Text('Hakkımızda'),
-            //   onTap: () {},
-            // ),
-            // ListTile(
-            //   title: const Text('Şartlar'),
-            //   onTap: () {},
-            // ),
+            currentUser != null
+                ? DrawerHeader(
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProfilePhotoWidget(radius: 40, photoUrl: currentUser.photoUrl),
+                      SizedBox(height: 10),
+                      Text('~ ' + (currentUser.fullname ?? '')),
+                      Text(currentUser.email ?? '', style: TextStyle(color: AppColors.grey)),
+                    ],
+                  ))
+                : SizedBox(height: AppSizes.highSize * 2),
+            ListTile(
+                leading: Icon(Icons.info, color: AppColors.vanillaShake),
+                title: const Text(
+                  'Hakkımızda',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  logOut();
+                }),
             AuthService.instance.uid == null
                 ? ListTile(
+                    leading: Icon(
+                      Icons.login,
+                      color: AppColors.vanillaShake,
+                    ),
                     title: const Text(
-                      'Giriş Yap',
+                      'Giriş Yap/Kayıt Ol',
                     ),
                     onTap: () {
                       NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
                     })
                 : ListTile(
+                    leading: Icon(Icons.logout_outlined, color: AppColors.vanillaShake),
                     tileColor: Colors.red,
-                    title: const Text(
-                      'Çıkış Yap',
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    title: const Text('Çıkış Yap', style: TextStyle(color: Colors.white)),
                     onTap: () {
                       logOut();
                     }),
+            ListTile(
+              contentPadding: EdgeInsets.only(top: AppSizes.highSize * 6),
+              title: Image.asset(
+                ImageConstants.LOGO,
+                height: 80,
+              ),
+            ),
+            ListTile(
+              title: Text("ActivitIST © 2023", textAlign: TextAlign.center),
+            )
           ],
         ),
       ),

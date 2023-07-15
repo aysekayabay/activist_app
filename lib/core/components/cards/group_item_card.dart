@@ -20,7 +20,7 @@ class GroupItemCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        decoration: BoxDecoration(color: Colors.white.withOpacity(0.1)),
+        decoration: BoxDecoration(color: Colors.white.withOpacity(0.1), boxShadow: AppShadows.boxShadow),
         padding: EdgeInsets.all(20),
         child: Row(
           children: [

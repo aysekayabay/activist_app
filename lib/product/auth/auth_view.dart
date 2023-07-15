@@ -1,3 +1,4 @@
+import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/textfield/custom_textfield.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
@@ -72,6 +73,12 @@ class _AuthViewState extends State<AuthView> {
       return Stack(
         children: [
           Image.asset(ImageConstants.AUTH_IMAGE),
+          CustomAppBar(
+            context: context,
+            left: AppBarWidgets.BACK_WITH_SHADOW,
+            leftIconColor: AppColors.vanillaShake,
+            onTapLeft: () => Navigator.pop(context),
+          ),
           Positioned(
               left: 20,
               top: 150,
@@ -86,7 +93,7 @@ class _AuthViewState extends State<AuthView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     labelText(
-                      _viewModel.authType == AuthType.SIGN_IN ? "Name" : "Email",
+                      _viewModel.authType == AuthType.SIGN_IN ? "Ad" : "Email",
                     ),
                     CustomTextfield(
                         hintText: "Xxxx Xxxx",
@@ -122,7 +129,7 @@ class _AuthViewState extends State<AuthView> {
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 isVisible: _viewModel.authType == AuthType.SIGN_IN),
-            labelText("Password"),
+            labelText("Şifre"),
             CustomTextfield(hintText: "******", controller: _viewModel.passwordController, keyboardType: TextInputType.text, textInputAction: TextInputAction.next, isPassword: true),
             _viewModel.authType == AuthType.LOG_IN
                 ? Align(

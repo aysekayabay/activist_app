@@ -15,9 +15,9 @@ abstract class _AuthViewModelBase with Store {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController forgotPasswordController = TextEditingController();
-  final String signIn = "Sign In";
-  final String continueLabel = "Continue";
-  final String logIn = "Log In";
+  final String signIn = "Kayıt Ol";
+  final String continueLabel = "Devam Et";
+  final String logIn = "Giriş Yap";
   @observable
   AuthType authType = AuthType.SIGN_IN;
 
