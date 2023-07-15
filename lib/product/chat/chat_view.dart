@@ -1,6 +1,5 @@
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
-import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/group_model.dart';
@@ -36,7 +35,23 @@ class _ChatViewState extends BaseState<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: chatAppBar(context),
+      appBar: AppBar(
+        leading: InkWell(onTap: () => Navigator.of(context).pop(), child: Image.asset(ImageConstants.BACK_WITH_SHADOW)),
+        backgroundColor: Color(0xff3F3E3E),
+        title: InkWell(
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) {
+              return DetailView(eventModel: widget.groupModel.event!);
+            },
+          )),
+          child: Text(
+            (widget.groupModel.event?.name ?? '') + ' | ' + (widget.groupModel.event?.start.toString().formattedDay ?? '') + ' ' + (widget.groupModel.event?.start.toString().formattedTime ?? ''),
+            style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+        ),
+      ),
       body: StreamBuilder<List<MessageModel>>(
         stream: EventsService.instance.getGroupChatsStream(widget.groupModel.event!.id.toString()),
         builder: (context, snapshot) {
@@ -90,56 +105,6 @@ class _ChatViewState extends BaseState<ChatView> {
           }
           return Text('Bir hata oluştu');
         },
-      ),
-    );
-  }
-
-  AppBar chatAppBar(BuildContext context) {
-    return AppBar(
-      leading: InkWell(onTap: () => Navigator.of(context).pop(), child: Image.asset(ImageConstants.BACK_WITH_SHADOW)),
-      toolbarHeight: kToolbarHeight + AppSizes.mediumSize,
-      backgroundColor: Color(0xff3F3E3E),
-      title: InkWell(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) {
-            return DetailView(eventModel: widget.groupModel.event!);
-          },
-        )),
-        child: Row(
-          children: [
-            cachedNetworkImageWidget(
-              height: 50,
-              width: 50,
-              posterUrl: widget.groupModel.event?.posterUrl,
-              borderRadius: AppRadius.primaryRadius,
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: SizedBox(
-                width: deviceWidth,
-                height: kToolbarHeight,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        widget.groupModel.event?.name ?? '',
-                        style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                    ),
-                    Flexible(
-                        child: Text(
-                      widget.groupModel.event!.start.toString().formattedDate + " - " + widget.groupModel.event!.start.toString().formattedTime,
-                      style: themeData.textTheme.displaySmall,
-                    ))
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
