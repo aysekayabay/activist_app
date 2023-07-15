@@ -40,6 +40,7 @@ class ImageConstants {
   static final String DONE = 'done'.toPngFromIconAsset();
   static final String COMMUNITY = 'community'.toPngFromIconAsset();
   static final String WHITE_FAV = 'white_fav'.toPngFromIconAsset();
+  static final String BACK_WITH_SHADOW = 'back_with_shadow'.toPngFromIconAsset();
 }
 
 extension ImageExtensions on String {

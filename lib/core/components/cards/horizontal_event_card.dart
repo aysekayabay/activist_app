@@ -29,7 +29,7 @@ class HorizontalEventCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           width: deviceWidth * 0.8,
-          height: deviceHeight / 2,
+          height: deviceHeight / 2.2,
           padding: EdgeInsets.all(AppSizes.lowSize),
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
@@ -42,13 +42,14 @@ class HorizontalEventCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               cachedNetworkImageWidget(posterUrl: eventModel.posterUrl, height: deviceHeight / 4, borderRadius: AppRadius.primaryRadius),
-              Text(eventModel.name!,
+              SizedBox(
+                height: 10,
+              ),
+              Text(eventModel.name.toString().toUpperCase(),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                        color: AppColors.white,
-                      )),
-              Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.mediumSize), child: Image.asset(ImageConstants.DIVIDER)),
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16, shadows: [Shadow(offset: Offset(0, 4), blurRadius: 1, color: Color(0xff282828))])),
+              Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.lowSize), child: Image.asset(ImageConstants.DIVIDER)),
               dateWidget(context),
               timeWidget(context),
               locationWidget(context),
@@ -67,6 +68,7 @@ class HorizontalEventCard extends StatelessWidget {
         Flexible(
             child: Text(eventModel.venue!.name.toString(),
                 overflow: TextOverflow.ellipsis,
+                maxLines: 1,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: AppColors.white,
                     ))),
@@ -80,6 +82,8 @@ class HorizontalEventCard extends StatelessWidget {
         Icon(Icons.access_time_filled_rounded, color: AppColors.vanillaShake, size: 18),
         SizedBox(width: AppSizes.lowSize / 2),
         Text(eventModel.start!.formattedTime + '-' + eventModel.end!.formattedTime,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: AppColors.white,
                 )),
@@ -93,6 +97,8 @@ class HorizontalEventCard extends StatelessWidget {
         Icon(Icons.calendar_month_rounded, color: AppColors.vanillaShake, size: 18),
         SizedBox(width: AppSizes.lowSize / 2),
         Text(eventModel.start!.formattedDate,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   color: AppColors.white,
                 )),

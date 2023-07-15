@@ -85,6 +85,7 @@ abstract class _DetailViewModelBase with Store {
       EventExpandedItem(
           headerValue: 'Mekan Bilgisi',
           expandedValue: (eventModel.venue != null && eventModel.venue!.about != null ? eventModel.venue!.about.toString() : "") +
+              '\n' +
               (eventModel.venue != null && eventModel.venue!.address != null ? eventModel.venue!.address.toString() : "")),
     ];
   }

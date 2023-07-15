@@ -6,10 +6,9 @@ import 'package:akademi_bootcamp/product/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
 import 'core/base/provider/internet_connection_provider.dart';
 
-void main() async { 
+void main() async {
   await ApplicationStart.init();
   runApp(
     ChangeNotifierProvider<InternetConnectionProvider>(

@@ -134,20 +134,15 @@ class _HomeViewState extends BaseState<HomeView> {
           physics: BouncingScrollPhysics(),
           child: _viewModel.filteredEventList != null
               ? Row(
-                  children: [
-                    SizedBox(width: AppSizes.lowSize / 2),
-                    Row(
-                        children: List.generate(_viewModel.filteredEventList!.length > 5 ? 5 : _viewModel.filteredEventList!.length, (index) {
-                      EventModel eventModel = _viewModel.filteredEventList![index];
-                      return HorizontalEventCard(
-                        onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]),
-                        eventModel: eventModel,
-                        deviceWidth: deviceWidth,
-                        deviceHeight: deviceHeight,
-                      );
-                    })),
-                  ],
-                )
+                  children: List.generate(_viewModel.filteredEventList!.length > 5 ? 5 : _viewModel.filteredEventList!.length, (index) {
+                  EventModel eventModel = _viewModel.filteredEventList![index];
+                  return HorizontalEventCard(
+                    onTap: () => _viewModel.navigateToDetailPage(context, _viewModel.filteredEventList![index]),
+                    eventModel: eventModel,
+                    deviceWidth: deviceWidth,
+                    deviceHeight: deviceHeight,
+                  );
+                }))
               : SizedBox()),
     );
   }

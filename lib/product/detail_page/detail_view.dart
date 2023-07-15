@@ -151,7 +151,7 @@ class _DetailViewState extends BaseState<DetailView> {
             decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: gradientColors)),
           ),
         ),
-        CustomAppBar(context: context, left: AppBarWidgets.BACK, onTapLeft: () => Navigator.of(context).pop()),
+        CustomAppBar(context: context, left: AppBarWidgets.BACK_WITH_SHADOW, onTapLeft: () => Navigator.of(context).pop()),
         Positioned(
             bottom: 0,
             left: AppSizes.mediumSize,

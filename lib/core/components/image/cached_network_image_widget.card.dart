@@ -32,11 +32,15 @@ class cachedNetworkImageWidget extends StatelessWidget {
           ),
         );
       },
-      placeholder: (context, url) => Center(child: const CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Center(
-        child: Icon(
-          Icons.error,
-          color: AppColors.vanillaShake,
+      placeholder: (context, url) => SizedBox(height: height, width: width, child: Center(child: const CircularProgressIndicator())),
+      errorWidget: (context, url, error) => SizedBox(
+        height: height,
+        width: width,
+        child: Center(
+          child: Icon(
+            Icons.error,
+            color: AppColors.vanillaShake,
+          ),
         ),
       ),
     );
