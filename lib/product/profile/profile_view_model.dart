@@ -47,7 +47,7 @@ abstract class _ProfileViewModelBase with Store {
   countFavEventCategories(List<GroupModel> favEventsGroups) {
     categoryCountMap.clear();
     for (GroupModel group in favEventsGroups) {
-      String? category = group.event?.format?.name;
+      String? category = group.event?.category?.name;
       if (category != null) {
         if (categoryCountMap.containsKey(category)) {
           categoryCountMap[category.toString()] = categoryCountMap[category]! + 1;
@@ -56,11 +56,9 @@ abstract class _ProfileViewModelBase with Store {
         }
       }
     }
+    var sortedEntries = categoryCountMap.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
+    categoryCountMap = Map.fromEntries(sortedEntries);
     isLoading = false;
-
-    categoryCountMap.forEach((category, count) {
-      print('$category: $count');
-    });
   }
 
   @action
@@ -69,7 +67,7 @@ abstract class _ProfileViewModelBase with Store {
     if (res == -1) {
       noEvent = true;
     }
-    String? category = eventModel.format?.name;
+    String? category = eventModel.category?.name;
     if (category != null && categoryCountMap.containsKey(category)) {
       int count = categoryCountMap[category] ?? 0;
       print(count);

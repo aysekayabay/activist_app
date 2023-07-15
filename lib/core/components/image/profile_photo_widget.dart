@@ -28,10 +28,10 @@ class _ProfilePhotoWidgetState extends State<ProfilePhotoWidget> {
             );
           } else if (snapshot.hasError) {
             return CircleAvatar(
-              backgroundColor: AppColors.vanillaShake,
+              backgroundColor: AppColors.vanillaShake.withOpacity(0.8),
               radius: widget.radius,
               child: Icon(
-                Icons.person,
+                Icons.error,
                 color: AppColors.bgColor,
                 size: widget.radius,
               ),
@@ -40,7 +40,7 @@ class _ProfilePhotoWidgetState extends State<ProfilePhotoWidget> {
             // situation null
             return CircleAvatar(
               radius: widget.radius,
-              backgroundColor: AppColors.vanillaShake,
+              backgroundColor: AppColors.vanillaShake.withOpacity(0.8),
               child: Icon(
                 Icons.person,
                 color: AppColors.bgColor,

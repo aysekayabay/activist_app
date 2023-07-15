@@ -31,7 +31,7 @@ class _HomeViewState extends BaseState<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, right: AppBarWidgets.NOTIFICATION, left: AppBarWidgets.MENU, onTapLeft: () => _viewModel.openDrawer(context)),
+      appBar: CustomAppBar(context: context, center: AppBarWidgets.LOGO, left: AppBarWidgets.MENU, onTapLeft: () => _viewModel.openDrawer(context)),
       body: RefreshIndicator(
         color: AppColors.white,
         backgroundColor: AppColors.orange,
@@ -42,7 +42,7 @@ class _HomeViewState extends BaseState<HomeView> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
+                padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: 20),
                 child: CustomTextfield(
                     hintText: "Search",
                     controller: _viewModel.searchTextEditingController,
@@ -158,7 +158,7 @@ class _HomeViewState extends BaseState<HomeView> {
                 children: List.generate(_viewModel.categoryList!.length, (index) {
                   Format category = _viewModel.categoryList![index];
                   return CustomButton(
-                      marginPadding: EdgeInsets.only(right: AppSizes.lowSize, top: AppSizes.mediumSize, bottom: AppSizes.mediumSize),
+                      marginPadding: EdgeInsets.only(right: AppSizes.lowSize, bottom: AppSizes.lowSize),
                       title: category.name!,
                       isFilled: _viewModel.isSelected(index),
                       onTap: () => _viewModel.tapped(index),

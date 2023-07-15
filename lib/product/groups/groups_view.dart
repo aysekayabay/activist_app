@@ -28,7 +28,7 @@ class _GroupsViewState extends BaseState<GroupsView> {
     return StreamBuilder<QuerySnapshot>(
         stream: EventsService.instance.fetchUserGroups(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData && snapshot.data != null) {
             List<GroupModel> groupList = snapshot.data!.docs.map((doc) => GroupModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
             List<GroupModel> filteredGroups = groupList.where((group) {
               List<SentBy> users = group.users ?? [];

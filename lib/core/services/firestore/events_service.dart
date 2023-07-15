@@ -153,4 +153,14 @@ class EventsService {
 
     return controller.stream;
   }
+
+  Future<List<GroupModel>> fetchSomeGroups(List<String> docIds) async {
+    List<QueryDocumentSnapshot<dynamic>> documents = await FirestoreManager.instance.firestoreGetSomeDocuments(collectionID: "groups", whereIn: docIds);
+    List<GroupModel> groupList = [];
+    documents.forEach((doc) {
+      GroupModel groupModel = GroupModel.fromJson(doc.data() as Map<String, dynamic>);
+      groupList.add(groupModel);
+    });
+    return groupList;
+  }
 }

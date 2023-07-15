@@ -7,6 +7,7 @@ import 'package:akademi_bootcamp/core/model/group_model.dart';
 import 'package:akademi_bootcamp/core/model/message_model.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
+import 'package:akademi_bootcamp/product/detail_page/detail_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../core/components/cards/message_item.dart';
@@ -98,40 +99,47 @@ class _ChatViewState extends BaseState<ChatView> {
       leading: InkWell(onTap: () => Navigator.of(context).pop(), child: Image.asset(ImageConstants.BACK_WITH_SHADOW)),
       toolbarHeight: kToolbarHeight + AppSizes.mediumSize,
       backgroundColor: Color(0xff3F3E3E),
-      title: Row(
-        children: [
-          cachedNetworkImageWidget(
-            height: 50,
-            width: 50,
-            posterUrl: widget.groupModel.event?.posterUrl,
-            borderRadius: AppRadius.primaryRadius,
-          ),
-          SizedBox(width: 10),
-          Expanded(
-            child: SizedBox(
-              width: deviceWidth,
-              height: kToolbarHeight,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flexible(
-                    child: Text(
-                      widget.groupModel.event?.name ?? '',
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                  Flexible(
+      title: InkWell(
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) {
+            return DetailView(eventModel: widget.groupModel.event!);
+          },
+        )),
+        child: Row(
+          children: [
+            cachedNetworkImageWidget(
+              height: 50,
+              width: 50,
+              posterUrl: widget.groupModel.event?.posterUrl,
+              borderRadius: AppRadius.primaryRadius,
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: SizedBox(
+                width: deviceWidth,
+                height: kToolbarHeight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
                       child: Text(
-                    widget.groupModel.event!.start.toString().formattedDate + " - " + widget.groupModel.event!.start.toString().formattedTime,
-                    style: themeData.textTheme.displaySmall,
-                  ))
-                ],
+                        widget.groupModel.event?.name ?? '',
+                        style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
+                    Flexible(
+                        child: Text(
+                      widget.groupModel.event!.start.toString().formattedDate + " - " + widget.groupModel.event!.start.toString().formattedTime,
+                      style: themeData.textTheme.displaySmall,
+                    ))
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

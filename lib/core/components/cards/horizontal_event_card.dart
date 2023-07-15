@@ -46,9 +46,7 @@ class HorizontalEventCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Text(eventModel.name.toString().toUpperCase(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16, shadows: [Shadow(offset: Offset(0, 4), blurRadius: 1, color: Color(0xff282828))])),
+                    maxLines: 1, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16, shadows: AppShadows.textShadow)),
               ),
               Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.lowSize), child: Image.asset(ImageConstants.DIVIDER)),
               Padding(

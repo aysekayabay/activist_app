@@ -1,13 +1,13 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/cards/map_detail_card.dart';
 import 'package:akademi_bootcamp/core/constants/api/api_constants.dart';
+import 'package:akademi_bootcamp/core/model/group_model.dart';
 import 'package:akademi_bootcamp/product/map/mapbox_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:latlong2/latlong.dart';
 import '../../core/constants/image/image_constants.dart';
-import '../../core/model/event_model.dart';
 
 class MapBoxView extends StatefulWidget {
   const MapBoxView({super.key});
@@ -57,19 +57,16 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
       top: 40,
       left: 0,
       right: 0,
-      height: deviceHeight * 0.5,
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          controller: _viewModel.pageController,
-          itemCount: _markers.length,
-          itemBuilder: (context, index) {
-            final item = _viewModel.eventList[index];
-            return MapDetailCard(event: item);
-          },
-        ),
+      height: deviceHeight * 0.34,
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        controller: _viewModel.pageController,
+        itemCount: _markers.length,
+        itemBuilder: (context, index) {
+          final item = _viewModel.groupList[index];
+          return MapDetailCard(group: item, favCount: item.favCount ?? 0);
+        },
       ),
     );
   }
@@ -90,20 +87,19 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
 }
 
 class LocationMarker extends StatelessWidget {
-  final EventModel eventModel;
+  final GroupModel group;
   final bool isSelected;
-  const LocationMarker({super.key, this.isSelected = false, required this.eventModel});
+  const LocationMarker({super.key, this.isSelected = false, required this.group});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: AnimatedContainer(
-        // height: isSelected ? 60.0 : 30.0,
-        // width: isSelected ? 60.0 : 30.0,
         height: 30,
         width: 30,
-        duration: Duration(milliseconds: 400),
-        child: Image.asset(eventModel.markerIcon ?? ImageConstants.HOME),
+        duration: Duration(milliseconds: 100),
+        curve: Curves.easeIn,
+        child: Image.asset(group.event?.markerIcon ?? ImageConstants.HOME),
       ),
     );
   }

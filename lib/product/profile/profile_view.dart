@@ -72,6 +72,8 @@ class _ProfileViewState extends BaseState<ProfileView> {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   groupList = snapshot.data!.docs.map((doc) => GroupModel.fromJson(doc.data() as Map<String, dynamic>)).toList();
+                  groupList.sort((a, b) => a.event!.start!.compareTo(b.event!.start!));
+
                   _viewModel.countFavEventCategories(groupList);
                   return Container(
                     width: deviceWidth,

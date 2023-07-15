@@ -46,4 +46,5 @@ class AppRadius {
 
 class AppShadows {
   static List<BoxShadow>? boxShadow = [BoxShadow(blurRadius: 10, color: AppColors.black, spreadRadius: 0, offset: Offset(10, 10))];
+  static List<Shadow>? textShadow = [Shadow(offset: Offset(0, 4), blurRadius: 1, color: Color(0xff282828))];
 }
