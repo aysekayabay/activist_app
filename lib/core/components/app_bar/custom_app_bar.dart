@@ -15,8 +15,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? centerTitle;
   void Function()? onTapLeft;
   void Function()? onTapRight;
+  final Widget? centerWidget;
 
-  CustomAppBar({required this.context, this.height = kToolbarHeight, this.left, this.right, this.center, this.leftIconColor, this.rightIconColor, this.centerTitle, this.onTapLeft, this.onTapRight});
+  CustomAppBar(
+      {required this.context,
+      this.height = kToolbarHeight,
+      this.left,
+      this.right,
+      this.center,
+      this.leftIconColor,
+      this.rightIconColor,
+      this.centerTitle,
+      this.onTapLeft,
+      this.onTapRight,
+      this.centerWidget});
 
   @override
   Size get preferredSize => Size.fromHeight(height + AppSizes.mediumSize);
@@ -75,6 +87,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           return Image.asset(ImageConstants.LOGO_WITH_NAME, width: 102);
         case AppBarWidgets.TITLE:
           return Align(alignment: Alignment.center, child: Text(centerTitle ?? '', style: Theme.of(context).textTheme.displaySmall!.copyWith(color: AppColors.bgColor)));
+        case AppBarWidgets.WIDGET:
+          return centerWidget!;
         default:
           return SizedBox();
       }
@@ -100,4 +114,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-enum AppBarWidgets { LOGO, TITLE, NOTIFICATION, BACK, BACK_WITH_SHADOW, NEXT, MENU, FAVOURITE, NOT_FAVOURITE, NOT_NOTIFICATION, EDIT, DONE }
+enum AppBarWidgets { LOGO, TITLE, NOTIFICATION, BACK, BACK_WITH_SHADOW, NEXT, MENU, FAVOURITE, NOT_FAVOURITE, NOT_NOTIFICATION, EDIT, DONE, WIDGET }

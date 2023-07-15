@@ -46,12 +46,17 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
             return profilePhoto();
           }),
           changePhotoButton(),
-          Column(
-            children: [
-              UserInfoEditItem(tWidth: deviceWidth / 2, label: "Adı", controller: _viewModel.fullnameController, hintText: 'Ad'),
-              UserInfoEditItem(tWidth: deviceWidth / 2, label: "Şehir", controller: _viewModel.cityController, hintText: 'Şehir'),
-              UserInfoEditItem(tWidth: deviceWidth / 2, label: "Cinsiyet", controller: _viewModel.genderController, hintText: 'Cinsiyet'),
-            ],
+          Container(
+            margin: EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            decoration: BoxDecoration(border: Border.all(color: AppColors.grey), borderRadius: AppRadius.primaryRadius),
+            child: Column(
+              children: [
+                UserInfoEditItem(tWidth: deviceWidth / 2, label: "Adı:", controller: _viewModel.fullnameController, hintText: 'Ad'),
+                UserInfoEditItem(tWidth: deviceWidth / 2, label: "Şehir:", controller: _viewModel.cityController, hintText: 'Şehir'),
+                UserInfoEditItem(tWidth: deviceWidth / 2, label: "Cinsiyet:", controller: _viewModel.genderController, hintText: 'Cinsiyet'),
+              ],
+            ),
           ),
         ],
       ),

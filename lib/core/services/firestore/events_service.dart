@@ -33,6 +33,8 @@ class EventsService {
         //removing
         favList = user.favEvents!;
         favList.removeWhere((event) => event.id == eventModel.id);
+
+        leaveChatGroup(eventModel.id.toString(), user.userID!);
       }
       final docFavList = [];
 
@@ -94,7 +96,7 @@ class EventsService {
     }
   }
 
-  Future<void> joinChatGroup(EventModel eventModel, String userID) async {
+  Future<void> joinChatGroup(EventModel eventModel, String userID, {bool alreadyFav = false}) async {
     if (eventModel.id != null) {
       DocumentSnapshot groupSnapshot = await FirestoreManager.instance.firestoreGetDocument(collectionID: GROUPS, docID: eventModel.id.toString());
       UserModel? currentUser = AuthService.instance.currentUser;
@@ -104,10 +106,9 @@ class EventsService {
         bool userExists = users.any((user) => user.id == userID);
         if (!userExists && currentUser != null) {
           users.add(SentBy(fullname: currentUser.fullname, id: currentUser.userID, photoUrl: currentUser.photoUrl));
-          await groupSnapshot.reference.update({
-            'users': users.map((user) => user.toJson()).toList(),
-            'fav_count': FieldValue.increment(1),
-          });
+          Map<String, dynamic> updatedData =
+              alreadyFav ? {'users': users.map((user) => user.toJson()).toList()} : {'users': users.map((user) => user.toJson()).toList(), 'fav_count': FieldValue.increment(1)};
+          await groupSnapshot.reference.update(updatedData);
         }
       } else if (currentUser != null) {
         await FirestoreManager.instance.firestoreSendDataMap(collectionID: GROUPS, docID: eventModel.id.toString(), data: {
@@ -120,13 +121,14 @@ class EventsService {
     }
   }
 
-  void leaveChatGroup(String eventID, String userID) async {
+  void leaveChatGroup(String eventID, String userID, {bool stillInFav = false}) async {
     dynamic data = await FirestoreManager.instance.firestoreGetDocumentData(collectionID: GROUPS, docID: eventID);
     if (data != null) {
       List<SentBy> users = (data[USERS] as List<dynamic>).map((item) => SentBy.fromJson(item)).toList();
       users.removeWhere((user) => user.id == userID);
       List<Map<String, dynamic>> updatedUsers = users.map((user) => user.toJson()).toList();
-      await FirestoreManager.instance.firestoreUpdateOneField(collectionID: GROUPS, docID: eventID, key: USERS, value: updatedUsers);
+      Map<String, dynamic> updatedData = stillInFav ? {'users': updatedUsers} : {'users': updatedUsers, 'fav_count': FieldValue.increment(-1)};
+      await FirestoreManager.instance.firestoreUpdateFields(collectionID: GROUPS, docID: eventID, fields: updatedData);
     }
   }
 

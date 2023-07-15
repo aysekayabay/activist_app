@@ -20,10 +20,10 @@ class AppThemeDark {
       headlineLarge: GoogleFonts.poppins(fontSize: 48.0, fontWeight: FontWeight.w700, color: AppColors.white),
       headlineMedium: GoogleFonts.poppins(fontSize: 34.0, fontWeight: FontWeight.w700, color: AppColors.black),
       headlineSmall: GoogleFonts.poppins(fontSize: 24.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
-      displayLarge: GoogleFonts.poppins(fontSize: 20.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
+      displayLarge: GoogleFonts.poppins(fontSize: 18.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
       displayMedium: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
-      displaySmall: GoogleFonts.poppins(fontSize: 16.0, fontWeight: FontWeight.w400, color: AppColors.vanillaShake),
-      bodyLarge: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w400, color: AppColors.vanillaShake),
+      displaySmall: GoogleFonts.poppins(fontSize: 15.0, fontWeight: FontWeight.w400, color: AppColors.vanillaShake),
+      bodyLarge: GoogleFonts.poppins(fontSize: 14.0, fontWeight: FontWeight.w500, color: AppColors.vanillaShake),
       bodySmall: GoogleFonts.poppins(fontSize: 13.0, fontWeight: FontWeight.w700, color: AppColors.vanillaShake),
       bodyMedium: GoogleFonts.poppins(fontSize: 13.0, fontWeight: FontWeight.w500, color: AppColors.vanillaShake),
     );

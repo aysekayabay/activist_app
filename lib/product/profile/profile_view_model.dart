@@ -26,14 +26,14 @@ abstract class _ProfileViewModelBase with Store {
   @action
   leaveGroup(BuildContext context, EventModel? eventModel) {
     if (currentUser != null && currentUser!.userID != null && eventModel != null) {
-      EventsService.instance.leaveChatGroup(eventModel.id.toString(), currentUser!.userID!);
+      EventsService.instance.leaveChatGroup(eventModel.id.toString(), currentUser!.userID!, stillInFav: true);
     }
   }
 
   @action
   joinGroup(BuildContext context, EventModel? eventModel) {
     if (currentUser != null && currentUser!.userID != null && eventModel != null) {
-      EventsService.instance.joinChatGroup(eventModel, currentUser!.userID!);
+      EventsService.instance.joinChatGroup(eventModel, currentUser!.userID!, alreadyFav: currentUser!.favEvents != null ? currentUser!.favEvents!.any((event) => event.id == eventModel.id) : false);
     }
   }
 
@@ -57,6 +57,10 @@ abstract class _ProfileViewModelBase with Store {
       }
     }
     isLoading = false;
+
+    categoryCountMap.forEach((category, count) {
+      print('$category: $count');
+    });
   }
 
   @action
@@ -65,7 +69,7 @@ abstract class _ProfileViewModelBase with Store {
     if (res == -1) {
       noEvent = true;
     }
-    String? category = eventModel.category?.name;
+    String? category = eventModel.format?.name;
     if (category != null && categoryCountMap.containsKey(category)) {
       int count = categoryCountMap[category] ?? 0;
       print(count);

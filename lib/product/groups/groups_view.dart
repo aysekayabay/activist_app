@@ -78,7 +78,7 @@ class _GroupsViewState extends BaseState<GroupsView> {
               )),
             );
           } else {
-            return SizedBox(height: deviceHeight, child: Center(child: Text("Henüz bir gruba katılmadın sanırım..")));
+            return SizedBox(height: deviceHeight, child: Center(child: Text("Henüz bir gruba katılmadın...")));
           }
         });
   }

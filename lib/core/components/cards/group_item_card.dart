@@ -27,7 +27,7 @@ class GroupItemCard extends StatelessWidget {
               height: 80,
               shape: BoxShape.circle,
             ),
-            SizedBox(width: 10),
+            SizedBox(width: 15),
             Expanded(
               child: SizedBox(
                 height: 80,
@@ -35,13 +35,15 @@ class GroupItemCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Flexible(child: Text(group.event?.name ?? '', maxLines: 1, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 14), overflow: TextOverflow.ellipsis)),
-                    Flexible(child: Text(group.event?.venue?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis)),
+                    SizedBox(height: 5),
+                    Flexible(child: Text("~ " + (group.event?.venue?.name ?? ''), style: Theme.of(context).textTheme.bodyMedium, maxLines: 1, overflow: TextOverflow.ellipsis)),
+                    SizedBox(height: 5),
                     Row(children: [
                       Image.asset(ImageConstants.WHITE_FAV),
-                      Text("25"),
+                      Text(group.favCount.toString()),
                       SizedBox(width: 40),
                       Image.asset(ImageConstants.COMMUNITY),
-                      Text("185"),
+                      Text(group.users != null ? group.users!.length.toString() : "0"),
                     ]),
                     SizedBox(height: 5),
                     Flexible(child: Text(message(lastMessage?.sentBy?.fullname ?? '', lastMessage?.content ?? ''), overflow: TextOverflow.ellipsis)),

@@ -1,3 +1,7 @@
+import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
+import 'package:akademi_bootcamp/core/base/state/base_state.dart';
+import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
+import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/group_model.dart';
 import 'package:akademi_bootcamp/core/model/message_model.dart';
@@ -16,7 +20,7 @@ class ChatView extends StatefulWidget {
   State<ChatView> createState() => _ChatViewState();
 }
 
-class _ChatViewState extends State<ChatView> {
+class _ChatViewState extends BaseState<ChatView> {
   TextEditingController controller = TextEditingController();
   void onSendMessage() async {
     UserModel? currentUser = AuthService.instance.currentUser;
@@ -31,11 +35,7 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.grey,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text(widget.groupModel.event?.name ?? '', style: Theme.of(context).textTheme.displayLarge),
-      ),
+      appBar: chatAppBar(context),
       body: StreamBuilder<List<MessageModel>>(
         stream: EventsService.instance.getGroupChatsStream(widget.groupModel.event!.id.toString()),
         builder: (context, snapshot) {
@@ -64,21 +64,23 @@ class _ChatViewState extends State<ChatView> {
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(color: AppColors.bgColor),
+                  decoration: BoxDecoration(
+                    color: Color(0xff3F3E3E),
+                  ),
                   padding: EdgeInsets.all(AppSizes.lowSize),
                   child: Row(
                     children: [
                       Expanded(
                           child: TextField(
                         controller: controller,
-                        style: TextStyle().copyWith(color: AppColors.vanillaShake),
+                        style: themeData.textTheme.bodyMedium,
                         decoration: InputDecoration(hintStyle: TextStyle().copyWith(color: AppColors.grey), hintText: "Mesaj yazın"),
                       )),
                       IconButton(
                           onPressed: () {
                             onSendMessage();
                           },
-                          icon: Icon(Icons.send)),
+                          icon: Icon(Icons.send, color: AppColors.vanillaShake)),
                     ],
                   ),
                 ),
@@ -87,6 +89,49 @@ class _ChatViewState extends State<ChatView> {
           }
           return Text('Bir hata oluştu');
         },
+      ),
+    );
+  }
+
+  AppBar chatAppBar(BuildContext context) {
+    return AppBar(
+      leading: InkWell(onTap: () => Navigator.of(context).pop(), child: Image.asset(ImageConstants.BACK_WITH_SHADOW)),
+      toolbarHeight: kToolbarHeight + AppSizes.mediumSize,
+      backgroundColor: Color(0xff3F3E3E),
+      title: Row(
+        children: [
+          cachedNetworkImageWidget(
+            height: 50,
+            width: 50,
+            posterUrl: widget.groupModel.event?.posterUrl,
+            borderRadius: AppRadius.primaryRadius,
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            child: SizedBox(
+              width: deviceWidth,
+              height: kToolbarHeight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Text(
+                      widget.groupModel.event?.name ?? '',
+                      style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                  Flexible(
+                      child: Text(
+                    widget.groupModel.event!.start.toString().formattedDate + " - " + widget.groupModel.event!.start.toString().formattedTime,
+                    style: themeData.textTheme.displaySmall,
+                  ))
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

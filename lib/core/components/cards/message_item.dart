@@ -17,6 +17,7 @@ class MessageItem extends StatelessWidget {
     return Align(
       alignment: sentByMe ? Alignment.centerRight : Alignment.centerLeft,
       child: SizedBox(
+        width: MediaQuery.of(context).size.width / 1.5,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,12 +52,7 @@ class MessageItem extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.darkGrey),
                   )
                 : SizedBox(),
-            Text(
-              message.content,
-              style: Theme.of(context).textTheme.bodyLarge,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 5,
-            ),
+            Text(message.content, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.black), overflow: TextOverflow.ellipsis, maxLines: 5),
           ],
         ),
       ),

@@ -42,17 +42,27 @@ class HorizontalEventCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               cachedNetworkImageWidget(posterUrl: eventModel.posterUrl, height: deviceHeight / 4, borderRadius: AppRadius.primaryRadius),
-              SizedBox(
-                height: 10,
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(eventModel.name.toString().toUpperCase(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16, shadows: [Shadow(offset: Offset(0, 4), blurRadius: 1, color: Color(0xff282828))])),
               ),
-              Text(eventModel.name.toString().toUpperCase(),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: 16, shadows: [Shadow(offset: Offset(0, 4), blurRadius: 1, color: Color(0xff282828))])),
               Padding(padding: EdgeInsets.symmetric(vertical: AppSizes.lowSize), child: Image.asset(ImageConstants.DIVIDER)),
-              dateWidget(context),
-              timeWidget(context),
-              locationWidget(context),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  children: [
+                    dateWidget(context),
+                    SizedBox(height: 5),
+                    timeWidget(context),
+                    SizedBox(height: 5),
+                    locationWidget(context),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
