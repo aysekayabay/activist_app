@@ -110,14 +110,15 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 - **Sprint içinde tamamlanması tahmin edilen puan:** Tamamlandı*
 - **Puan tamamlama mantığı:** Toplamda proje kapsamında tamamlanması gereken 310 puanlık backlog bulunmaktadır. Toplamda 2 sprint ile gereken puanlar alınmış olunup 3. sprint bazı test ve eksik sayfalara ayrıldı.
 - **Sprint Notu:** Bu sprintte uygulamanın yerel bildirim servisi kurulmuş, etkinliklerin başlangıç zamanına 6 saat ve 1 gün kala bildirim gönderecek şekilde ayarlanmıştır. Yerel depolama için Hive ve Shared Preferences servisleri kurulmuştur, aynı zamanda fotoğraflar için Cached Network Image plugininin kullanılmasına karar verilmiş ve uygulanmıştır. Tüm sayfalardaki ui eksikleri giderilmiş, tasarımla uyumlu hale getirilmiştir. 
-- **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 3.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:
+- **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 3.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:  [Sprint_3_Daily_Scrum_Chat.docx](https://github.com/aysekayabay/akademi_bootcamp/files/12065315/sprint3.docx)
+
 
 - **Sprint board update: Sprint board screenshotları:**
 ![image](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/cf683304-c179-4a60-b0cf-b1e6c63a29bf)
 
 - **Ürün Durumu:** Ekran görüntüleri:
 ![Screenshot_20230716_145430_One UI Home](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/18062dd3-8487-4a13-8294-d5002210ca49)
-![Ekran Videosu](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/0c81b310-65ff-4881-a7cb-f3a1581f2b76)
+Ekran Videosu: https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/0c81b310-65ff-4881-a7cb-f3a1581f2b76
 
 - **Sprint Review:** Alınan kararlar: Bu sprintte ui güncelleştirmeleri ve test önceliklendirilmiştir. Ek olarak depolama kısmında uygulamayı daha da hızlandıracak pluginler kullanılarak sistem iyileştirilmiştir.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
