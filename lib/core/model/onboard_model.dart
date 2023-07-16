@@ -14,20 +14,19 @@ class OnboardModel {
 final List<OnboardModel> onboard_data = [
   OnboardModel(
       image: ImageConstants.ONBOARD1,
-      title: "What can you do in this app ?",
+      title: "İlgi alanlarını kolayca takip edebiliyor musun?",
       description:
-          "Lorem ipsum dolor sit amet consectetur. Nunc diam quis tortor bibendum nisl gravida nulla ultricies at. Tempor in mattis sit cursus. Ac pharetra ultrices vel lacus pharetra vestibulum nam ipsum dolor. Nunc ornare sem aliquet in dolor malesuada quisque.",
-      pageName: "Concert Information"),
+          "İstanbul'daki favori sanatçılarının favori etkinlikleri cebinde. Favori etkinliklerin yaklaştığında ActivitIST bildirimleriyle sana hatırlatacak. Favorindeki etkinlikler profilini parlatacak ve kategorileriyle yer alacak, belki de kendini tarif etmek için artık direkt ActivitIST profilini gösterirsin, ha ne dersin?",
+      pageName: "Favori Etkinlikler"),
   OnboardModel(
       image: ImageConstants.ONBOARD2,
-      title: "What can you do in this app ?",
+      title: "Yakınındaki etkinliklerden ne kadar haberdarsın?",
       description:
-          "Lorem ipsum dolor sit amet consectetur. Nunc diam quis tortor bibendum nisl gravida nulla ultricies at. Tempor in mattis sit cursus. Ac pharetra ultrices vel lacus pharetra vestibulum nam ipsum dolor. Nunc ornare sem aliquet in dolor malesuada quisque.",
-      pageName: "Theater Information"),
+          "Artık haritada hangi etkinliğin, nerede olduğunu görüntüleyebilirsin. Dilediğin kadar bilgi ve içerik burada. Etkinlik detay sayfasında mekan ve etkinlik hakkında merak ettiğin her şeyi öğrenebilirsin. İstersen bilet almaya yönlendirilebilirsin. İyi eğlen!",
+      pageName: "Etkinlik Haritası"),
   OnboardModel(
       image: ImageConstants.ONBOARD3,
-      title: "What can you do in this app ?",
-      description:
-          "Lorem ipsum dolor sit amet consectetur. Nunc diam quis tortor bibendum nisl gravida nulla ultricies at. Tempor in mattis sit cursus. Ac pharetra ultrices vel lacus pharetra vestibulum nam ipsum dolor. Nunc ornare sem aliquet in dolor malesuada quisque.",
-      pageName: "Workshop Activities"),
+      title: "Sosyal biri misin yoksa henüz o çevreyi bulamadın mı?",
+      description: "ActivitIST'de sosyallik var, canlı etkinlik grupları var! Tanış, iletişim kur, haber al. Seninle aynı frekansta olan insanlarla bir araya gelmek bu kadar kolay.",
+      pageName: "Etkinlik Grupları"),
 ];

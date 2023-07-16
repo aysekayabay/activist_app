@@ -17,14 +17,12 @@ class WelcomeView extends StatelessWidget {
           Image(image: AssetImage(ImageConstants.SPLASH_IMAGE), fit: BoxFit.cover, width: double.infinity, height: double.infinity),
           Positioned(
             left: AppSizes.mediumSize,
-            bottom: MediaQuery.of(context).size.height / 2,
+            bottom: MediaQuery.of(context).size.height / 1.3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("THE BEST APP", style: Theme.of(context).textTheme.headlineSmall),
-                Text("FOR", style: Theme.of(context).textTheme.headlineLarge),
-                Text("YOUR", style: Theme.of(context).textTheme.headlineSmall),
-                Text("ACTIVITIES", style: Theme.of(context).textTheme.headlineLarge),
+                Text("FAVORİ ETKİNLİKLERİN", style: Theme.of(context).textTheme.headlineSmall),
+                Text("CEBİNDE", style: Theme.of(context).textTheme.headlineLarge),
               ],
             ),
           ),
