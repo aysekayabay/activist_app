@@ -115,14 +115,7 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 - **Sprint Review:** Alınan kararlar: Bu sprintte ui güncelleştirmeleri ve test önceliklendirilmiştir. Ek olarak depolama kısmında uygulamayı daha da hızlandıracak pluginler kullanılarak sistem iyileştirilmiştir.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 
-- **Sprint Retrospective:**
-
-**Neler İyi Gitti?**
-- Sprint 3 için belirlenen tüm görevler başarıyla tamamlandı ve herhangi bir aksama yaşanmadı. 
-
-**Neler Geliştirilebilir?**
-- Takım üyelerinin gelecek projelerde daha fazla aktif olması gerektiğine vurgu yapılmıştır.
-
+- **Sprint Retrospective:** Sprint 3 için belirlenen tüm görevler başarıyla tamamlanmış ve herhangi bir aksama yaşanmamıştır. Takım üyelerinin gelecek projelerde daha fazla aktif olması gerektiğine vurgu yapılmıştır.
 ## Product Backlog URL
 [Activiteam Backlog Board](https://trello.com/b/LDsatvJJ/sprint-3)
 
