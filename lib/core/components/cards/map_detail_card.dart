@@ -31,7 +31,8 @@ class MapDetailCard extends StatelessWidget {
                 Positioned(
                   right: 10,
                   top: 10,
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(Icons.favorite, size: AppSizes.mediumSize, color: AppColors.red),
                       Text(favCount.toString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(shadows: AppShadows.textShadow)),

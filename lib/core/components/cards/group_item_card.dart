@@ -46,7 +46,7 @@ class GroupItemCard extends StatelessWidget {
                     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                       Text(
                         group.event!.start.toString().formattedDay + ' - ' + group.event!.start.toString().formattedTime,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Color(0xff32D7E1)),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.lightblue),
                       ),
                       Row(
                         children: [

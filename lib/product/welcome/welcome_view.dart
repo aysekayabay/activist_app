@@ -17,7 +17,7 @@ class WelcomeView extends StatelessWidget {
           Image(image: AssetImage(ImageConstants.SPLASH_IMAGE), fit: BoxFit.cover, width: double.infinity, height: double.infinity),
           Positioned(
             left: AppSizes.mediumSize,
-            bottom: MediaQuery.of(context).size.height / 1.3,
+            bottom: MediaQuery.of(context).size.height / 1.5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -27,7 +27,7 @@ class WelcomeView extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: AppSizes.mediumSize,
+            bottom: AppSizes.highSize + AppSizes.mediumSize,
             right: 0,
             left: 0,
             child: CustomAppBar(
@@ -36,7 +36,17 @@ class WelcomeView extends StatelessWidget {
               right: AppBarWidgets.NEXT,
               onTapRight: () => NavigationService.instance.navigateToPageRemoved(path: NavigationConstants.ONBOARD),
             ),
-          )
+          ),
+          Positioned(
+              bottom: AppSizes.mediumSize,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Text(
+                  "Bu uygulamadaki etkinlik verileri Etkinlik.io tarafından sağlanmaktadır.",
+                  textAlign: TextAlign.center,
+                ),
+              ))
         ],
       ),
     );

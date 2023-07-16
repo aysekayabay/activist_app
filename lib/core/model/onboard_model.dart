@@ -16,13 +16,13 @@ final List<OnboardModel> onboard_data = [
       image: ImageConstants.ONBOARD1,
       title: "İlgi alanlarını kolayca takip edebiliyor musun?",
       description:
-          "İstanbul'daki favori sanatçılarının favori etkinlikleri cebinde. Favori etkinliklerin yaklaştığında ActivitIST bildirimleriyle sana hatırlatacak. Favorindeki etkinlikler profilini parlatacak ve kategorileriyle yer alacak, belki de kendini tarif etmek için artık direkt ActivitIST profilini gösterirsin, ha ne dersin?",
+          "İstanbul'daki favori sanatçılarının favori etkinlikleri, atölyeler, konserler, tiyatrolar ve daha nicesi seni bekliyor. Favori etkinliklerin yaklaştığında ActivitIST bildirimleriyle sana hatırlatıyor olacak. Favorindeki etkinlikler profilini parlatacak. Seni tanımak isteyenlere ActivitIST profilini göster!",
       pageName: "Favori Etkinlikler"),
   OnboardModel(
       image: ImageConstants.ONBOARD2,
       title: "Yakınındaki etkinliklerden ne kadar haberdarsın?",
       description:
-          "Artık haritada hangi etkinliğin, nerede olduğunu görüntüleyebilirsin. Dilediğin kadar bilgi ve içerik burada. Etkinlik detay sayfasında mekan ve etkinlik hakkında merak ettiğin her şeyi öğrenebilirsin. İstersen bilet almaya yönlendirilebilirsin. İyi eğlen!",
+          "Haritada hangi etkinliğin, nerede olduğunu görüntüleyebilirsin. Etkinlik detay sayfasında mekan ve etkinlik hakkında merak ettiğin her şeyi öğrenebilirsin. İstersen bilet almaya yönlendirilebilirsin. İyi eğlenceler!",
       pageName: "Etkinlik Haritası"),
   OnboardModel(
       image: ImageConstants.ONBOARD3,

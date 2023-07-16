@@ -1,6 +1,7 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/cards/map_detail_card.dart';
 import 'package:akademi_bootcamp/core/constants/api/api_constants.dart';
+import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/group_model.dart';
 import 'package:akademi_bootcamp/product/map/mapbox_view_model.dart';
 import 'package:flutter/material.dart';
@@ -73,11 +74,7 @@ class _MapBoxViewState extends BaseState<MapBoxView> {
 
   Container userLocationMarker() {
     return Container(
-      child: Icon(
-        Icons.location_pin,
-        size: 30,
-        color: Color.fromARGB(255, 18, 155, 141),
-      ),
+      child: Icon(Icons.location_pin, size: 30, color: AppColors.lightblue),
     );
   }
 

@@ -52,15 +52,6 @@ class _AppBaseViewState extends State<AppBaseView> {
                     ],
                   ))
                 : SizedBox(height: AppSizes.highSize * 2),
-            ListTile(
-                leading: Icon(Icons.info, color: AppColors.vanillaShake),
-                title: const Text(
-                  'Hakkımızda',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onTap: () {
-                  logOut();
-                }),
             AuthService.instance.uid == null
                 ? ListTile(
                     leading: Icon(

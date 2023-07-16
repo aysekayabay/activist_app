@@ -22,7 +22,7 @@ class OnboardItem extends StatelessWidget {
           children: [
             Text(question, textAlign: TextAlign.start, style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: AppColors.black)),
             Divider(color: Colors.black, thickness: 1, height: AppSizes.highSize),
-            Text(title, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.darkGrey), textAlign: TextAlign.center),
+            Text(title, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.darkGrey), textAlign: TextAlign.start),
           ],
         ),
       ),

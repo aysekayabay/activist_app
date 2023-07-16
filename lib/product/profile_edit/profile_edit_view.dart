@@ -70,7 +70,7 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
         onPressed: () => imagePickerOption(),
         child: Text(
           "Fotoğrafı Düzenle",
-          style: TextStyle(color: Color(0xff32D7E1)),
+          style: TextStyle(color: AppColors.lightblue),
         ));
   }
 

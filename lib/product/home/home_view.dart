@@ -44,7 +44,7 @@ class _HomeViewState extends BaseState<HomeView> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: 20),
                 child: CustomTextfield(
-                    hintText: "Search",
+                    hintText: "Ara...",
                     controller: _viewModel.searchTextEditingController,
                     onChanged: (value) => _viewModel.searchEventInList(value),
                     focusNode: _viewModel.focusNode,
