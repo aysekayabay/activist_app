@@ -2,6 +2,7 @@ import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/textfield/custom_textfield.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/product/home/home_view_model.dart';
@@ -44,7 +45,7 @@ class _HomeViewState extends BaseState<HomeView> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: 20),
                 child: CustomTextfield(
-                    hintText: "Ara...",
+                    hintText: TextConstants.search,
                     controller: _viewModel.searchTextEditingController,
                     onChanged: (value) => _viewModel.searchEventInList(value),
                     focusNode: _viewModel.focusNode,
@@ -98,13 +99,13 @@ class _HomeViewState extends BaseState<HomeView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("${_viewModel.categoryList?[_viewModel.selectedIndex].name} Aktiviteleri", style: Theme.of(context).textTheme.displayMedium),
+          Text("${_viewModel.categoryList?[_viewModel.selectedIndex].name} ${TextConstants.activitiesOf}", style: Theme.of(context).textTheme.displayMedium),
           InkWell(
             onTap: () => _viewModel.seeAll(),
             child: Column(
               children: [
                 Icon(!_viewModel.seeAllIsActive ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: AppColors.vanillaShake),
-                Text("Hepsini Gör", style: TextStyle().copyWith(color: AppColors.vanillaShake)),
+                Text(TextConstants.seeAll, style: TextStyle().copyWith(color: AppColors.vanillaShake)),
               ],
             ),
           )

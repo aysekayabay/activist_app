@@ -1,5 +1,6 @@
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:akademi_bootcamp/core/services/firestore/events_service.dart';
@@ -46,7 +47,7 @@ class _GroupsViewState extends BaseState<GroupsView> {
                       left: AppSizes.mediumSize,
                       top: AppSizes.highSize,
                     ),
-                    child: Text("Gruplarım", style: themeData.textTheme.headlineSmall),
+                    child: Text(TextConstants.myGroups, style: themeData.textTheme.headlineSmall),
                   ),
                   Expanded(
                       child: ListView.builder(

@@ -3,7 +3,6 @@ import 'package:akademi_bootcamp/product/app-base/app_base.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
 import 'package:akademi_bootcamp/product/onboard/onboard_view.dart';
 import 'package:akademi_bootcamp/product/profile/profile_view.dart';
-import 'package:akademi_bootcamp/product/testview.dart';
 import 'package:akademi_bootcamp/product/welcome/welcome_view.dart';
 import 'package:flutter/material.dart';
 import '../../../product/auth/auth_view.dart';
@@ -19,8 +18,6 @@ class NavigationRoute {
     switch (args.name) {
       case NavigationConstants.AUTH:
         return navigate(AuthView());
-      case NavigationConstants.TEST:
-        return navigate(TestView());
       case NavigationConstants.MAP:
         return navigate(MapBoxView());
       case NavigationConstants.ONBOARD:

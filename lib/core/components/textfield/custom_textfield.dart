@@ -38,7 +38,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
     return Visibility(
       visible: widget.isVisible,
       child: Container(
-        padding: widget.isSearch ? EdgeInsets.symmetric(horizontal: AppSizes.lowSize, vertical: AppSizes.lowSize / 2) : EdgeInsets.zero,
+        padding: widget.isSearch ? EdgeInsets.symmetric(horizontal: AppSizes.lowSize) : EdgeInsets.zero,
         decoration: widget.isSearch ? BoxDecoration(border: Border.all(color: AppColors.vanillaShake, width: 1), borderRadius: AppRadius.primaryRadius) : null,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,18 +54,24 @@ class _CustomTextfieldState extends State<CustomTextfield> {
                 onChanged: widget.onChanged,
                 controller: widget.controller,
                 obscureText: widget.isPassword ? obsecure : false,
-                style: TextStyle(color: AppColors.vanillaShake, ),
+                style: TextStyle(
+                  color: AppColors.vanillaShake,
+                ),
                 focusNode: widget.focusNode,
                 maxLines: 1,
                 minLines: 1,
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   border: widget.isSearch ? InputBorder.none : null,
                   hintStyle: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.darkGrey),
                   hintText: widget.hintText,
                   suffixIcon: Visibility(
                     visible: widget.isPassword,
                     child: IconButton(
-                      icon: Icon(obsecure ? Icons.visibility : Icons.visibility_off, color: AppColors.darkGrey,),
+                      icon: Icon(
+                        obsecure ? Icons.visibility : Icons.visibility_off,
+                        color: AppColors.darkGrey,
+                      ),
                       onPressed: () {
                         setState(
                           () {

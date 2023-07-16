@@ -1,3 +1,4 @@
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_route.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/init/theme/app_theme.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
     return MaterialApp(
-        title: 'ActivitIST',
+        title: TextConstants.appName,
         debugShowCheckedModeBanner: false,
         theme: AppThemeDark.instance.theme,
         navigatorKey: NavigationService.instance.navigatorKey,

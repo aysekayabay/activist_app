@@ -1,6 +1,7 @@
 import 'package:akademi_bootcamp/core/base/extensions/date_time_converter.dart';
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/group_model.dart';
 import 'package:akademi_bootcamp/core/model/message_model.dart';
@@ -103,7 +104,7 @@ class _ChatViewState extends BaseState<ChatView> {
               ],
             );
           }
-          return Text('Bir hata oluştu');
+          return Text(TextConstants.errorMessage);
         },
       ),
     );

@@ -30,7 +30,7 @@ class _AuthViewState extends State<AuthView> {
             CustomButton(
                 title: _viewModel.continueLabel,
                 isFilled: true,
-                verticalPadding: AppSizes.mediumSize,
+                verticalPadding: 12,
                 marginPadding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: AppSizes.lowSize, top: AppSizes.mediumSize),
                 onTap: () => _viewModel.authFunction(context)),
             iconButtons(),
@@ -85,7 +85,7 @@ class _AuthViewState extends State<AuthView> {
           ),
           Positioned(
               left: 20,
-              bottom: 40,
+              bottom: 30,
               child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.vanillaShake))),
         ],
       );

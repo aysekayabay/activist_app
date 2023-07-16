@@ -14,7 +14,6 @@ class MapBoxViewModel = _MapBoxViewModelBase with _$MapBoxViewModel;
 
 abstract class _MapBoxViewModelBase with Store {
   final MAPBOX_STYLE = 'mapbox/dark-v10';
-  final MARKER_SIZE_EXPANDED = 55.0;
   final MARKER_SIZE_SHRINK = 80.0;
   final mapCenter = LatLng(41.0565767, 28.9511806);
   Position? currentPosition;
