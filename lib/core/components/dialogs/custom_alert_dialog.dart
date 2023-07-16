@@ -39,7 +39,7 @@ class _CustomAlertDialogState extends BaseState<CustomAlertDialog> {
               style: themeData.textTheme.displaySmall!.copyWith(color: AppColors.black, fontSize: 18),
             ),
             SizedBox(height: 15),
-            Text("${widget.description}", style: themeData.textTheme.bodyLarge),
+            Text("${widget.description}", style: themeData.textTheme.bodyLarge!.copyWith(color: AppColors.black)),
             SizedBox(height: 20),
             Divider(
               height: 1,
@@ -49,7 +49,7 @@ class _CustomAlertDialogState extends BaseState<CustomAlertDialog> {
               width: MediaQuery.of(context).size.width,
               height: 50,
               child: InkWell(
-                highlightColor: Colors.grey[200],
+                highlightColor: Colors.red[200],
                 onTap: widget.approveOnTap,
                 child: Center(
                   child: Text(

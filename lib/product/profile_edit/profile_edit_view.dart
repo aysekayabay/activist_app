@@ -37,7 +37,8 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
           center: AppBarWidgets.TITLE,
           right: AppBarWidgets.DONE,
           left: AppBarWidgets.BACK,
-          leftIconColor: AppColors.vanillaShake,
+          leftIconColor: AppColors.white,
+          rightIconColor: AppColors.lightGrey,
           onTapLeft: () => Navigator.of(context).pop(),
           onTapRight: () async => await _viewModel.saveChanges(context)),
       body: SingleChildScrollView(
