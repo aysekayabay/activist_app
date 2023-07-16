@@ -104,7 +104,27 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 ## Product Backlog URL
 [Activiteam Backlog Board](https://trello.com/b/bGyVcs5W/sprint-2)
 
+# Sprint 3
+- **Sprint içinde tamamlanması tahmin edilen puan:**  
+- **Puan tamamlama mantığı:** 
+- **Sprint Notu:** Bu sprintte uygulamanın yerel bildirim servisi kurulmuş, etkinliklerin başlangıç zamanına 6 saat ve 1 gün kala bildirim gönderecek şekilde ayarlanmıştır. Yerel depolama için Hive ve Shared Preferences servisleri kurulmuştur, aynı zamanda fotoğraflar için Cached Network Image plugininin kullanılmasına karar verilmiş ve uygulanmıştır. Tüm sayfalardaki ui eksikleri giderilmiş, tasarımla uyumlu hale getirilmiştir. 
+- **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 3.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:
 
+- **Sprint board update: Sprint board screenshotları:**
+
+- **Sprint Review:** Alınan kararlar: Bu sprintte ui güncelleştirmeleri ve test önceliklendirilmiştir. Ek olarak depolama kısmında uygulamayı daha da hızlandıracak pluginler kullanılarak sistem iyileştirilmiştir.
+Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
+
+- **Sprint Retrospective:**
+
+**Neler İyi Gitti?**
+- Sprint 3 için belirlenen tüm görevler başarıyla tamamlandı ve herhangi bir aksama yaşanmadı. 
+
+**Neler Geliştirilebilir?**
+- Takım üyelerinin gelecek projelerde daha fazla aktif olması gerektiğine vurgu yapılmıştır.
+
+## Product Backlog URL
+[Activiteam Backlog Board](https://trello.com/b/LDsatvJJ/sprint-3)
 
 
 
