@@ -111,6 +111,7 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 - **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 3.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:
 
 - **Sprint board update: Sprint board screenshotları:**
+![image](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/cf683304-c179-4a60-b0cf-b1e6c63a29bf)
 
 - **Sprint Review:** Alınan kararlar: Bu sprintte ui güncelleştirmeleri ve test önceliklendirilmiştir. Ek olarak depolama kısmında uygulamayı daha da hızlandıracak pluginler kullanılarak sistem iyileştirilmiştir.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
