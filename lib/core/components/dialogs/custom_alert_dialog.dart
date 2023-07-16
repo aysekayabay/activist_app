@@ -41,10 +41,6 @@ class _CustomAlertDialogState extends BaseState<CustomAlertDialog> {
             SizedBox(height: 15),
             Text("${widget.description}", style: themeData.textTheme.bodyLarge!.copyWith(color: AppColors.black)),
             SizedBox(height: 20),
-            Divider(
-              height: 1,
-              color: AppColors.black,
-            ),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 50,
@@ -59,9 +55,7 @@ class _CustomAlertDialogState extends BaseState<CustomAlertDialog> {
                 ),
               ),
             ),
-            Divider(
-              height: 1,
-            ),
+            Divider(height: 1),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 50,
