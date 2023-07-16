@@ -25,7 +25,9 @@ ActivitIST App ile kullanıcıların İstanbul’da bulundukları konumdaki kons
 - Tüm etkinlikleri konumunuzu kullanarak harita üzerinden görebilmek
 - Bilet satın alımı için ilgili sitelere güvenli bir şekilde yönlendirmek
 - Etkinlikleri türüne göre ayırabilmek
+- Etkinlikler için hatırlatıcı bildirimler sağlayabilmek
 - Kullanıcının ilgilendiği etkinlikleri favorilerine eklemesini sağlamak
+- Kullanıcının ilgi alanlarını oransal olarak profilde gösterebilmek
 - Etkinlik mesaj gruplarına dahil olup iletişim kurabilmek
 
 ## Hedef Kitle
@@ -116,7 +118,6 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 - **Ürün Durumu:** Ekran görüntüleri:
 ![Screenshot_20230716_145430_One UI Home](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/18062dd3-8487-4a13-8294-d5002210ca49)
 https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/0c81b310-65ff-4881-a7cb-f3a1581f2b76
-
 
 - **Sprint Review:** Alınan kararlar: Bu sprintte ui güncelleştirmeleri ve test önceliklendirilmiştir. Ek olarak depolama kısmında uygulamayı daha da hızlandıracak pluginler kullanılarak sistem iyileştirilmiştir.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
