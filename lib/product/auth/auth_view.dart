@@ -31,7 +31,7 @@ class _AuthViewState extends State<AuthView> {
                 title: _viewModel.continueLabel,
                 isFilled: true,
                 verticalPadding: AppSizes.mediumSize,
-                marginPadding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: AppSizes.mediumSize, top: AppSizes.mediumSize),
+                marginPadding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: AppSizes.lowSize, top: AppSizes.mediumSize),
                 onTap: () => _viewModel.authFunction(context)),
             iconButtons(),
             Observer(builder: (context) {
@@ -54,18 +54,22 @@ class _AuthViewState extends State<AuthView> {
     );
   }
 
-  Row iconButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CircleIconButton(
-            iconPath: ImageConstants.GOOGLE,
-            onTap: () {
-              _viewModel.authType = AuthType.GOOGLE;
-              _viewModel.authFunction(context);
-            }),
-      ],
-    );
+  Widget iconButtons() {
+    return Observer(builder: (_) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _viewModel.authType == AuthType.LOG_IN
+              ? CircleIconButton(
+                  iconPath: ImageConstants.GOOGLE,
+                  onTap: () {
+                    _viewModel.authType = AuthType.GOOGLE;
+                    _viewModel.authFunction(context);
+                  })
+              : SizedBox()
+        ],
+      );
+    });
   }
 
   Widget authTop() {
@@ -81,35 +85,8 @@ class _AuthViewState extends State<AuthView> {
           ),
           Positioned(
               left: 20,
-              top: 150,
+              bottom: 40,
               child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.vanillaShake))),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    labelText(
-                      _viewModel.authType == AuthType.SIGN_IN ? "Ad" : "Email",
-                    ),
-                    CustomTextfield(
-                        hintText: "Xxxx Xxxx",
-                        controller: _viewModel.fullnameController,
-                        keyboardType: TextInputType.name,
-                        textInputAction: TextInputAction.next,
-                        isVisible: _viewModel.authType == AuthType.SIGN_IN),
-                    CustomTextfield(
-                        hintText: "xxxx@xxx.xxx",
-                        controller: _viewModel.emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        isVisible: _viewModel.authType == AuthType.LOG_IN),
-                  ],
-                ),
-              )),
         ],
       );
     });
@@ -122,13 +99,20 @@ class _AuthViewState extends State<AuthView> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _viewModel.authType == AuthType.SIGN_IN ? labelText("Email") : SizedBox(),
+            _viewModel.authType == AuthType.SIGN_IN ? labelText("Ad") : SizedBox(),
             CustomTextfield(
-                hintText: "xxxx@xxx.xxx",
-                controller: _viewModel.emailController,
-                keyboardType: TextInputType.emailAddress,
+                hintText: "Xxxx Xxxx",
+                controller: _viewModel.fullnameController,
+                keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
                 isVisible: _viewModel.authType == AuthType.SIGN_IN),
+            labelText("Email"),
+            CustomTextfield(
+              hintText: "xxxx@xxx.xxx",
+              controller: _viewModel.emailController,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+            ),
             labelText("Şifre"),
             CustomTextfield(hintText: "******", controller: _viewModel.passwordController, keyboardType: TextInputType.text, textInputAction: TextInputAction.next, isPassword: true),
             _viewModel.authType == AuthType.LOG_IN
@@ -172,18 +156,25 @@ class _AuthViewState extends State<AuthView> {
               children: [
                 Text(
                   "Şifreni Yenile",
-                  style: TextStyle(fontSize: 20.0),
+                  style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.black),
                   textAlign: TextAlign.center,
                 ),
                 Divider(
                   color: Colors.grey,
                   height: 4.0,
                 ),
-                Text("Email"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Email",
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.black),
+                  ),
+                ),
                 TextField(
                   controller: _viewModel.forgotPasswordController,
                   decoration: InputDecoration(
                     hintText: "xxxx@xxx.xxx",
+                    hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.grey),
                   ),
                 ),
                 InkWell(
@@ -200,7 +191,7 @@ class _AuthViewState extends State<AuthView> {
                     ),
                     child: Text(
                       "Şifre Yenileme Linki Gönder",
-                      style: TextStyle(color: Colors.white),
+                      style: Theme.of(context).textTheme.displayMedium,
                       textAlign: TextAlign.center,
                     ),
                   ),

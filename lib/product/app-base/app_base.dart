@@ -24,8 +24,8 @@ class _AppBaseViewState extends State<AppBaseView> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int currentIndex = 0;
 
-  logOut() {
-    AuthService.instance.signOut();
+  logOut() async {
+    await AuthService.instance.signOut();
     Navigator.pop(context);
     setState(() {});
   }
