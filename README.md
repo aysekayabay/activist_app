@@ -36,8 +36,9 @@ ActivitIST App ile kullanıcıların İstanbul’da bulundukları konumdaki kons
 - Sahne sanatları ilgisi olanlar
 - Workshop eğitim etkinliğine ilgisi olanlar
 - Çocuklarıyla zaman geçirebileceği etkinlik yapmak isteyen ebeveynler
+
 ## Jüriye Not
-Etkinlik.io ile etkinlik verilerini ücretsiz bir şekilde kullanmak konusunda iletişime geçerek uygulamamızda kendilerini referans olarak göstermemiz dahilinde bizlere sağladıkları key'i uygulamamızda kullanmamıza izin verilmiştir.
+Etkinlik.io ile etkinlik verilerini ücretsiz bir şekilde kullanmak konusunda iletişime geçtik. Uygulamamızda kendilerini referans olarak göstermemiz dahilinde servis bağlantısı için bizlere sağladıkları key'i uygulamamızda kullanmamıza izin verilmiştir.
 
 # Sprint 1
 - **Sprint içinde tamamlanması tahmin edilen puan:**  110 Puan
