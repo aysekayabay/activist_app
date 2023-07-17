@@ -110,7 +110,8 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 - **Sprint içinde tamamlanması tahmin edilen puan:** Tamamlandı*
 - **Puan tamamlama mantığı:** Toplamda proje kapsamında tamamlanması gereken 310 puanlık backlog bulunmaktadır. Toplamda 2 sprint ile gereken puanlar alınmış olunup 3. sprint bazı test ve eksik sayfalara ayrıldı.
 - **Sprint Notu:** Bu sprintte uygulamanın yerel bildirim servisi kurulmuş, etkinliklerin başlangıç zamanına 6 saat ve 1 gün kala bildirim gönderecek şekilde ayarlanmıştır. Yerel depolama için Hive ve Shared Preferences servisleri kurulmuştur, aynı zamanda fotoğraflar için Cached Network Image plugininin kullanılmasına karar verilmiş ve uygulanmıştır. Tüm sayfalardaki ui eksikleri giderilmiş, tasarımla uyumlu hale getirilmiştir. 
-- **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 3.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:  [Sprint_3_Daily_Scrum_Chat.docx](https://github.com/aysekayabay/akademi_bootcamp/files/12065315/sprint3.docx)
+- **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 3.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:  [Sprint_3_Daily_Scrum_Chat.docx](https://github.com/aysekayabay/akademi_bootcamp/files/12065526/sprint3.docx)
+
 
 
 - **Sprint board update: Sprint board screenshotları:**
