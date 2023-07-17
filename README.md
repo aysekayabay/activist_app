@@ -39,6 +39,7 @@ ActivitIST App ile kullanıcıların İstanbul’da bulundukları konumdaki kons
 
 ## Jüriye Not
 Etkinlik.io ile etkinlik verilerini ücretsiz bir şekilde kullanmak konusunda iletişime geçtik. Uygulamamızda kendilerini referans olarak göstermemiz dahilinde servis bağlantısı için bizlere sağladıkları key'i uygulamamızda kullanmamıza izin verilmiştir.
+![WhatsApp Image 2023-06-09 at 14 12 09](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/b26c7c34-7d73-45f8-9934-8a8e05c57baf)
 
 # Sprint 1
 - **Sprint içinde tamamlanması tahmin edilen puan:**  110 Puan
