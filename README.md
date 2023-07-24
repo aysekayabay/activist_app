@@ -37,10 +37,6 @@ ActivitIST App ile kullanıcıların İstanbul’da bulundukları konumdaki kons
 - Workshop eğitim etkinliğine ilgisi olanlar
 - Çocuklarıyla zaman geçirebileceği etkinlik yapmak isteyen ebeveynler
 
-## Jüriye Not
-Etkinlik.io ile etkinlik verilerini ücretsiz bir şekilde kullanmak konusunda iletişime geçtik. Uygulamamızda kendilerini referans olarak göstermemiz dahilinde servis bağlantısı için bizlere sağladıkları key'i uygulamamızda kullanmamıza izin verilmiştir.
-![WhatsApp Image 2023-06-09 at 14 12 09](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/b26c7c34-7d73-45f8-9934-8a8e05c57baf)
-
 # Sprint 1
 - **Sprint içinde tamamlanması tahmin edilen puan:**  110 Puan
 - **Puan tamamlama mantığı:** Toplamda proje kapsamında tamamlanması gereken 310 puanlık backlog bulunmaktadır. 3 sprinte bölündüğünde 110 Puanlık backlog ile 1.sprintin tamamlanmasına karar verildi.
