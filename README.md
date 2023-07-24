@@ -76,7 +76,8 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün
 - **Sprint Notu:** Bu sprintte uygulamanın tanıtım, gruplar, etkinlik detay, mesajlaşma, profil ve harita sayfaları tasarlanıp koda dökülmüştür. Cloud firestore entegre edilip kullanılmıştır. Bu sprintte tüm görevlerin bitirilmesi önceliklendirilmiştir. Son kalan sprint için ui güncelleştirmeleri ve testler bırakılmıştır.
 - **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 2.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:[Sprint_2_Daily_Scrum_Chat.docx](https://github.com/aysekayabay/akademi_bootcamp/files/11931645/Sprint_2_Daily_Scrum_Chat.docx)
 
-- **Sprint board update: Sprint board screenshotları:**![sprint_2](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/9a619228-977c-4570-8a7c-20f12581b27d)
+- **Sprint board update: Sprint board screenshotları:**![sprint_2](![image](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/3eaa2b51-e472-4600-abf3-57890aeb4774)
+)
 
 - **Ürün Durumu:** Ekran görüntüleri:
 ![Screenshot_1688332262](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/0809aec4-9516-408d-a3bf-0765d8293d92)
