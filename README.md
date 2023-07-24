@@ -76,18 +76,18 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün
 - **Sprint Notu:** Bu sprintte uygulamanın tanıtım, gruplar, etkinlik detay, mesajlaşma, profil ve harita sayfaları tasarlanıp koda dökülmüştür. Cloud firestore entegre edilip kullanılmıştır. Bu sprintte tüm görevlerin bitirilmesi önceliklendirilmiştir. Son kalan sprint için ui güncelleştirmeleri ve testler bırakılmıştır.
 - **Daily Scrum:** Daily Scrum toplantılarının Discord ve Whatsapp üzerinden yapılmasına karar verilmiştir. 2.Sprinte ait Daily Scrum toplantısı örneği word olarak Readme'de tarafımızca paylaşılmaktadır:[Sprint_2_Daily_Scrum_Chat.docx](https://github.com/aysekayabay/akademi_bootcamp/files/11931645/Sprint_2_Daily_Scrum_Chat.docx)
 
-- **Sprint board update: Sprint board screenshotları:**![sprint_2](![image](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/3eaa2b51-e472-4600-abf3-57890aeb4774)
+- **Sprint board update: Sprint board screenshotları:**![sprint_2]https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/d1d72d41-310b-48c3-97ba-e4b295edef96)
 )
 
 - **Ürün Durumu:** Ekran görüntüleri:
-![Screenshot_1688332262](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/0809aec4-9516-408d-a3bf-0765d8293d92)
-![Screenshot_1688332269](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/ad9c7ffa-2d53-4c66-99ee-0441e42f725a)
-![Screenshot_1688332406](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/1d6597ce-ae49-4da2-abd0-d244f849c485)
-![Screenshot_1688332420](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/d26b8093-aba4-4a77-b866-8aaf3c506d10)
-![Screenshot_1688333207](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/534cd4de-1f32-4c53-826d-833494854ccd)
-![Screenshot_1688333293](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/5a2a5bd5-a247-463c-9c02-a081616f3b03)
-![Screenshot_1688333548](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/efd3e998-e205-483b-b2cd-b32ede14e7e9)
-![Screenshot_1688332424](https://github.com/aysekayabay/akademi_bootcamp/assets/135243791/396ae41b-8f44-4de8-b51a-d264e652dce5)
+![Screenshot_1688332262](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/0809aec4-9516-408d-a3bf-0765d8293d92)
+![Screenshot_1688332269](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/ad9c7ffa-2d53-4c66-99ee-0441e42f725a)
+![Screenshot_1688332406](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/1d6597ce-ae49-4da2-abd0-d244f849c485)
+![Screenshot_1688332420](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/d26b8093-aba4-4a77-b866-8aaf3c506d10)
+![Screenshot_1688333207](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/534cd4de-1f32-4c53-826d-833494854ccd)
+![Screenshot_1688333293](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/5a2a5bd5-a247-463c-9c02-a081616f3b03)
+![Screenshot_1688333548](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/efd3e998-e205-483b-b2cd-b32ede14e7e9)
+![Screenshot_1688332424](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/396ae41b-8f44-4de8-b51a-d264e652dce5)
 
 - **Sprint Review:** Alınan kararlar: Bu sprintte uygulamanın tanıtım, gruplar, etkinlik detay, mesajlaşma, profil ve harita sayfaları tasarlanıp koda dökülmüştür. Cloud firestore entegre edilip kullanılmıştır. Bu sprintte tüm görevlerin bitirilmesi önceliklendirilmiştir. Son kalan sprint için ui güncelleştirmeleri ve testler bırakılmıştır.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
