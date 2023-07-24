@@ -120,8 +120,10 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 
 
 - **Ürün Durumu:** Ekran görüntüleri:
-![Screenshot_20230716_145430_One UI Home](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/18062dd3-8487-4a13-8294-d5002210ca49)
-Ekran Videosu: https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/0c81b310-65ff-4881-a7cb-f3a1581f2b76
+Ekran Videosu: 
+https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/e23248ae-3124-4888-b7f4-08407e2c9689
+
+
 
 - **Sprint Review:** Alınan kararlar: Bu sprintte ui güncelleştirmeleri ve test önceliklendirilmiştir. Ek olarak depolama kısmında uygulamayı daha da hızlandıracak pluginler kullanılarak sistem iyileştirilmiştir.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
