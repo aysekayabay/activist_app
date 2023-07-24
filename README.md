@@ -80,14 +80,12 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün
 
 
 - **Ürün Durumu:** Ekran görüntüleri:
-![Screenshot_1688332262](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/0809aec4-9516-408d-a3bf-0765d8293d92)
-![Screenshot_1688332269](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/ad9c7ffa-2d53-4c66-99ee-0441e42f725a)
-![Screenshot_1688332406](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/1d6597ce-ae49-4da2-abd0-d244f849c485)
-![Screenshot_1688332420](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/d26b8093-aba4-4a77-b866-8aaf3c506d10)
-![Screenshot_1688333207](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/534cd4de-1f32-4c53-826d-833494854ccd)
-![Screenshot_1688333293](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/5a2a5bd5-a247-463c-9c02-a081616f3b03)
-![Screenshot_1688333548](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/efd3e998-e205-483b-b2cd-b32ede14e7e9)
-![Screenshot_1688332424](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/396ae41b-8f44-4de8-b51a-d264e652dce5)
+- ![Screenshot_1688332262](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/56b49fb1-9a5d-4a26-8342-c24b54991462)
+![Screenshot_1688332298](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/ce7d96d2-4bbb-42e8-b9c1-061cab2f5d2d)
+![Screenshot_1688332269](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/ef2f9346-8a86-49dd-ae37-2fa971855cc4)
+![Screenshot_1688332406](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/ac2ad6de-f887-402a-a20e-d8a0249dc65e)
+![Screenshot_1688333293](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/f9b65efe-cab9-4e7a-b366-443675af21ae)
+
 
 - **Sprint Review:** Alınan kararlar: Bu sprintte uygulamanın tanıtım, gruplar, etkinlik detay, mesajlaşma, profil ve harita sayfaları tasarlanıp koda dökülmüştür. Cloud firestore entegre edilip kullanılmıştır. Bu sprintte tüm görevlerin bitirilmesi önceliklendirilmiştir. Son kalan sprint için ui güncelleştirmeleri ve testler bırakılmıştır.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
@@ -119,7 +117,7 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 
 
 
-- **Ürün Durumu:** Ekran görüntüleri:
+- **Ürün Durumu:** 
 Ekran Videosu: 
 https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/e23248ae-3124-4888-b7f4-08407e2c9689
 
