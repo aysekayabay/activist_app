@@ -115,8 +115,9 @@ Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 
 
 
-- **Sprint board update: Sprint board screenshotları:**
-![image](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/cf683304-c179-4a60-b0cf-b1e6c63a29bf)
+- **Sprint board update: Sprint board screenshotları:** ![Sprint 3](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/0d209f27-4c5e-4b21-8455-547acb74c153)
+
+
 
 - **Ürün Durumu:** Ekran görüntüleri:
 ![Screenshot_20230716_145430_One UI Home](https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/18062dd3-8487-4a13-8294-d5002210ca49)
