@@ -4,6 +4,9 @@ Activiteam (F27)
 
 # Ürün İle İlgili Bilgiler
 
+## Youtube Url
+[ActivitIST App Youtube Url Board](https://www.youtube.com/watch?v=dwoZfto-8V8)
+
 ## Ekip Üyeleri
 - Ayşe Kayabay: Product Owner, Developer
 - Berkan Yükselgün: Scrum Master, Developer, Designer
