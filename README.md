@@ -122,7 +122,6 @@ Ekran Videosu:
 https://github.com/aysekayabay/akademi_bootcamp/assets/74185399/e23248ae-3124-4888-b7f4-08407e2c9689
 
 
-
 - **Sprint Review:** Alınan kararlar: Bu sprintte ui güncelleştirmeleri ve test önceliklendirilmiştir. Ek olarak depolama kısmında uygulamayı daha da hızlandıracak pluginler kullanılarak sistem iyileştirilmiştir.
 Sprint Review Katılımcıları: Ayşe Kayabay, Berkan Yükselgün, Eda Yalçın
 
