@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
 import 'package:akademi_bootcamp/product/profile_edit/profile_edit_view_model.dart';
@@ -33,7 +34,7 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
     return Scaffold(
       appBar: CustomAppBar(
           context: context,
-          centerTitle: "Profili Düzenle",
+          centerTitle: TextConstants.editProfile,
           center: AppBarWidgets.TITLE,
           right: AppBarWidgets.DONE,
           left: AppBarWidgets.BACK,
@@ -50,13 +51,13 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
             changePhotoButton(),
             Container(
               margin: EdgeInsets.all(20),
-              padding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: AppSizes.highSize, horizontal: AppSizes.lowSize),
               decoration: BoxDecoration(border: Border.all(color: AppColors.grey, width: 2), borderRadius: AppRadius.primaryRadius),
               child: Column(
                 children: [
-                  UserInfoEditItem(tWidth: deviceWidth / 2, label: "Adı:", controller: _viewModel.fullnameController, hintText: 'Ad'),
-                  UserInfoEditItem(tWidth: deviceWidth / 2, label: "Şehir:", controller: _viewModel.cityController, hintText: 'Şehir'),
-                  UserInfoEditItem(tWidth: deviceWidth / 2, label: "Cinsiyet:", controller: _viewModel.genderController, hintText: 'Cinsiyet'),
+                  UserInfoEditItem(tWidth: deviceWidth / 2, label: TextConstants.name, controller: _viewModel.fullnameController, hintText: TextConstants.name),
+                  UserInfoEditItem(tWidth: deviceWidth / 2, label: TextConstants.city, controller: _viewModel.cityController, hintText: TextConstants.city),
+                  UserInfoEditItem(tWidth: deviceWidth / 2, label: TextConstants.gender, controller: _viewModel.genderController, hintText: TextConstants.gender),
                 ],
               ),
             ),
@@ -70,7 +71,7 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
     return TextButton(
         onPressed: () => imagePickerOption(),
         child: Text(
-          "Fotoğrafı Düzenle",
+          TextConstants.editPhoto,
           style: TextStyle(color: AppColors.lightblue),
         ));
   }
@@ -91,21 +92,21 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(AppSizes.mediumSize),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizes.mediumSize)),
             color: Colors.black,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Fotoğrafı Değiştir", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+              Text(TextConstants.editPhoto, style: TextStyle(fontSize: AppSizes.mediumSize, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
               SizedBox(
                 height: AppSizes.mediumSize,
               ),
-              bottomSheetItem(icon: ImageConstants.GALLERY, imageSource: ImageSource.gallery, title: "Galeriden Seç", titleColor: AppColors.vanillaShake),
-              bottomSheetItem(icon: ImageConstants.CAMERA, imageSource: ImageSource.camera, title: "Fotoğraf Çek", titleColor: AppColors.vanillaShake),
-              bottomSheetItem(icon: ImageConstants.TRASH, title: "Mevcut Fotoğrafı Kaldır", titleColor: AppColors.red),
+              bottomSheetItem(icon: ImageConstants.GALLERY, imageSource: ImageSource.gallery, title: TextConstants.pickGallery, titleColor: AppColors.vanillaShake),
+              bottomSheetItem(icon: ImageConstants.CAMERA, imageSource: ImageSource.camera, title: TextConstants.pickCamera, titleColor: AppColors.vanillaShake),
+              bottomSheetItem(icon: ImageConstants.TRASH, title: TextConstants.removeCurrentPhoto, titleColor: AppColors.red),
             ],
           ),
         );
@@ -125,10 +126,10 @@ class _ProfileEditViewState extends BaseState<ProfileEditView> {
             context: context,
             builder: (context) {
               return CustomAlertDialog(
-                title: "Mevcut Fotoğrafı Kaldır",
-                description: "Fotoğrafı kaldırmak istediğine emin misin?",
-                approveButtonTitle: "Kaldır",
-                cancelButtonTitle: "Vazgeç",
+                title: TextConstants.removeCurrentPhoto,
+                description: TextConstants.sureMessageAboutRemovingPhoto,
+                approveButtonTitle: TextConstants.remove,
+                cancelButtonTitle: TextConstants.cancel,
                 approveOnTap: () {
                   _viewModel.removeImage(context);
                 },

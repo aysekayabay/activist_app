@@ -3,6 +3,7 @@ import 'package:akademi_bootcamp/core/base/state/base_state.dart';
 import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/image/cached_network_image_widget.card.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/model/event_model.dart';
 import 'package:akademi_bootcamp/core/model/expanded_item.dart';
@@ -28,9 +29,6 @@ class _DetailViewState extends BaseState<DetailView> {
 
   @override
   Widget build(BuildContext context) {
-    String buyText = 'Bilet Satın Al';
-    // int peopleCount = 8;
-
     return Scaffold(
       backgroundColor: Color(0xff323232),
       body: SingleChildScrollView(
@@ -40,7 +38,7 @@ class _DetailViewState extends BaseState<DetailView> {
           children: [
             detailHeader(context, _viewModel.gradientColors),
             drawers(),
-            buttons(buyText),
+            buttons(),
           ],
         ),
       ),
@@ -49,7 +47,7 @@ class _DetailViewState extends BaseState<DetailView> {
 
   Container drawers() {
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(AppSizes.mediumSize),
       child: ExpansionPanelList(
         expandedHeaderPadding: EdgeInsets.zero,
         elevation: 1,
@@ -77,12 +75,12 @@ class _DetailViewState extends BaseState<DetailView> {
     );
   }
 
-  Row buttons(String buyText) {
+  Row buttons() {
     return Row(
       children: [
         Expanded(
             child: CustomButton(
-                title: buyText,
+                title: TextConstants.buyTicket,
                 isFilled: true,
                 verticalPadding: AppSizes.mediumSize,
                 marginPadding: EdgeInsets.all(AppSizes.mediumSize),
@@ -94,45 +92,11 @@ class _DetailViewState extends BaseState<DetailView> {
                 padding: EdgeInsets.only(right: AppSizes.mediumSize),
                 child: Observer(builder: (context) {
                   return GestureDetector(
-                      onTap: () => _viewModel.favButton(widget.eventModel), child: Icon(_viewModel.isFav ? Icons.favorite_rounded : Icons.favorite_outline_rounded, color: AppColors.red, size: 32));
+                      onTap: () => _viewModel.favButton(widget.eventModel),
+                      child: Icon(_viewModel.isFav ? Icons.favorite_rounded : Icons.favorite_outline_rounded, color: AppColors.red, size: AppSizes.iconSize));
                 }),
               ),
       ],
-    );
-  }
-
-  Widget eventPeopleLiked(int peopleCount) {
-    return Padding(
-      padding: EdgeInsets.only(left: AppSizes.mediumSize),
-      child: Row(
-        children: [
-          Stack(
-              children: List.generate(peopleCount > 5 ? 5 : peopleCount, (index) {
-            return Padding(
-              padding: EdgeInsets.only(left: 32.0 * index),
-              child: personCircleAvatar(),
-            );
-          })),
-          Visibility(
-            visible: peopleCount > 5,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                "+${peopleCount - 5}",
-                style: TextStyle(color: AppColors.vanillaShake),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Container personCircleAvatar() {
-    return Container(
-      width: 50,
-      height: 50,
-      child: ClipOval(child: Image.network("https://picsum.photos/200")),
     );
   }
 
@@ -167,7 +131,7 @@ class _DetailViewState extends BaseState<DetailView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(name, style: Theme.of(context).textTheme.displayLarge),
-        SizedBox(height: 10),
+        SizedBox(height: AppSizes.lowSize),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

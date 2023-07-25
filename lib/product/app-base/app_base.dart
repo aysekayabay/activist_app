@@ -2,6 +2,7 @@ import 'package:akademi_bootcamp/core/components/image/profile_photo_widget.dart
 import 'package:akademi_bootcamp/core/components/navigation_bar/custom_navigation_bar.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
 import 'package:akademi_bootcamp/core/constants/navigation/navigation_constants.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:akademi_bootcamp/core/init/navigation/navigation_service.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
@@ -45,8 +46,8 @@ class _AppBaseViewState extends State<AppBaseView> {
                     child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProfilePhotoWidget(radius: 40, photoUrl: currentUser.photoUrl),
-                      SizedBox(height: 10),
+                      ProfilePhotoWidget(radius: AppSizes.highSize, photoUrl: currentUser.photoUrl),
+                      SizedBox(height: AppSizes.lowSize),
                       Text('~ ' + (currentUser.fullname ?? '')),
                       Text(currentUser.email ?? '', style: TextStyle(color: AppColors.grey)),
                     ],
@@ -58,16 +59,14 @@ class _AppBaseViewState extends State<AppBaseView> {
                       Icons.login,
                       color: AppColors.vanillaShake,
                     ),
-                    title: const Text(
-                      'Giriş Yap/Kayıt Ol',
-                    ),
+                    title: Text("${TextConstants.logIn}/${TextConstants.signIn}"),
                     onTap: () {
                       NavigationService.instance.navigateToPage(path: NavigationConstants.AUTH);
                     })
                 : ListTile(
                     leading: Icon(Icons.logout_outlined, color: AppColors.vanillaShake),
                     tileColor: Colors.red,
-                    title: const Text('Çıkış Yap', style: TextStyle(color: Colors.white)),
+                    title: Text(TextConstants.logOut, style: TextStyle(color: Colors.white)),
                     onTap: () {
                       logOut();
                     }),
@@ -75,11 +74,11 @@ class _AppBaseViewState extends State<AppBaseView> {
               contentPadding: EdgeInsets.only(top: AppSizes.highSize * 6),
               title: Image.asset(
                 ImageConstants.LOGO,
-                height: 80,
+                height: AppSizes.highSize * 2,
               ),
             ),
             ListTile(
-              title: Text("ActivitIST © 2023", textAlign: TextAlign.center),
+              title: Text(TextConstants.copyright, textAlign: TextAlign.center),
             )
           ],
         ),

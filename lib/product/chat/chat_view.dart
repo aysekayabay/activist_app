@@ -91,7 +91,7 @@ class _ChatViewState extends BaseState<ChatView> {
                           child: TextField(
                         controller: controller,
                         style: themeData.textTheme.bodyMedium,
-                        decoration: InputDecoration(hintStyle: TextStyle().copyWith(color: AppColors.grey), hintText: "Mesaj yazın"),
+                        decoration: InputDecoration(hintStyle: TextStyle().copyWith(color: AppColors.grey), hintText: TextConstants.typeMessage),
                       )),
                       IconButton(
                           onPressed: () {

@@ -9,6 +9,7 @@ import '../../core/components/app_bar/custom_app_bar.dart';
 import '../../core/components/page/entry_content.dart';
 import '../../core/model/entry_model.dart';
 
+//CANCEL
 class EntryScreen extends StatefulWidget {
   const EntryScreen({super.key});
 

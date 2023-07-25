@@ -32,6 +32,7 @@ class AppSizes {
   static double mediumSize = lowSize * 2;
   static double lowSize = 10;
   static double radiusSize = 15;
+  static double iconSize = 32;
 }
 
 class AppPadings {

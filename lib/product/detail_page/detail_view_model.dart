@@ -1,4 +1,5 @@
 import 'package:akademi_bootcamp/core/base/extensions/html_parser.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/model/expanded_item.dart';
 import 'package:akademi_bootcamp/core/model/user_model.dart';
 import 'package:akademi_bootcamp/core/services/auth/auth_service.dart';
@@ -81,9 +82,9 @@ abstract class _DetailViewModelBase with Store {
     }
     isFav = favList.any((event) => event.id == eventModel.id);
     items = [
-      EventExpandedItem(headerValue: 'Etkinlik Bilgisi', expandedValue: eventModel.content != null ? eventModel.content.toString().parseHtml() : ""),
+      EventExpandedItem(headerValue: TextConstants.eventInfo, expandedValue: eventModel.content != null ? eventModel.content.toString().parseHtml() : ""),
       EventExpandedItem(
-          headerValue: 'Mekan Bilgisi',
+          headerValue: TextConstants.placeInfo,
           expandedValue: (eventModel.venue != null && eventModel.venue!.about != null ? eventModel.venue!.about.toString() : "") +
               '\n' +
               (eventModel.venue != null && eventModel.venue!.address != null ? eventModel.venue!.address.toString() : "")),

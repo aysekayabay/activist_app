@@ -29,7 +29,7 @@ class WelcomeView extends StatelessWidget {
         bottom: AppSizes.mediumSize,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.symmetric(horizontal: 40),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.highSize),
           child: Text(
             TextConstants.via,
             textAlign: TextAlign.center,

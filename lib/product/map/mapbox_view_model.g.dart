@@ -25,6 +25,22 @@ mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
     });
   }
 
+  late final _$groupListAtom =
+      Atom(name: '_MapBoxViewModelBase.groupList', context: context);
+
+  @override
+  List<GroupModel> get groupList {
+    _$groupListAtom.reportRead();
+    return super.groupList;
+  }
+
+  @override
+  set groupList(List<GroupModel> value) {
+    _$groupListAtom.reportWrite(value, super.groupList, () {
+      super.groupList = value;
+    });
+  }
+
   late final _$markerListAtom =
       Atom(name: '_MapBoxViewModelBase.markerList', context: context);
 
@@ -134,6 +150,7 @@ mixin _$MapBoxViewModel on _MapBoxViewModelBase, Store {
   String toString() {
     return '''
 eventList: ${eventList},
+groupList: ${groupList},
 markerList: ${markerList},
 pageController: ${pageController},
 selectedIndex: ${selectedIndex}

@@ -2,6 +2,7 @@ import 'package:akademi_bootcamp/core/components/app_bar/custom_app_bar.dart';
 import 'package:akademi_bootcamp/core/components/buttons/custom_button.dart';
 import 'package:akademi_bootcamp/core/components/textfield/custom_textfield.dart';
 import 'package:akademi_bootcamp/core/constants/image/image_constants.dart';
+import 'package:akademi_bootcamp/core/constants/text/text_constants.dart';
 import 'package:akademi_bootcamp/core/constants/theme/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -28,29 +29,18 @@ class _AuthViewState extends State<AuthView> {
             authTop(),
             authBody(),
             CustomButton(
-                title: _viewModel.continueLabel,
+                title: TextConstants.continueLabel,
                 isFilled: true,
-                verticalPadding: 12,
+                verticalPadding: AppSizes.lowSize,
                 marginPadding: EdgeInsets.symmetric(horizontal: AppSizes.mediumSize) + EdgeInsets.only(bottom: AppSizes.lowSize, top: AppSizes.mediumSize),
                 onTap: () => _viewModel.authFunction(context)),
             iconButtons(),
             Observer(builder: (context) {
-              return TextButton(onPressed: () => _viewModel.changeAuthType(), child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.logIn : _viewModel.signIn));
+              return TextButton(onPressed: () => _viewModel.changeAuthType(), child: Text(_viewModel.authType == AuthType.SIGN_IN ? TextConstants.logIn : TextConstants.signIn));
             }),
           ],
         ),
       ),
-    );
-  }
-
-  Stack dividerWidget() {
-    return Stack(
-      children: [
-        Divider(indent: AppSizes.mediumSize, endIndent: AppSizes.mediumSize, thickness: 1, color: AppColors.vanillaShake),
-        Center(
-            child: Container(
-                padding: EdgeInsets.all(AppSizes.lowSize), color: AppColors.black, child: Text("or", style: Theme.of(context).textTheme.labelLarge!.copyWith(color: AppColors.vanillaShake)))),
-      ],
     );
   }
 
@@ -84,9 +74,10 @@ class _AuthViewState extends State<AuthView> {
             onTapLeft: () => Navigator.pop(context),
           ),
           Positioned(
-              left: 20,
-              bottom: 30,
-              child: Text(_viewModel.authType == AuthType.SIGN_IN ? _viewModel.signIn : _viewModel.logIn, style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.vanillaShake))),
+              left: AppSizes.mediumSize,
+              bottom: AppSizes.radiusSize * 2,
+              child: Text(_viewModel.authType == AuthType.SIGN_IN ? TextConstants.signIn : TextConstants.logIn,
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.vanillaShake))),
         ],
       );
     });
@@ -99,31 +90,31 @@ class _AuthViewState extends State<AuthView> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _viewModel.authType == AuthType.SIGN_IN ? labelText("Ad") : SizedBox(),
+            _viewModel.authType == AuthType.SIGN_IN ? labelText(TextConstants.name) : SizedBox(),
             CustomTextfield(
                 hintText: "Xxxx Xxxx",
                 controller: _viewModel.fullnameController,
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
                 isVisible: _viewModel.authType == AuthType.SIGN_IN),
-            labelText("Email"),
+            labelText(TextConstants.email),
             CustomTextfield(
               hintText: "xxxx@xxx.xxx",
               controller: _viewModel.emailController,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
             ),
-            labelText("Şifre"),
+            labelText(TextConstants.password),
             CustomTextfield(hintText: "******", controller: _viewModel.passwordController, keyboardType: TextInputType.text, textInputAction: TextInputAction.next, isPassword: true),
             _viewModel.authType == AuthType.LOG_IN
                 ? Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(top: AppSizes.lowSize),
                       child: InkWell(
                           onTap: () => forgotPasswordAlertBox(context),
                           child: Text(
-                            "Şifremi Unuttum",
+                            TextConstants.forgotPassword,
                             style: TextStyle(color: AppColors.lightYellow, fontSize: 12),
                           )),
                     ),
@@ -147,26 +138,23 @@ class _AuthViewState extends State<AuthView> {
       context: context,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(32.0))),
-          contentPadding: EdgeInsets.only(top: 20.0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(AppSizes.radiusSize * 2))),
+          contentPadding: EdgeInsets.only(top: AppSizes.mediumSize),
           content: Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Şifreni Yenile",
+                  TextConstants.resetPassword,
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(color: AppColors.black),
                   textAlign: TextAlign.center,
                 ),
-                Divider(
-                  color: Colors.grey,
-                  height: 4.0,
-                ),
+                Divider(color: Colors.grey, height: 4.0),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Email",
+                    TextConstants.email,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.black),
                   ),
                 ),
@@ -184,13 +172,13 @@ class _AuthViewState extends State<AuthView> {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                    padding: EdgeInsets.only(top: AppSizes.mediumSize, bottom: AppSizes.mediumSize),
                     decoration: BoxDecoration(
                       color: AppColors.orange,
-                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(32.0), bottomRight: Radius.circular(32.0)),
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(AppSizes.radiusSize * 2), bottomRight: Radius.circular(AppSizes.radiusSize * 2)),
                     ),
                     child: Text(
-                      "Şifre Yenileme Linki Gönder",
+                      TextConstants.sendPasswordResetLink,
                       style: Theme.of(context).textTheme.displayMedium,
                       textAlign: TextAlign.center,
                     ),
